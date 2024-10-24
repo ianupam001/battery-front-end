@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ServiceCard from "../components/ServiceCard";
 import Breadcrumb from "../components/sections/home1/Breadcrumb";
-
+const apiUrl = import.meta.env.VITE_BASE_URL;
 export default function Products() {
   const title = "Products";
   const breadcrumbs = [
@@ -13,9 +13,7 @@ export default function Products() {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const res = await fetch(
-        "https://battery-backend-cfe1.onrender.com/api/product/getProducts"
-      );
+      const res = await fetch(`${apiUrl}/api/product/getProducts`);
       const blogpost = await res.json();
       setProducts(blogpost.products);
     };

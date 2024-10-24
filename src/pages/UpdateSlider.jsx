@@ -13,7 +13,7 @@ import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-
+const apiUrl = import.meta.env.VITE_BASE_URL;
 export default function UpdateSlider() {
   const [file, setFile] = useState(null);
   const [imageUploadProgress, setImageUploadProgress] = useState(null);
@@ -31,7 +31,7 @@ export default function UpdateSlider() {
     try {
       const fetchProduct = async () => {
         const res = await fetch(
-          `/api/slider/getsliders?sliderId=${sliderId}`
+          `${apiUrl}/api/slider/getsliders?sliderId=${sliderId}`
         );
         const data = await res.json();
 
@@ -121,9 +121,7 @@ export default function UpdateSlider() {
   };
   return (
     <div className="p-3 max-w-3xl mx-auto min-h-screen">
-      <h1 className="text-center text-3xl my-7 font-semibold">
-        Update slider
-      </h1>
+      <h1 className="text-center text-3xl my-7 font-semibold">Update slider</h1>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <div className="flex flex-col gap-4 sm:flex-row justify-between">
           <TextInput
@@ -138,24 +136,24 @@ export default function UpdateSlider() {
             value={formData.title}
           />
           <TextInput
-            type='text'
-            placeholder='Sub Title'
+            type="text"
+            placeholder="Sub Title"
             required
-            id='subtitle'
-            className='flex-1'
+            id="subtitle"
+            className="flex-1"
             onChange={(e) =>
               setFormData({ ...formData, subtitle: e.target.value })
             }
             value={formData.subtitle}
           />
         </div>
-        <div className='flex flex-col gap-4 sm:flex-row justify-between'>
+        <div className="flex flex-col gap-4 sm:flex-row justify-between">
           <TextInput
-            type='text'
-            placeholder='Button Link'
+            type="text"
+            placeholder="Button Link"
             required
-            id='button_link'
-            className='flex-1'
+            id="button_link"
+            className="flex-1"
             onChange={(e) =>
               setFormData({ ...formData, button_link: e.target.value })
             }
@@ -163,7 +161,7 @@ export default function UpdateSlider() {
           />
         </div>
         <div className="flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-3">
-        <label htmlFor="">Background Image</label>
+          <label htmlFor="">Background Image</label>
           <FileInput
             type="file"
             accept="image/*"

@@ -13,7 +13,7 @@ import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-
+const apiUrl = import.meta.env.VITE_BASE_URL;
 export default function UpdateBrand() {
   const [file, setFile] = useState(null);
   const [imageUploadProgress, setImageUploadProgress] = useState(null);
@@ -31,7 +31,7 @@ export default function UpdateBrand() {
     try {
       const fetchProduct = async () => {
         const res = await fetch(
-          `/api/brand/getbrands?brandId=${brandId}`
+          `${apiUrl}/api/brand/getbrands?brandId=${brandId}`
         );
         const data = await res.json();
 
@@ -96,7 +96,7 @@ export default function UpdateBrand() {
     e.preventDefault();
     try {
       const res = await fetch(
-        `/api/brand/updatebrand/${id}/${currentUser._id}`,
+        `${apiUrl}/api/brand/updatebrand/${id}/${currentUser._id}`,
         {
           method: "PUT",
           headers: {
@@ -121,9 +121,7 @@ export default function UpdateBrand() {
   };
   return (
     <div className="p-3 max-w-3xl mx-auto min-h-screen">
-      <h1 className="text-center text-3xl my-7 font-semibold">
-        Update Brand
-      </h1>
+      <h1 className="text-center text-3xl my-7 font-semibold">Update Brand</h1>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <div className="flex flex-col gap-4 sm:flex-row justify-between">
           <TextInput
@@ -139,7 +137,7 @@ export default function UpdateBrand() {
           />
         </div>
         <div className="flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-3">
-        <label htmlFor="">Background Image</label>
+          <label htmlFor="">Background Image</label>
           <FileInput
             type="file"
             accept="image/*"

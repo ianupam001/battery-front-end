@@ -13,7 +13,7 @@ import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-
+const apiUrl = import.meta.env.VITE_BASE_URL;
 export default function UpdateTestimonial() {
   const [file, setFile] = useState(null);
   const [imageUploadProgress, setImageUploadProgress] = useState(null);
@@ -31,7 +31,7 @@ export default function UpdateTestimonial() {
     try {
       const fetchProduct = async () => {
         const res = await fetch(
-          `/api/testimonial/gettestimonials?testimonialId=${testimonialId}`
+          `${apiUrl}/api/testimonial/gettestimonials?testimonialId=${testimonialId}`
         );
         const data = await res.json();
 
@@ -96,7 +96,7 @@ export default function UpdateTestimonial() {
     e.preventDefault();
     try {
       const res = await fetch(
-        `/api/testimonial/updatetestimonial/${id}/${currentUser._id}`,
+        `${apiUrl}/api/testimonial/updatetestimonial/${id}/${currentUser._id}`,
         {
           method: "PUT",
           headers: {
@@ -137,12 +137,12 @@ export default function UpdateTestimonial() {
             }
             value={formData.title}
           />
-        <TextInput
-            type='text'
-            placeholder='Destination'
+          <TextInput
+            type="text"
+            placeholder="Destination"
             required
-            id='destination'
-            className='flex-1'
+            id="destination"
+            className="flex-1"
             onChange={(e) =>
               setFormData({ ...formData, destination: e.target.value })
             }
@@ -150,19 +150,17 @@ export default function UpdateTestimonial() {
           />
         </div>
         <Select
-            onChange={(e) =>
-              setFormData({ ...formData, count: e.target.value })
-            }
-            value={formData.count}
-          >
-            <option value='1'>1</option>
-            <option value='2'>2</option>
-            <option value='3'>3</option>
-            <option value='4'>4</option>
-            <option value='5'>5</option>
-          </Select>
+          onChange={(e) => setFormData({ ...formData, count: e.target.value })}
+          value={formData.count}
+        >
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </Select>
         <div className="flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-3">
-        <label htmlFor="">Background Image</label>
+          <label htmlFor="">Background Image</label>
           <FileInput
             type="file"
             accept="image/*"

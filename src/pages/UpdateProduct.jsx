@@ -13,7 +13,7 @@ import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-
+const apiUrl = import.meta.env.VITE_BASE_URL;
 export default function UpdateProduct() {
   const [file, setFile] = useState(null);
   const [imageUploadProgress, setImageUploadProgress] = useState(null);
@@ -31,7 +31,7 @@ export default function UpdateProduct() {
     try {
       const fetchProduct = async () => {
         const res = await fetch(
-          `/api/product/getproducts?productId=${productId}`
+          `${apiUrl}/api/product/getproducts?productId=${productId}`
         );
         const data = await res.json();
 
@@ -95,7 +95,7 @@ export default function UpdateProduct() {
     e.preventDefault();
     try {
       const res = await fetch(
-        `/api/product/updateproduct/${id}/${currentUser._id}`,
+        `${apiUrl}/api/product/updateproduct/${id}/${currentUser._id}`,
         {
           method: "PUT",
           headers: {

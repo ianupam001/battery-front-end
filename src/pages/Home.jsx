@@ -13,13 +13,13 @@ import Funfacts from "../components/sections/home1/Funfacts";
 import Testimonial from "../components/sections/home1/Testimonial";
 import Banner from "../components/sections/home1/Banner";
 import { Helmet } from "react-helmet-async";
-
+const apiUrl = import.meta.env.VITE_BASE_URL;
 export default function Home() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await fetch("/api/post/getPosts");
+      const res = await fetch(`${apiUrl}/api/post/getPosts`);
       const data = await res.json();
       setPosts(data.posts);
     };

@@ -3,9 +3,8 @@ import Breadcrumb from "../components/sections/home1/Breadcrumb";
 import { Link } from "react-router-dom";
 import { Alert, Button, FileInput, Select, TextInput } from "flowbite-react";
 import { useNavigate } from "react-router-dom";
-
+const apiUrl = import.meta.env.VITE_BASE_URL;
 export default function Contact() {
-
   const [formData, setFormData] = useState({});
   const [publishError, setPublishError] = useState(null);
 
@@ -13,8 +12,8 @@ export default function Contact() {
     e.preventDefault();
     console.log("safsd");
     try {
-      const res = await fetch('/api/inquiry/create', {
-        method: 'POST',
+      const res = await fetch(`${apiUrl}/api/inquiry/create`, {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
@@ -180,7 +179,7 @@ export default function Contact() {
                             onChange={(e) =>
                               setFormData({
                                 ...formData,
-                                inquiry_type: 'Contact',
+                                inquiry_type: "Contact",
                               })
                             }
                           />
@@ -191,7 +190,7 @@ export default function Contact() {
                             onChange={(e) =>
                               setFormData({
                                 ...formData,
-                                inquiry_type: 'Service',
+                                inquiry_type: "Service",
                               })
                             }
                           />
@@ -235,7 +234,6 @@ export default function Contact() {
         </div>
       </section>
       {/*Contact Three End*/}
-
     </div>
   );
 }
