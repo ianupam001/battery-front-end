@@ -1,7 +1,14 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import Breadcrumb from "../components/sections/home1/Breadcrumb";
 const apiUrl = import.meta.env.VITE_BASE_URL;
 export default function Blog() {
+  const title = "About";
+  const breadcrumbs = [
+    { name: "Home", link: "/" },
+    { name: "About" }, // No link for the current page
+  ];
+
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {

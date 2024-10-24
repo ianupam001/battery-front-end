@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import ServiceCard from '../../ServiceCard';
-
+const apiUrl = import.meta.env.VITE_BASE_URL;
 export default function Service() {
     const [services, setServices] = useState([]);
 
     useEffect(() => {
       const fetchServices = async () => {
-        const res = await fetch('/api/service/getServices');
+        const res = await fetch(`${apiUrl}/api/service/getServices`);
         const blogpost = await res.json();
         setServices(blogpost.services);
       };

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Autoplay, Navigation, Pagination } from "swiper/modules"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { useEffect, useState } from 'react';
+const apiUrl = import.meta.env.VITE_BASE_URL;
 
 const swiperOptions = {
     modules: [Autoplay, Pagination, Navigation],
@@ -62,7 +63,7 @@ export default function Testimonial() {
 
     useEffect(() => {
         const fetchTestimonial = async () => {
-          const res = await fetch('/api/testimonial/getTestimonials');
+          const res = await fetch(`${apiUrl}/api/testimonial/getTestimonials`);
           const testimonial_list = await res.json();
           setTestimonial(testimonial_list.testimonials);
           console.log(testimonials);

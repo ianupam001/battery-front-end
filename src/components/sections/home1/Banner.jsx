@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { Autoplay, Navigation, Pagination } from "swiper/modules"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { useState,useEffect } from 'react'
-
+const apiUrl = import.meta.env.VITE_BASE_URL;
 const swiperOptions = {
     modules: [Autoplay, Pagination, Navigation],
     slidesPerView: 1,
@@ -32,7 +32,7 @@ export default function Banner() {
 
     useEffect(() => {
       const fetchSliders = async () => {
-        const res = await fetch('/api/slider/getsliders');
+        const res = await fetch(`${apiUrl}/api/slider/getsliders`);
         const slider_list = await res.json();
         setslider(slider_list.sliders);
         console.log(sliders);

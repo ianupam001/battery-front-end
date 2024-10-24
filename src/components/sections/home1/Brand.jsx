@@ -2,7 +2,7 @@
 import { Autoplay, Navigation, Pagination } from "swiper/modules"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { useEffect, useState } from 'react';
-
+const apiUrl = import.meta.env.VITE_BASE_URL;
 
 const swiperOptions = {
     modules: [Autoplay, Pagination, Navigation],
@@ -64,7 +64,7 @@ export default function Brand() {
 
     useEffect(() => {
         const fetchBrand = async () => {
-          const res = await fetch('/api/brand/getbrands');
+          const res = await fetch(`${apiUrl}/api/brand/getbrands`);
           const brand_list = await res.json();
           setBrand(brand_list.brands);
           console.log(brands);
