@@ -1,96 +1,48 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Breadcrumb from "../components/sections/home1/Breadcrumb";
 import { Link } from "react-router-dom";
-import { Alert, Button, FileInput, Select, TextInput } from "flowbite-react";
-import { useNavigate } from "react-router-dom";
+import { Alert, Button } from "flowbite-react";
+
 const apiUrl = import.meta.env.VITE_BASE_URL;
+
 export default function Contact() {
   const [formData, setFormData] = useState({});
   const [publishError, setPublishError] = useState(null);
+  const [currentPath, setCurrentPath] = useState("");
+
+  console.log(formData, currentPath);
+
+  useEffect(() => {
+    setCurrentPath(window.location.pathname);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("safsd");
     try {
       const res = await fetch(`${apiUrl}/api/inquiry/create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, sourcePage: currentPath }),
       });
       const data = await res.json();
-      console.log(data);
       if (!res.ok) {
         setPublishError(data.message);
         return;
       }
-
-      if (res.ok) {
-        setPublishError("Thank you so much for contacting with us");
-        // navigate(`/dashboard?tab=services`);
-      }
+      setPublishError("Thank you so much for contacting us");
     } catch (error) {
       setPublishError("Something went wrong");
     }
   };
 
   const title = "Contact";
-  const breadcrumbs = [
-    { name: "Home", link: "/" },
-    { name: "Contact" }, // No link for the current page
-  ];
+  const breadcrumbs = [{ name: "Home", link: "/" }, { name: "Contact" }];
 
   return (
     <div>
       <Breadcrumb title={title} breadcrumbs={breadcrumbs} />
-      {/*Contact Two Start*/}
-      <section className="contact-two">
-        <div className="container">
-          <div className="row">
-            {/*Contact Two Single Start*/}
-            <div className="col-xl-4 col-lg-4">
-              <div className="contact-two__single">
-                <div className="contact-two__icon">
-                  <span className="icon-call"></span>
-                </div>
-                <p>Contact Us</p>
-                <h3>
-                  <Link href="tel:558270575405">+55 827 057 5405</Link>
-                </h3>
-              </div>
-            </div>
-            {/*Contact Two Single End*/}
-            {/*Contact Two Single Start*/}
-            <div className="col-xl-4 col-lg-4">
-              <div className="contact-two__single">
-                <div className="contact-two__icon">
-                  <span className="icon-envelope"></span>
-                </div>
-                <p>Mail Us</p>
-                <h3>
-                  <Link href="mailto:example@gamil.com">example@gamil.com</Link>
-                </h3>
-              </div>
-            </div>
-            {/*Contact Two Single End*/}
-            {/*Contact Two Single Start*/}
-            <div className="col-xl-4 col-lg-4">
-              <div className="contact-two__single">
-                <div className="contact-two__icon">
-                  <span className="icon-location"></span>
-                </div>
-                <p>Our Office Location</p>
-                <h3>12 Green Road 05 New Yark</h3>
-              </div>
-            </div>
-            {/*Contact Two Single End*/}
-          </div>
-        </div>
-      </section>
-      {/*Contact Two End*/}
-
-      {/*Contact Three Start*/}
       <section className="contact-three">
         <div className="container">
           <div className="contact-three__inner">
@@ -109,10 +61,9 @@ export default function Contact() {
                     Get A Free Quote
                   </h3>
                   <form
-                    id="contact-form"
-                    className="contact-form-validated contact-three__form"
                     onSubmit={handleSubmit}
                     method="POST"
+                    className="contact-form-validated contact-three__form"
                   >
                     <div className="row">
                       <div className="col-xl-6 col-lg-6">
@@ -120,8 +71,8 @@ export default function Contact() {
                           <input
                             type="text"
                             name="name"
-                            placeholder="Your name"
-                            required=""
+                            placeholder="Your Name"
+                            required
                             onChange={(e) =>
                               setFormData({ ...formData, name: e.target.value })
                             }
@@ -134,7 +85,7 @@ export default function Contact() {
                             type="email"
                             name="email"
                             placeholder="Your Email"
-                            required=""
+                            required
                             onChange={(e) =>
                               setFormData({
                                 ...formData,
@@ -148,8 +99,8 @@ export default function Contact() {
                         <div className="contact-three__input-box">
                           <input
                             type="number"
-                            placeholder="Mobile"
                             name="phone"
+                            placeholder="Mobile"
                             onChange={(e) =>
                               setFormData({
                                 ...formData,
@@ -163,34 +114,12 @@ export default function Contact() {
                         <div className="contact-three__input-box">
                           <input
                             type="text"
-                            placeholder="Company"
-                            name="company"
+                            name="services"
+                            placeholder="Services"
                             onChange={(e) =>
                               setFormData({
                                 ...formData,
-                                company: e.target.value,
-                              })
-                            }
-                          />
-                          <input
-                            type="hidden"
-                            placeholder=""
-                            name="inquiry_type"
-                            onChange={(e) =>
-                              setFormData({
-                                ...formData,
-                                inquiry_type: "Contact",
-                              })
-                            }
-                          />
-                          <input
-                            type="text"
-                            placeholder=""
-                            name="inquiry_type"
-                            onChange={(e) =>
-                              setFormData({
-                                ...formData,
-                                inquiry_type: "Service",
+                                services: e.target.value,
                               })
                             }
                           />
@@ -200,7 +129,7 @@ export default function Contact() {
                         <div className="contact-three__input-box text-message-box">
                           <textarea
                             name="message"
-                            placeholder="Messege"
+                            placeholder="Message"
                             onChange={(e) =>
                               setFormData({
                                 ...formData,
@@ -219,21 +148,22 @@ export default function Contact() {
                         </div>
 
                         {publishError && (
-                          <Alert className="mt-5" color="failure">
+                          <Alert
+                            className="mt-5"
+                            color={res.ok ? "success" : "failure"}
+                          >
                             {publishError}
                           </Alert>
                         )}
                       </div>
                     </div>
                   </form>
-                  <p className="ajax-response mb-0"></p>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </section>
-      {/*Contact Three End*/}
     </div>
   );
 }
