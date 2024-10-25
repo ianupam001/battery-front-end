@@ -1910,7 +1910,9 @@ ul {
   display: block;
   z-index: 1;
 }
-
+.main-menu-two__logo img{
+  width: 120px;
+}
 .main-menu-two__wrapper-inner {
   position: relative;
   display: flex;
