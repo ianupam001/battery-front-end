@@ -46,7 +46,7 @@ export default function Header2({ scroll, handleMobileMenu }) {
                         <div className="main-menu-two__wrapper-inner">
                             <div className="main-menu-two__left">
                                 <div className="main-menu-two__logo">
-                                    <Link href="/"><img src="assets/images/resources/logo-1.png" alt=""/></Link>
+                                    <Link href="/"><img src="https://pentacodesdemos.com/800logo.png" alt=""/></Link>
                                 </div>
                                 <div className="main-menu-two__main-menu-box">
                                     <Link to={`/`} className="mobile-nav__toggler" onClick={handleMobileMenu}><i className="fa fa-bars"></i></Link>
@@ -81,7 +81,7 @@ export default function Header2({ scroll, handleMobileMenu }) {
                         <div className="main-menu-two__wrapper-inner">
                             <div className="main-menu-two__left">
                                 <div className="main-menu-two__logo">
-                                    <Link href="/"><img src="assets/images/resources/logo-1.png" alt=""/></Link>
+                                    <Link href="/"><img src="https://pentacodesdemos.com/800logo.png" alt=""/></Link>
                                 </div>
                                 <div className="main-menu-two__main-menu-box">
                                     <Link to={`/`} className="mobile-nav__toggler" onClick={handleMobileMenu}><i className="fa fa-bars"></i></Link>
@@ -100,7 +100,7 @@ export default function Header2({ scroll, handleMobileMenu }) {
                                         </div>
                                     </div>
                                     <div className="main-menu-two__btn-box">
-                                        <Link href="contact" className="main-menu-two__btn thm-btn">Get Appointment</Link>
+                                        <Link href="contact" className="main-menu-two__btn thm-btn">Get a Quote</Link>
                                     </div>
                                 </div>
                             </div>
