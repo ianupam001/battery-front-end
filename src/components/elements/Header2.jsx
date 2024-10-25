@@ -46,7 +46,7 @@ export default function Header2({ scroll, handleMobileMenu }) {
                         <div className="main-menu-two__wrapper-inner">
                             <div className="main-menu-two__left">
                                 <div className="main-menu-two__logo">
-                                    <Link href="/"><img src="https://pentacodesdemos.com/800logo.png" alt=""/></Link>
+                                    <Link href="/"><img src="https://pentacodesdemos.com/800logo-new.png" alt=""/></Link>
                                 </div>
                                 <div className="main-menu-two__main-menu-box">
                                     <Link to={`/`} className="mobile-nav__toggler" onClick={handleMobileMenu}><i className="fa fa-bars"></i></Link>
