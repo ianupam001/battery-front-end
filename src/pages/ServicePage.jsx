@@ -41,7 +41,7 @@ export default function ServicePage() {
   useEffect(() => {
     try {
       const fetchRecentServices = async () => {
-        const res = await fetch(`/api/service/getservices?limit=6`);
+        const res = await fetch(`${apiUrl}/api/service/getservices?limit=6`);
         const data = await res.json();
         if (res.ok) {
           setRecentServices(data.services);

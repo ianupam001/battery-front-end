@@ -19,7 +19,7 @@ export default function Services() {
     };
     fetchServices();
   }, []);
-
+  console.log(services);
   return (
     <>
       <Breadcrumb title={title} breadcrumbs={breadcrumbs} />
