@@ -106,10 +106,7 @@ export default function ServicePage() {
                   </ul>
                 </div>
                 <div className="service-details__services-box">
-                  <h3 className="service-details__services-title">
-                    Our Service
-                  </h3>
-                  <div className="shop-details-page1__form">
+                  <div className="">
                     <ContactForm currentPagePath={currentPagePath} />
                   </div>
                 </div>

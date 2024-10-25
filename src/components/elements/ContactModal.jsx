@@ -1,5 +1,6 @@
 import { Button, Modal, TextInput } from "flowbite-react";
 import { useState, useEffect } from "react";
+import { ContactForm } from "./ContactForm";
 
 export function ContactModal({ isOpen, onClose }) {
   const [formData, setFormData] = useState({
@@ -34,16 +35,6 @@ export function ContactModal({ isOpen, onClose }) {
     });
   }
 
-  function handleChange(event) {
-    const { id, value } = event.target;
-    setFormData((prevData) => ({ ...prevData, [id]: value }));
-  }
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    console.log("Form submitted from:", formData.sourcePage);
-  }
-
   return (
     <Modal
       show={isOpen}
@@ -54,7 +45,7 @@ export function ContactModal({ isOpen, onClose }) {
     >
       <Modal.Header />
       <Modal.Body>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        {/* <form onSubmit={handleSubmit} className="space-y-4">
           <h3 className="text-xl font-medium text-[var(--erepair-black)] dark:text-[var(--erepair-white)]">
             Book Now
           </h3>
@@ -144,7 +135,9 @@ export function ContactModal({ isOpen, onClose }) {
               Submit
             </Button>
           </div>
-        </form>
+        </form> */}
+
+        <ContactForm />
       </Modal.Body>
     </Modal>
   );

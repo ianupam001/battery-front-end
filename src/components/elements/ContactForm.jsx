@@ -1,5 +1,7 @@
-// ContactForm.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { TextInput, Select, Textarea, Button, Spinner } from "flowbite-react";
+import { useParams } from "react-router-dom";
+const apiUrl = import.meta.env.VITE_BASE_URL;
 
 export function ContactForm({ currentPagePath }) {
   const [formData, setFormData] = useState({
@@ -9,6 +11,59 @@ export function ContactForm({ currentPagePath }) {
     services: "",
     form_message: "",
   });
+  const { serviceSlug } = useParams();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+  const [service, setService] = useState(null);
+  const [recentServices, setRecentServices] = useState(null);
+
+  useEffect(() => {
+    const fetchService = async () => {
+      try {
+        setLoading(true);
+        const res = await fetch(
+          `${apiUrl}/api/service/getservices?slug=${serviceSlug}`
+        );
+        const data = await res.json();
+        if (!res.ok) {
+          setError(true);
+          setLoading(false);
+          return;
+        }
+        if (res.ok) {
+          setService(data.services[0]);
+          setLoading(false);
+          setError(false);
+        }
+      } catch (error) {
+        setError(true);
+        setLoading(false);
+      }
+    };
+    fetchService();
+  }, [serviceSlug]);
+
+  useEffect(() => {
+    try {
+      const fetchRecentServices = async () => {
+        const res = await fetch(`${apiUrl}/api/service/getservices?limit=6`);
+        const data = await res.json();
+        if (res.ok) {
+          setRecentServices(data.services);
+        }
+      };
+      fetchRecentServices();
+    } catch (error) {
+      console.log(error.message);
+    }
+  }, []);
+
+  if (loading)
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <Spinner size="xl" />
+      </div>
+    );
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,98 +84,81 @@ export function ContactForm({ currentPagePath }) {
     <form
       id="contact-form"
       name="contact_form"
-      className="default-form2"
+      className="p-4 max-w-lg bg-white rounded-lg "
       onSubmit={handleSubmit}
     >
-      <div className="row">
-        <div className="col-xl-6 col-lg-12 col-md-12">
-          <div className="input-box">
-            <input
-              type="text"
-              name="ffname"
-              placeholder="Name *"
-              value={formData.ffname}
-              onChange={handleChange}
-              required
-            />
-          </div>
-        </div>
-        <div className="col-xl-6 col-lg-12 col-md-12">
-          <div className="input-box">
-            <input
-              type="email"
-              name="email"
-              placeholder="Email *"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-          </div>
-        </div>
+      <h2 className="mb-4 text-xl font-semibold">Enquire Now</h2>
+      <div className="mb-4">
+        <TextInput
+          id="ffname"
+          type="text"
+          name="ffname"
+          placeholder="Name *"
+          value={formData.ffname}
+          onChange={handleChange}
+          required
+        />
       </div>
-      <div className="row">
-        <div className="col-xl-6 col-lg-12 col-md-12">
-          <div className="input-box">
-            <input
-              type="text"
-              name="phone"
-              placeholder="Phone *"
-              value={formData.phone}
-              onChange={handleChange}
-              required
-            />
-          </div>
-        </div>
-        <div className="col-xl-6 col-lg-12 col-md-12">
-          <div className="input-box">
-            <input
-              type="text"
-              name="services"
-              placeholder="Our Services *"
-              value={formData.services}
-              onChange={handleChange}
-              required
-            />
-          </div>
-        </div>
+
+      <div className="mb-4">
+        <TextInput
+          id="email"
+          type="email"
+          name="email"
+          placeholder="Email *"
+          value={formData.email}
+          onChange={handleChange}
+          required
+        />
       </div>
-      <div className="row">
-        <div className="col-xl-12 col-lg-12 col-md-12">
-          <div className="input-box">
-            <textarea
-              name="form_message"
-              id="formMessage"
-              placeholder="Message"
-              value={formData.form_message}
-              onChange={handleChange}
-              required
-              aria-required="true"
-            ></textarea>
-          </div>
-        </div>
+
+      <div className="mb-4">
+        <TextInput
+          id="phone"
+          type="text"
+          name="phone"
+          placeholder="Phone *"
+          value={formData.phone}
+          onChange={handleChange}
+          required
+        />
       </div>
-      <div className="row">
-        <div className="col-lg-12">
-          <div className="product-form-box-checkbox">
-            <div className="inner">
-              <input type="checkbox" name="remember" id="tag" />
-              <label htmlFor="tag">
-                <span></span>Save my details in this browser for the next time I
-                comment.
-              </label>
-            </div>
-          </div>
-        </div>
+
+      <div className="mb-4">
+        <Select
+          id="services"
+          className="cursor-pointer"
+          name="services"
+          value={formData.services}
+          onChange={handleChange}
+          required
+        >
+          <option value="" disabled>
+            Select a Service *
+          </option>
+          {recentServices &&
+            recentServices?.map((service, index) => (
+              <option key={index} value={service.title}>
+                {service.title}
+              </option>
+            ))}
+        </Select>
       </div>
-      <div className="row">
-        <div className="col-xl-12">
-          <div className="button-box">
-            <button className="thm-btn" type="submit">
-              <span className="txt">Submit Now</span>
-            </button>
-          </div>
-        </div>
+
+      <div className="mb-4">
+        <Textarea
+          id="form_message"
+          name="form_message"
+          placeholder="Message"
+          value={formData.form_message}
+          onChange={handleChange}
+          required
+        />
       </div>
+
+      <Button type="submit" className="w-full bg-orange-400 hover:bg-amber-400">
+        Submit Now
+      </Button>
     </form>
   );
 }
