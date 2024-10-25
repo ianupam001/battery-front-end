@@ -82,8 +82,8 @@ export default function Header2() {
                   </div>
                   <div className="">
                     <button
-                    // className="md:hidden"
-                    // onClick={() => setIsMenuOpen(!isMenuOpen)}
+                      className="md:hidden"
+                      // onClick={() => setIsMenuOpen(!isMenuOpen)}
                     >
                       <i className="fa fa-bars"></i>
                     </button>
