@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+const apiUrl = import.meta.env.VITE_BASE_URL;
 export default function Blog() {
 
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
       const fetchPosts = async () => {
-        const res = await fetch('/api/post/getPosts');
+        const res = await fetch(`${apiUrl}/api/post/getPosts?limit=3`);
         const blogpost = await res.json();
         setPosts(blogpost.posts);
       };
@@ -17,7 +18,7 @@ export default function Blog() {
         <>
         {/*Blog One Start*/}
         {posts && posts.length > 0 && (
-        <section className="blog-one">
+        <section className="blog-one pt-3">
             <div className="container">
                 <div className="blog-one__top">
                     <div className="section-title text-left">
@@ -43,9 +44,9 @@ export default function Blog() {
                                     <img src={post.image} alt="@@title"/>
                                     <Link to={`/post/${post.slug}`} className="blog-one__link"><span className="sr-only"></span></Link>
                                 </div>
-                                <div className="blog-one__date">
+                                {/* <div className="blog-one__date">
                                     <p>12<br/>Nov</p>
-                                </div>
+                                </div> */}
                             </div>
                             <div className="blog-one__content">
                                 <div className="blog-one__user">

@@ -45,14 +45,14 @@ export default function Header({ scroll, handlePopup, handleMobileMenu }) {
                                     <Link to={`/`}><img src="https://static.wixstatic.com/media/128eb4_3ced2d249b1445e0975e433ba3bdfd10~mv2.png/v1/fill/w_73,h_88,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/128eb4_3ced2d249b1445e0975e433ba3bdfd10~mv2.png" alt=""/></Link>
                                 </div>
                                 <div className="main-menu__main-menu-box">
-                                    <Link href="#" className="mobile-nav__toggler" onClick={handleMobileMenu}><i className="fa fa-bars"></i></Link>
+                                    <Link to={`/`} className="mobile-nav__toggler" onClick={handleMobileMenu}><i className="fa fa-bars"></i></Link>
                                     <Menu />
                                 </div>
                             </div>
                             <div className="main-menu__right">
                                 <div className="main-menu__search-and-btn-box">
                                     {/* <div className="main-menu__search-box">
-                                        <Link href="#"
+                                        <Link to={`/`}
                                             className="main-menu__search search-toggler icon-search-interface-symbol"  onClick={handlePopup}></Link>
                                     </div> */}
                                     <div className="main-menu__btn-box">
@@ -74,14 +74,14 @@ export default function Header({ scroll, handlePopup, handleMobileMenu }) {
                                 <Link to={`/`}><img src="https://static.wixstatic.com/media/128eb4_3ced2d249b1445e0975e433ba3bdfd10~mv2.png/v1/fill/w_73,h_88,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/128eb4_3ced2d249b1445e0975e433ba3bdfd10~mv2.png" alt=""/></Link>
                             </div>
                             <div className="main-menu__main-menu-box">
-                                <Link href="#" className="mobile-nav__toggler" onClick={handleMobileMenu}><i className="fa fa-bars"></i></Link>
+                                <Link to={`/`} className="mobile-nav__toggler" onClick={handleMobileMenu}><i className="fa fa-bars"></i></Link>
                                 <Menu />
                             </div>
                         </div>
                         <div className="main-menu__right">
                             <div className="main-menu__search-and-btn-box">
                                 {/* <div className="main-menu__search-box">
-                                    <Link href="#"
+                                    <Link to={`/`}
                                         className="main-menu__search search-toggler icon-search-interface-symbol" onClick={handlePopup}></Link>
                                 </div> */}
                                 <div className="main-menu__btn-box">

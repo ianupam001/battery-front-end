@@ -56,7 +56,7 @@
   --erepair-black-rgb: 23, 23, 23;
   --erepair-primary: #FEDB5C;
   --erepair-primary-rgb: 254, 219, 92;
-  --erepair-extra: #F4FBF9;
+  --erepair-extra: #f2871c24;
   --erepair-extra-rgb: 244, 251, 249;
   --erepair-bdr-color: #DDDDDD;
   --erepair-bdr-color-rgb: 221, 221, 221;
@@ -1902,7 +1902,9 @@ ul {
 .main-menu-two__text {
   color: var(--erepair-black);
 }
-
+.bg-color-extra{
+  background-color: var(--erepair-extra);
+}
 .main-menu-two__wrapper {
   position: relative;
   display: block;

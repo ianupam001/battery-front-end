@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import CallToAction from "../components/CallToAction";
 import CommentSection from "../components/CommentSection";
 import PostCard from "../components/PostCard";
+import { Helmet } from "react-helmet-async";
 const apiUrl = import.meta.env.VITE_BASE_URL;
 export default function PostPage() {
   const { postSlug } = useParams();
@@ -63,6 +64,17 @@ export default function PostPage() {
     );
   return (
     <>
+      <Helmet>
+        <title>{post && post.title}</title>
+        <meta
+          name="title"
+          content={post && post.title}
+        />
+        <meta
+          name="description"
+          content={post && post.title}
+        />
+      </Helmet>
       {/*Blog Details Start*/}
       <section className="blog-details">
         <div className="container">

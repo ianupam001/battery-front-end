@@ -42,6 +42,7 @@ import Products from "./pages/Products";
 import { useSelector } from "react-redux";
 
 import { renderToString } from "react-dom/server";
+import Header2 from "./components/elements/Header2";
 
 export default function App() {
   const { currentUser } = useSelector((state) => state.user);
@@ -49,7 +50,7 @@ export default function App() {
     <BrowserRouter>
       <ScrollToTop />
       {/* {currentUser ? <HeaderBackend /> : <Header />} */}
-      <Header />
+      <Header2 />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
