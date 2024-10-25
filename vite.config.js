@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://battery-backend-cfe1.onrender.com",
+        target: "https://tall-rosemaria-mwinfoserve-0b3c5186.koyeb.app",
         secure: false,
       },
     },

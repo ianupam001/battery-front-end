@@ -85,7 +85,7 @@ export default function SignIn() {
               type="submit"
               disabled={loading}
             >
-              {loading ? (
+              {!loading ? (
                 <>
                   <Spinner size="sm" />
                   <span className="pl-3">Loading...</span>
