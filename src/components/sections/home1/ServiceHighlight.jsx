@@ -13,9 +13,7 @@ export default function ServiceHighlight() {
                                     <span className="icon-affordable-price"></span>
                                 </div>
                                 <h3 className="services-one__title"><Link href="pricing">Affordable Price</Link></h3>
-                                <p className="services-one__text">The wise man therefore always holds in <br/>these matters
-                                    to this
-                                    principle of </p>
+                                <p className="services-one__text">We offer competitive pricing for <br/> high-quality car batteries and services.</p>
                             </div>
                         </li>
                         <li className="wow fadeInUp" data-wow-delay="200ms">
@@ -24,9 +22,7 @@ export default function ServiceHighlight() {
                                     <span className="icon-setting"></span>
                                 </div>
                                 <h3 className="services-one__title"><Link href="about">100% Guarantee</Link></h3>
-                                <p className="services-one__text">The wise man therefore always holds in <br/>these matters
-                                    to this
-                                    principle of </p>
+                                <p className="services-one__text">All our batteries come with a 100% guarantee <br/> for performance and reliability.</p>
                             </div>
                         </li>
                         <li className="wow fadeInRight" data-wow-delay="300ms">
@@ -35,9 +31,7 @@ export default function ServiceHighlight() {
                                     <span className="icon-services"></span>
                                 </div>
                                 <h3 className="services-one__title"><Link href="contact">24/7 Our Service</Link></h3>
-                                <p className="services-one__text">The wise man therefore always holds in <br/>these matters
-                                    to this
-                                    principle of </p>
+                                <p className="services-one__text">Available 24/7 for emergency battery replacement <br/> and roadside assistance.</p>
                             </div>
                         </li>
                     </ul>
