@@ -12,18 +12,17 @@ export default function Cta() {
                     </div>
                     <div className="section-title text-left">
                         <div className="section-title__tagline-box">
-                            <span className="section-title__tagline">Get To Know Us</span>
+                            <span className="section-title__tagline">Contact Now</span>
                         </div>
                         <div className="section-title__title-box sec-title-animation animation-style2">
-                            <h2 className="section-title__title title-animation">Save Money With Specials<br/> Discount Offer
+                            <h2 className="section-title__title title-animation">Get Quick Solution
                             </h2>
                         </div>
                     </div>
-                    <p className="cta-one__text">Pleasures to secure other greater pleasures, or else he endures pains<br/>
-                        to avoid worse pains to the selection circumstances</p>
+                    <p className="cta-one__text">Discover reliable car battery services with 800 B Battery. <br/>We provide fast, affordable, and expert assistance to keep you on the road.</p>
                     <div className="cta-one__btn-and-call-box">
                         <div className="cta-one__btn-box">
-                            <Link href="contact" className="cta-one__btn thm-btn">Get Appointment</Link>
+                            <Link to={'/contact-us'} className="cta-one__btn thm-btn">Enquire Now</Link>
                         </div>
                         <div className="cta-one__call-box">
                             <div className="icon">
@@ -31,7 +30,7 @@ export default function Cta() {
                             </div>
                             <div className="content">
                                 <p>Make a call</p>
-                                <h4><Link href="tel:00554755242">00 55 475 5242</Link></h4>
+                                <h4><Link href="tel:+971509344668">+971 50 934 4668</Link></h4>
                             </div>
                         </div>
                     </div>

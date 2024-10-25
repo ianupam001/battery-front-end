@@ -17,7 +17,7 @@ export default function Service() {
     return (
         <>
         {/*Services Two Start */}
-        <section className="services-two">
+        <section className="services-two pt-5">
             <div className="services-two__shape-1 img-bounce">
                 <img src="https://firebasestorage.googleapis.com/v0/b/blogs-app-e2c7f.appspot.com/o/1729148539123-40'HC%20with%20dark%20blue%20(8).jpg?alt=media&token=7e47368a-defb-4a61-afa5-fa6cd052cb19" alt=""/>
             </div>

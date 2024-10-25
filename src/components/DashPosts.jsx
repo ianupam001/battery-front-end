@@ -53,10 +53,15 @@ export default function DashPosts() {
   const handleDeletePost = async () => {
     setShowModal(false);
     try {
+      const token = localStorage.getItem("access_token");
       const res = await fetch(
         `${apiUrl}/api/post/deletepost/${postIdToDelete}/${currentUser._id}`,
         {
           method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`, // Correctly set the Authorization header
+            "Content-Type": "application/json", // Content-Type header
+          },
         }
       );
       const data = await res.json();

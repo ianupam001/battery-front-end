@@ -15,7 +15,7 @@ export default function About() {
                                 <div className="col-xl-6">
                                     <div className="about-one__img-box-1">
                                         <div className="about-one__img-1">
-                                            <img src="https://erepair.vercel.app/assets/images/resources/about-one-img-1.jpg" alt=""/>
+                                            <img src="https://pentacodesdemos.com/about-1.jpeg" alt=""/>
                                         </div>
                                     </div>
                                 </div>
@@ -28,7 +28,7 @@ export default function About() {
                                     </div>
                                     <div className="about-one__img-box-2">
                                         <div className="about-one__img-2">
-                                            <img src="https://erepair.vercel.app/assets/images/resources/about-one-img-2.jpg" alt=""/>
+                                            <img src="https://pentacodesdemos.com/about-2.jpeg" alt=""/>
                                         </div>
                                     </div>
                                 </div>
@@ -39,7 +39,7 @@ export default function About() {
                         <div className="about-one__right wow fadeInRight" data-wow-delay="300ms">
                             <div className="section-title text-left">
                                 <div className="section-title__tagline-box">
-                                    <span className="section-title__tagline">Get To Know Us</span>
+                                    <span className="section-title__tagline">About Us</span>
                                 </div>
                                 <div className="section-title__title-box sec-title-animation animation-style2">
                                     <h2 className="section-title__title title-animation">Your Trusted Partner for Car Battery Services</h2>

@@ -21,6 +21,7 @@ export default function UpdatePost() {
   const [formData, setFormData] = useState({});
   const [publishError, setPublishError] = useState(null);
   const { postId } = useParams();
+  const [id, setId] = useState(null);
 
   const navigate = useNavigate();
   const { currentUser } = useSelector((state) => state.user);
@@ -38,6 +39,7 @@ export default function UpdatePost() {
         if (res.ok) {
           setPublishError(null);
           setFormData(data.posts[0]);
+          setId(data.posts[0]._id);
         }
       };
 
@@ -86,12 +88,14 @@ export default function UpdatePost() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const token = localStorage.getItem("access_token");
       const res = await fetch(
-        `${apiUrl}/api/post/updatepost/${formData._id}/${currentUser._id}`,
+        `${apiUrl}/api/post/updatepost/${id}/${currentUser._id}`,
         {
           method: "PUT",
           headers: {
-            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`, // Correctly set the Authorization header
+            "Content-Type": "application/json", // Content-Type header
           },
           body: JSON.stringify(formData),
         }

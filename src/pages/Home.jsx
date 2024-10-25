@@ -36,11 +36,11 @@ export default function Home() {
       </Helmet>
 
       <Banner />
-      <ServiceHighlight />
-      <AboutHome />
       <Service />
+      <AboutHome />
       <Testimonial />
       <Brand />
+      <ServiceHighlight />
       <Video />
       <Funfacts />
       <Blog />

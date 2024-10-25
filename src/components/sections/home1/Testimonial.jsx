@@ -94,15 +94,20 @@ export default function Testimonial() {
                                 </div>
                                 <p className="testimonial-one__text" ><div dangerouslySetInnerHTML={{ __html: testimonial.content }} /> </p>
                                 <div className="testimonial-one__ratting">
-                                {testimonial.count >= 1 && testimonial.count <= 5 ? (
+                                {/* {testimonial.count >= 1 && testimonial.count <= 5 ? (
                                     Array.from({ length: testimonial.count }, (_, index) => (
                                         <span key={index} className="fas fa-star"></span>
                                     ))
-                                ) : null}
+                                ) : null} */}
+                                <span className="fas fa-star"></span>
+                                <span className="fas fa-star"></span>
+                                <span className="fas fa-star"></span>
+                                <span className="fas fa-star"></span>
+                                <span className="fas fa-star"></span>
                                 </div>
                                 <div className="testimonial-one__client-info">
                                     <h3>{testimonial.title}</h3>
-                                    <p>{testimonial.title}</p>
+                                    <p>{testimonial.destination}</p>
                                 </div>
                             </div>
                         </div>

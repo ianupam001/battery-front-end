@@ -51,7 +51,7 @@ export default function Menu() {
           <Link to="/services">Services</Link>
           <ul>
             {userServices.map((service) => (
-              <li>
+              <li key={service._id}>
                 <Link to={`/service/${service.slug}`}>{service.title}</Link>
               </li>
             ))}
@@ -61,7 +61,8 @@ export default function Menu() {
           <Link to="/products">Products</Link>
           <ul>
             {userProducts.map((product) => (
-              <li>
+              
+              <li key={product._id}>
                 <Link to={`/product/${product.slug}`}>{product.title}</Link>
               </li>
             ))}
