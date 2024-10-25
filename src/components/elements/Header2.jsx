@@ -62,7 +62,7 @@ export default function Header2({ scroll, handleMobileMenu }) {
                       />
                     </Link>
                   </div>
-                  <div className="main-menu-two__main-menu-box">
+                  <div className="">
                     <Link
                       to={`/`}
                       className="mobile-nav__toggler"
