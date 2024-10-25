@@ -24,7 +24,7 @@ export default function About() {
                                         <div className="icon">
                                             <span className="icon-certified"></span>
                                         </div>
-                                        <h3>We are certified<br/> company since 1997</h3>
+                                        <h3>We are certified<br/> company since 2010</h3>
                                     </div>
                                     <div className="about-one__img-box-2">
                                         <div className="about-one__img-2">
@@ -42,22 +42,11 @@ export default function About() {
                                     <span className="section-title__tagline">Get To Know Us</span>
                                 </div>
                                 <div className="section-title__title-box sec-title-animation animation-style2">
-                                    <h2 className="section-title__title title-animation">General Auto Repair & Car This
-                                        Maintenance
-                                        Place
-                                    </h2>
+                                    <h2 className="section-title__title title-animation">Your Trusted Partner for Car Battery Services</h2>
                                 </div>
                             </div>
-                            <p className="about-one__text-1">The wise
-                                man therefore always holds in these
-                                matters to this
-                                principle of selection. He rejects pleasures to secure other greater pleasures, or else
-                                he endures pains to avoid worse pains to the selection point. But in certain
-                                circumstances</p>
-                            <p className="about-one__text-2">Duis acute arura dolor in reprehenderit in voluptate velit esse
-                                cillum dolore Velit esse quam nihil molestiae consequatur, Velia ease chillum dolore eu
-                                fugato nullar partiture. Exception sint occaecatvel qui dolorem eum fugiat quo quail
-                                dolor sit amen, consectetur, </p>
+                            <p className="about-one__text-1">At 800 B Battery, we specialize in reliable car battery services, from emergency roadside assistance to onsite battery replacement. We are committed to providing fast, professional, and hassle-free solutions to keep your vehicle running smoothly.</p>
+                            <p className="about-one__text-2">Our team understands that your time and safety are important, which is why we focus on delivering prompt service with expert advice. Whether you need a new battery or quick support in a roadside emergency, we’re here to help you get back on the road with ease.</p>
                             <div className="about-one__btn-box">
                                 <Link to={`/about`} className="about-one__btn thm-btn">About Us More</Link>
                             </div>
