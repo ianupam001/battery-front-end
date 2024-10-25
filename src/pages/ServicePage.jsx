@@ -1,11 +1,14 @@
 import { Button, Spinner } from "flowbite-react";
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import CallToAction from "../components/CallToAction";
 import CommentSection from "../components/CommentSection";
 import ServiceCard from "../components/PostCard";
+import { ContactForm } from "../components/elements/ContactForm";
 const apiUrl = import.meta.env.VITE_BASE_URL;
 export default function ServicePage() {
+  const location = useLocation();
+  const currentPagePath = location.pathname;
   const { serviceSlug } = useParams();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -101,6 +104,14 @@ export default function ServicePage() {
                         </li>
                       ))}
                   </ul>
+                </div>
+                <div className="service-details__services-box">
+                  <h3 className="service-details__services-title">
+                    Our Service
+                  </h3>
+                  <div className="shop-details-page1__form">
+                    <ContactForm currentPagePath={currentPagePath} />
+                  </div>
                 </div>
                 <div className="project-details__get-started">
                   <h3 className="project-details__get-started-title">

@@ -109,7 +109,7 @@ export function ContactModal({ isOpen, onClose }) {
           <div>
             <TextInput
               id="services"
-              placeholder="Service you're interested in"
+              placeholder="Our Service"
               value={formData.services}
               onChange={handleChange}
               required

@@ -4,9 +4,14 @@ import { Link, useParams } from "react-router-dom";
 import CallToAction from "../components/CallToAction";
 import CommentSection from "../components/CommentSection";
 import ProductCard from "../components/ProductCard";
+import { ContactForm } from "../components/elements/ContactForm";
+import { useLocation } from "react-router-dom";
 const apiUrl = import.meta.env.VITE_BASE_URL;
 
 export default function ProductPage() {
+  const location = useLocation();
+  const currentPagePath = location.pathname;
+
   const { productSlug } = useParams();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -136,11 +141,11 @@ export default function ProductPage() {
                                 <input className="quantity-spinner" type="text" name="quantity"/>
                             </div> */}
                     <div className="right">
-                      <div className="cart-box">
+                      {/* <div className="cart-box">
                         <button className="thm-btn" type="submit">
                           <span className="txt">Enquire Now</span>
                         </button>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </div>
@@ -215,84 +220,7 @@ export default function ProductPage() {
                     </div> */}
 
                 <div className="shop-details-page1__form">
-                  {/* <div className="title-box">
-                            <h2>Your Comments</h2>
-                            <p>Email will not be published. Required fields are marked <span>*</span></p>
-                        </div> */}
-
-                  <form
-                    id="contact-form"
-                    name="contact_form"
-                    className="default-form2"
-                    action="assets/inc/sendmail.php"
-                    method="post"
-                  >
-                    <div className="row">
-                      <div className="col-xl-6 col-lg-12 col-md-12">
-                        <div className="input-box">
-                          <input
-                            type="text"
-                            name="ffname"
-                            placeholder="Name *"
-                            required=""
-                          />
-                        </div>
-                      </div>
-
-                      <div className="col-xl-6 col-lg-12 col-md-12">
-                        <div className="input-box">
-                          <input
-                            type="email"
-                            name="email"
-                            placeholder="Email *"
-                            required=""
-                          />
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="row">
-                      <div className="col-xl-12 col-lg-12 col-md-12">
-                        <div className="input-box">
-                          <textarea
-                            name="form_message"
-                            id="formMessage"
-                            placeholder="Comments"
-                            required=""
-                            aria-required="true"
-                          ></textarea>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="row">
-                      <div className="col-lg-12">
-                        <div className="product-form-box-checkbox">
-                          <div className="inner">
-                            <input type="checkbox" name="remember" id="tag" />
-                            <label>
-                              <span></span>Save my details in this browser for
-                              the next time I comment.
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="row">
-                      <div className="col-xl-12">
-                        <div className="button-box">
-                          <button
-                            className="thm-btn"
-                            type="submit"
-                            data-loading-text="Please wait..."
-                          >
-                            <span className="txt">Submit Now</span>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </form>
+                  <ContactForm currentPagePath={currentPagePath} />
                 </div>
               </div>
             </div>
