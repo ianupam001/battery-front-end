@@ -17,6 +17,31 @@ export default function SignIn() {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
   };
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   if (!formData.email || !formData.password) {
+  //     return dispatch(signInFailure("Please fill all the fields"));
+  //   }
+  //   try {
+  //     dispatch(signInStart());
+  //     const res = await fetch(`${apiUrl}/api/auth/signin`, {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify(formData),
+  //     });
+  //     const data = await res.json();
+  //     if (data.success === false) {
+  //       dispatch(signInFailure(data.message));
+  //     }
+
+  //     if (res.ok) {
+  //       dispatch(signInSuccess(data));
+  //       navigate("/dashboard");
+  //     }
+  //   } catch (error) {
+  //     dispatch(signInFailure(error.message));
+  //   }
+  // };
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.email || !formData.password) {
@@ -30,18 +55,21 @@ export default function SignIn() {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
+
       if (data.success === false) {
         dispatch(signInFailure(data.message));
       }
 
       if (res.ok) {
         dispatch(signInSuccess(data));
-        navigate("/");
+        localStorage.setItem("access_token", data.access_token); // Save token in local storage
+        navigate("/dashboard"); // Redirect to the dashboard page
       }
     } catch (error) {
       dispatch(signInFailure(error.message));
     }
   };
+
   return (
     <div className="min-h-screen mt-20">
       <div className="flex p-3 max-w-3xl mx-auto flex-col md:flex-row md:items-center gap-5">

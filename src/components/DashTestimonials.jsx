@@ -53,10 +53,16 @@ export default function DashTestimonial() {
   const handleDeleteService = async () => {
     setShowModal(false);
     try {
+      const token = localStorage.getItem("access_token");
+
       const res = await fetch(
         `${apiUrl}/api/testimonial/deletetestimonial/${testimonialIdToDelete}/${currentUser._id}`,
         {
           method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+            "Content-Type": "application/json", // Optional: Specify content type if needed
+          },
         }
       );
       const data = await res.json();

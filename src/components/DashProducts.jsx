@@ -49,16 +49,23 @@ export default function DashProducts() {
       console.log(error.message);
     }
   };
+  console.log("User:", currentUser); // Check if token is valid
 
   const handleDeleteProduct = async () => {
     setShowModal(false);
     try {
+      const token = localStorage.getItem("access_token");
       const res = await fetch(
-        `/api/product/deleteproduct/${productIdToDelete}/${currentUser._id}`,
+        `${apiUrl}/api/product/deleteproduct/${productIdToDelete}/${currentUser._id}`,
         {
           method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+            "Content-Type": "application/json", // Optional: Specify content type if needed
+          },
         }
       );
+      console.log(res);
       const data = await res.json();
       if (!res.ok) {
         console.log(data.message);

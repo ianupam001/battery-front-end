@@ -51,10 +51,15 @@ export default function DashComments() {
   const handleDeleteComment = async () => {
     setShowModal(false);
     try {
+      const token = localStorage.getItem("access_token");
       const res = await fetch(
         `${apiUrl}/api/comment/deleteComment/${commentIdToDelete}`,
         {
           method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+            "Content-Type": "application/json", // Optional: Specify content type if needed
+          },
         }
       );
       const data = await res.json();

@@ -53,10 +53,15 @@ export default function DashBrand() {
   const handleDeleteService = async () => {
     setShowModal(false);
     try {
+      const token = localStorage.getItem("access_token");
       const res = await fetch(
         `${apiUrl}/api/brand/deletebrand/${brandIdToDelete}/${currentUser._id}`,
         {
           method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
         }
       );
       const data = await res.json();
