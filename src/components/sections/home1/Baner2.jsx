@@ -68,8 +68,8 @@ export default function Banner() {
                   className="img-bounce"
                 />
               </div>
-              <div className="container flex justify-between">
-                <div className="main-slider-three__content ">
+              <div className="container flex justify-between banner_section">
+                <div className="main-slider-three__content banner_content">
                   <div className="main-slider-three__sub-title-box">
                     <p className="main-slider-three__sub-title">Best Battery</p>
                   </div>
@@ -84,7 +84,7 @@ export default function Banner() {
                     </Link>
                   </div>
                 </div>
-                <div className="main-slider-three__content">
+                <div className="main-slider-three__content banner_form">
                   <ContactFormModal sourcePage={sourcePage} />
                 </div>
               </div>
