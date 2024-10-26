@@ -174,19 +174,19 @@
 }
 
 .contact-two__icon:before {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  content: "";
-  border-radius: 50%;
-  background-color: var(--erepair-black);
-  transform: scale(0);
-  transform-origin: center;
-  transform-style: preserve-3d;
-  transition: all 0.4s cubic-bezier(0.62, 0.21, 0.45, 1.52);
-  z-index: -1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: "";
+    border-radius: 50%;
+    background-color: var(--erepair-base);
+    transform: scale(0);
+    transform-origin: center;
+    transform-style: preserve-3d;
+    transition: all 0.4s cubic-bezier(0.62, 0.21, 0.45, 1.52);
+    z-index: -1;
 }
 
 .contact-two__single:hover .contact-two__icon:before {

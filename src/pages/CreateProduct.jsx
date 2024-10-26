@@ -60,12 +60,14 @@ export default function CreateProduct() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("asdf");
     try {
-      const res = await fetch("/api/product/create", {
+      const token = localStorage.getItem("access_token");
+      console.log(token);
+      const res = await fetch(`${apiUrl}/api/product/create`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`, // Correctly set the Authorization header
+          "Content-Type": "application/json", // Content-Type header
         },
         body: JSON.stringify(formData),
       });
@@ -111,6 +113,7 @@ export default function CreateProduct() {
             <option value='nextjs'>Next.js</option>
           </Select> */}
         </div>
+        
         <div className="flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-3">
           <FileInput
             type="file"

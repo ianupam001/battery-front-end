@@ -24,7 +24,7 @@ export default function About() {
                                         <div className="icon">
                                             <span className="icon-certified"></span>
                                         </div>
-                                        <h3>We are certified<br/> company since 2010</h3>
+                                        <h3>We are certified<br/> company since 2018</h3>
                                     </div>
                                     <div className="about-one__img-box-2">
                                         <div className="about-one__img-2">

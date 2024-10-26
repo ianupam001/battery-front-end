@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Cta from "../sections/home1/Cta";
 import { useEffect, useState } from "react";
+import FixedRightSidebar from "./FloatingIcons";
 import footerLogo from "/assets/images/800bbatterywhite.png";
 const apiUrl = import.meta.env.VITE_BASE_URL;
 export default function Footer() {
@@ -41,6 +42,7 @@ export default function Footer() {
   return (
     <>
       <Cta />
+      
       <footer className="site-footer">
         <div className="site-footer__shape-1 float-bob-x">
           <img src="assets/images/shapes/footer-shape-1.png" alt="" />
@@ -64,10 +66,10 @@ export default function Footer() {
                     battery is in top condition.
                   </p>
                   <div className="site-footer__social">
-                    <Link href="https://www.facebook.com/profile.php?id=61565118175123">
+                    <Link to={"https://www.facebook.com/profile.php?id=61565118175123"}>
                       <i className="icon-facebook"></i>
                     </Link>
-                    <Link href="https://www.instagram.com/800b.battery/">
+                    <Link to={"https://www.instagram.com/800b.battery/"}>
                       <i className="icon-instagram"></i>
                     </Link>
                   </div>
@@ -84,22 +86,22 @@ export default function Footer() {
                   <div className="footer-widget__link-box">
                     <ul className="footer-widget__link list-unstyled">
                       <li>
-                        <Link href="/">Home</Link>
+                        <Link to={"/"}>Home</Link>
                       </li>
                       <li>
-                        <Link href="/about">About Us</Link>
+                        <Link to={"/about"}>About Us</Link>
                       </li>
                       <li>
-                        <Link href="/services">Services</Link>
+                        <Link to={"/services"}>Services</Link>
                       </li>
                       <li>
-                        <Link href="/products">Products</Link>
+                        <Link to={"/products"}>Products</Link>
                       </li>
                       <li>
-                        <Link href="/blog">Blog</Link>
+                        <Link to={"/blog"}>Blog</Link>
                       </li>
                       <li>
-                        <Link href="/contact-us">Contact</Link>
+                        <Link to={"/contact-us"}>Contact</Link>
                       </li>
                     </ul>
                   </div>
@@ -166,7 +168,7 @@ export default function Footer() {
           <div className="container">
             <div className="site-footer__bottom-inner">
               <p className="site-footer__bottom-text">
-                © 2024 by Barcode Auto Care LLC. All rights reserved.
+              Copyright © 2024 by Barcode Auto Care LLC. All rights reserved.
               </p>
               <ul className="list-unstyled site-footer__bottom-menu">
                 {/* <li><Link href="contact">Support</Link></li>
@@ -176,6 +178,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
+        <FixedRightSidebar />
       </footer>
     </>
   );

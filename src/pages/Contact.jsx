@@ -46,6 +46,43 @@ export default function Contact() {
   return (
     <div>
       <Breadcrumb title={title} breadcrumbs={breadcrumbs} />
+      <section className="contact-two">
+      <div className="container">
+        <div className="row">
+          <div className="col-xl-4 col-lg-4">
+            <div className="contact-two__single">
+              <div className="contact-two__icon">
+                <span className="icon-call"></span>
+              </div>
+              <p>Contact Us</p>
+              <h3>
+                <a href="tel:+971 50 934 46685">+971 50 934 4668</a>
+              </h3>
+            </div>
+          </div>
+          <div className="col-xl-4 col-lg-4">
+            <div className="contact-two__single">
+              <div className="contact-two__icon">
+                <span className="icon-envelope"></span>
+              </div>
+              <p>Mail Us</p>
+              <h3>
+                <a href="mailto:support@800bbattery.com">support@800bbattery.com</a>
+              </h3>
+            </div>
+          </div>
+          <div className="col-xl-4 col-lg-4">
+            <div className="contact-two__single">
+              <div className="contact-two__icon">
+                <span className="icon-location"></span>
+              </div>
+              <p>Our Office Location</p>
+              <h3>Al Asayel Street - 160St Warehouse no. 2 - 318th Rd - near Al Ahli Driving school - Al Quoz Industrial Area 3 - Dubai</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
       <section className="contact-three">
         <div className="container">
           <div className="contact-three__inner">

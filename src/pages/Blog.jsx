@@ -3,10 +3,10 @@ import { useEffect, useState } from "react";
 import Breadcrumb from "../components/sections/home1/Breadcrumb";
 const apiUrl = import.meta.env.VITE_BASE_URL;
 export default function Blog() {
-  const title = "About";
+  const title = "Blog";
   const breadcrumbs = [
     { name: "Home", link: "/" },
-    { name: "About" }, // No link for the current page
+    { name: "Blog" }, // No link for the current page
   ];
 
   const [posts, setPosts] = useState([]);
@@ -27,7 +27,17 @@ export default function Blog() {
       {posts && posts.length > 0 && (
         <section className="blog-list">
           <div className="container">
+          <div className="section-title text-center">
+                    <div className="section-title__tagline-box">
+                        <span className="section-title__tagline">Our Blog</span>
+                    </div>
+                    <div className="section-title__title-box sec-title-animation animation-style1">
+                        <h2 className="section-title__title title-animation">Insights and Solutions for <br/>Today's Challenges
+                        </h2>
+                    </div>
+                </div>
             <div className="row">
+              
               {/*Blog One Single Start*/}
               {posts.map((post) => (
                 <div

@@ -94,12 +94,14 @@ export default function UpdateProduct() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const token = localStorage.getItem("access_token");
       const res = await fetch(
         `${apiUrl}/api/product/updateproduct/${id}/${currentUser._id}`,
         {
           method: "PUT",
           headers: {
-            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`, // Correctly set the Authorization header
+            "Content-Type": "application/json", // Content-Type header
           },
           body: JSON.stringify(formData),
         }

@@ -62,10 +62,12 @@ export default function CreateService() {
     e.preventDefault();
     console.log("safsd");
     try {
+      const token = localStorage.getItem("access_token");
       const res = await fetch(`${apiUrl}/api/service/create`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`, // Correctly set the Authorization header
+          "Content-Type": "application/json", // Content-Type header
         },
         body: JSON.stringify(formData),
       });
@@ -102,7 +104,7 @@ export default function CreateService() {
           />
           <TextInput
             type="text"
-            placeholder="Title"
+            placeholder="Short Description"
             required
             id="short_description"
             className="flex-1"

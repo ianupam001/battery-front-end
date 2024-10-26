@@ -64,12 +64,12 @@ export default function Video() {
                                 </ul> */}
                             </div>
                                 <div className="video-one__btn-box">
-                                    <Link href="about" className="video-one__btn thm-btn">Discover More</Link>
+                                    <Link to={"tel:+971509344668"} className="video-one__btn thm-btn">Call Now</Link>
                                     <Link href="contact" className="video-one__btn-two thm-btn"  onClick={() => setModalOpen(true)}>Free estimate</Link>
                                     <ContactModal
-                        isOpen={isModalOpen}
-                        onClose={() => setModalOpen(false)}
-                      />
+                                        isOpen={isModalOpen}
+                                        onClose={() => setModalOpen(false)}
+                                    />
                                 </div>
                             </div>
                         </div>

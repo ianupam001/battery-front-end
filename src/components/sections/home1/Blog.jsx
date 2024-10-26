@@ -32,7 +32,7 @@ export default function Blog() {
                 </div>
               </div>
               <div className="blog-one__btn-box">
-                <Link href="blog" className="blog-one__btn thm-btn">
+                <Link to="blogs" className="blog-one__btn thm-btn">
                   View all Blog
                 </Link>
               </div>
