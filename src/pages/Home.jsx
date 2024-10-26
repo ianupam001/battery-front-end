@@ -13,6 +13,7 @@ import Funfacts from "../components/sections/home1/Funfacts";
 import Testimonial from "../components/sections/home1/Testimonial";
 import Banner from "../components/sections/home1/Banner";
 import { Helmet } from "react-helmet-async";
+import Banner2 from "../components/sections/home1/Baner2";
 const apiUrl = import.meta.env.VITE_BASE_URL;
 export default function Home() {
   const [posts, setPosts] = useState([]);
@@ -35,7 +36,8 @@ export default function Home() {
         />
       </Helmet>
 
-      <Banner />
+      {/* <Banner /> */}
+      <Banner2 />
       <Service />
       <AboutHome />
       <Testimonial />
