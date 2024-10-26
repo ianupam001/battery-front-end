@@ -1,69 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { TextInput, Select, Textarea, Button, Spinner } from "flowbite-react";
-import { useParams } from "react-router-dom";
-const apiUrl = import.meta.env.VITE_BASE_URL;
+import React, { useState } from "react";
+import { TextInput, Textarea, Button } from "flowbite-react";
 
-export function ContactForm({ currentPagePath }) {
+export function ContactForm({ sourcePage, formType }) {
   const [formData, setFormData] = useState({
     ffname: "",
     email: "",
     phone: "",
-    services: "",
     form_message: "",
+    our_services: sourcePage.split("/").pop(),
+    sourcePage: sourcePage,
   });
-  const { serviceSlug } = useParams();
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
-  const [service, setService] = useState(null);
-  const [recentServices, setRecentServices] = useState(null);
-
-  useEffect(() => {
-    const fetchService = async () => {
-      try {
-        setLoading(true);
-        const res = await fetch(
-          `${apiUrl}/api/service/getservices?slug=${serviceSlug}`
-        );
-        const data = await res.json();
-        if (!res.ok) {
-          setError(true);
-          setLoading(false);
-          return;
-        }
-        if (res.ok) {
-          setService(data.services[0]);
-          setLoading(false);
-          setError(false);
-        }
-      } catch (error) {
-        setError(true);
-        setLoading(false);
-      }
-    };
-    fetchService();
-  }, [serviceSlug]);
-
-  useEffect(() => {
-    try {
-      const fetchRecentServices = async () => {
-        const res = await fetch(`${apiUrl}/api/service/getservices?limit=6`);
-        const data = await res.json();
-        if (res.ok) {
-          setRecentServices(data.services);
-        }
-      };
-      fetchRecentServices();
-    } catch (error) {
-      console.log(error.message);
-    }
-  }, []);
-
-  if (loading)
-    return (
-      <div className="flex justify-center items-center min-h-screen">
-        <Spinner size="xl" />
-      </div>
-    );
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -75,19 +21,25 @@ export function ContactForm({ currentPagePath }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted from:", currentPagePath);
+    console.log("Form submitted with:", {
+      sourcePage: formData.sourcePage,
+      our_services: formData.our_services,
+    });
     console.log("Form Data:", formData);
-    // handle form submission logic
+    // handle form submission logic here
   };
 
   return (
     <form
       id="contact-form"
       name="contact_form"
-      className="p-4 max-w-lg bg-white rounded-lg "
+      className="p-1 py-2 max-w-md bg-[#FDEEDF] rounded-lg"
       onSubmit={handleSubmit}
     >
-      <h2 className="mb-4 text-xl font-semibold">Enquire Now</h2>
+      <h2 className="mb-4 text-2xl font-bold text-gray-800">
+        {formType || "Enquire Now"}
+      </h2>
+
       <div className="mb-4">
         <TextInput
           id="ffname"
@@ -100,49 +52,30 @@ export function ContactForm({ currentPagePath }) {
         />
       </div>
 
-      <div className="mb-4">
-        <TextInput
-          id="email"
-          type="email"
-          name="email"
-          placeholder="Email *"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
-      </div>
+      <div className="flex justify-between gap-2">
+        <div className="mb-4">
+          <TextInput
+            id="email"
+            type="email"
+            name="email"
+            placeholder="Email *"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+        </div>
 
-      <div className="mb-4">
-        <TextInput
-          id="phone"
-          type="text"
-          name="phone"
-          placeholder="Phone *"
-          value={formData.phone}
-          onChange={handleChange}
-          required
-        />
-      </div>
-
-      <div className="mb-4">
-        <Select
-          id="services"
-          className="cursor-pointer"
-          name="services"
-          value={formData.services}
-          onChange={handleChange}
-          required
-        >
-          <option value="" disabled>
-            Select a Service *
-          </option>
-          {recentServices &&
-            recentServices?.map((service, index) => (
-              <option key={index} value={service.title}>
-                {service.title}
-              </option>
-            ))}
-        </Select>
+        <div className="mb-4">
+          <TextInput
+            id="phone"
+            type="text"
+            name="phone"
+            placeholder="Phone *"
+            value={formData.phone}
+            onChange={handleChange}
+            required
+          />
+        </div>
       </div>
 
       <div className="mb-4">
@@ -155,6 +88,10 @@ export function ContactForm({ currentPagePath }) {
           required
         />
       </div>
+
+      {/* Hidden fields for 'our_services' and 'sourcePage' */}
+      <input type="hidden" name="our_services" value={formData.our_services} />
+      <input type="hidden" name="sourcePage" value={formData.sourcePage} />
 
       <Button type="submit" className="w-full bg-orange-400 hover:bg-amber-400">
         Submit Now

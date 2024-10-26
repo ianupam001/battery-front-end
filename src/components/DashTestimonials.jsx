@@ -108,8 +108,8 @@ export default function DashTestimonial() {
                 <span>Edit</span>
               </Table.HeadCell>
             </Table.Head>
-            {userTestimonial.map((testimonial) => (
-              <Table.Body className="divide-y">
+            {userTestimonial?.map((testimonial, index) => (
+              <Table.Body key={index} className="divide-y">
                 <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
                   <Table.Cell>
                     {new Date(testimonial.updatedAt).toLocaleDateString()}

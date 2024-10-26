@@ -7,10 +7,11 @@ import ProductCard from "../components/ProductCard";
 import { ContactForm } from "../components/elements/ContactForm";
 import { useLocation } from "react-router-dom";
 const apiUrl = import.meta.env.VITE_BASE_URL;
+import { ContactFormProducts } from "./../components/elements/ContactFormProducts";
 
 export default function ProductPage() {
   const location = useLocation();
-  const currentPagePath = location.pathname;
+  const sourcePage = location.pathname;
 
   const { productSlug } = useParams();
   const [loading, setLoading] = useState(true);
@@ -220,7 +221,7 @@ export default function ProductPage() {
                     </div> */}
 
                 <div className="shop-details-page1__form">
-                  <ContactForm currentPagePath={currentPagePath} />
+                  <ContactFormProducts sourcePage={sourcePage} />
                 </div>
               </div>
             </div>

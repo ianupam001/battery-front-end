@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import Breadcrumb from "../components/sections/home1/Breadcrumb";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Alert, Button } from "flowbite-react";
+import { ContactFormContactPage } from "../components/elements/ContactFormContactPage";
 
 const apiUrl = import.meta.env.VITE_BASE_URL;
 
@@ -9,6 +10,8 @@ export default function Contact() {
   const [formData, setFormData] = useState({});
   const [publishError, setPublishError] = useState(null);
   const [currentPath, setCurrentPath] = useState("");
+  const sourcePage = location.pathname;
+  const { serviceSlug } = useParams();
 
   console.log(formData, currentPath);
 
@@ -60,7 +63,7 @@ export default function Contact() {
                   <h3 className="contact-three__form-title">
                     Get A Free Quote
                   </h3>
-                  <form
+                  {/* <form
                     onSubmit={handleSubmit}
                     method="POST"
                     className="contact-form-validated contact-three__form"
@@ -157,7 +160,8 @@ export default function Contact() {
                         )}
                       </div>
                     </div>
-                  </form>
+                  </form> */}
+                  <ContactFormContactPage sourcePage={sourcePage} />
                 </div>
               </div>
             </div>

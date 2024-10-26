@@ -106,8 +106,8 @@ export default function DashServices() {
                 <span>Edit</span>
               </Table.HeadCell>
             </Table.Head>
-            {userServices.map((service) => (
-              <Table.Body className="divide-y">
+            {userServices?.map((index, service) => (
+              <Table.Body key={index} className="divide-y">
                 <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
                   <Table.Cell>
                     {new Date(service.updatedAt).toLocaleDateString()}

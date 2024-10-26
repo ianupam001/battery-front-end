@@ -105,8 +105,8 @@ export default function DashBrand() {
                 <span>Edit</span>
               </Table.HeadCell>
             </Table.Head>
-            {userBrand.map((brand) => (
-              <Table.Body className="divide-y">
+            {userBrand.map((brand, index) => (
+              <Table.Body key={index} className="divide-y">
                 <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
                   <Table.Cell>
                     {new Date(brand.updatedAt).toLocaleDateString()}

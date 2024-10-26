@@ -108,8 +108,8 @@ export default function DashProducts() {
               </Table.HeadCell>
               <Table.HeadCell>View</Table.HeadCell>
             </Table.Head>
-            {userProducts.map((product) => (
-              <Table.Body className="divide-y">
+            {userProducts.map((index, product) => (
+              <Table.Body key={index} className="divide-y">
                 <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
                   <Table.Cell>
                     <Link

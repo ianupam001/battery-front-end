@@ -8,7 +8,7 @@ import { ContactForm } from "../components/elements/ContactForm";
 const apiUrl = import.meta.env.VITE_BASE_URL;
 export default function ServicePage() {
   const location = useLocation();
-  const currentPagePath = location.pathname;
+  const sourcePage = location.pathname;
   const { serviceSlug } = useParams();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -95,8 +95,8 @@ export default function ServicePage() {
                   </h3>
                   <ul className="service-details__services-list list-unstyled">
                     {recentServices &&
-                      recentServices.map((service) => (
-                        <li>
+                      recentServices?.map((service, index) => (
+                        <li key={index}>
                           <Link to={`/service/${service.slug}`}>
                             {service.title}
                             <span className="icon-arrow-right"></span>
@@ -107,7 +107,7 @@ export default function ServicePage() {
                 </div>
                 <div className="service-details__services-box">
                   <div className="">
-                    <ContactForm currentPagePath={currentPagePath} />
+                    <ContactForm sourcePage={sourcePage} />
                   </div>
                 </div>
                 <div className="project-details__get-started">

@@ -58,9 +58,9 @@ export default function Products() {
 
                 <div className="row">
                   {products &&
-                    products.length > 0 &&
-                    products.map((post) => (
-                      <div className="col-xl-4">
+                    products?.length > 0 &&
+                    products?.map((post, index) => (
+                      <div key={index} className="col-xl-4">
                         <div className="shop-page-one-single">
                           <div className="img-box">
                             <img src={post.image} alt="Image" />

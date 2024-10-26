@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Cta from "../sections/home1/Cta";
 import { useEffect, useState } from "react";
+import footerLogo from "/assets/images/800bbatterywhite.png";
 const apiUrl = import.meta.env.VITE_BASE_URL;
 export default function Footer() {
   const [userServices, setUserServices] = useState([]);
@@ -54,10 +55,7 @@ export default function Footer() {
                 <div className="footer-widget__column footer-widget__about">
                   <div className="footer-widget__logo">
                     <Link href="/">
-                      <img
-                        src="https://static.wixstatic.com/media/128eb4_3ced2d249b1445e0975e433ba3bdfd10~mv2.png/v1/fill/w_73,h_88,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/128eb4_3ced2d249b1445e0975e433ba3bdfd10~mv2.png"
-                        alt=""
-                      />
+                      <img className="w-56" src={footerLogo} alt="logo" />
                     </Link>
                   </div>
                   <p className="footer-widget__about-text">
@@ -116,8 +114,8 @@ export default function Footer() {
                     <h3 className="footer-widget__title">Our Service</h3>
                   </div>
                   <ul className="footer-widget__link list-unstyled">
-                    {userServices.map((service) => (
-                      <li>
+                    {userServices?.map((service, index) => (
+                      <li key={index}>
                         <Link to={`/service/${service.slug}`}>
                           {service.title}
                         </Link>

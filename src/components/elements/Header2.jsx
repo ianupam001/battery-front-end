@@ -3,6 +3,7 @@ import Menu from "../Menu";
 import { useState, useEffect } from "react";
 import { ContactModal } from "./ContactModal";
 import { Button } from "flowbite-react";
+import headerLogo from "/assets/images/800bbattery.png";
 // import MobileMenu from "../MobileMenu";
 
 export default function Header2() {
@@ -74,10 +75,7 @@ export default function Header2() {
                 <div className="main-menu-two__left">
                   <div className="main-menu-two__logo">
                     <Link to="/">
-                      <img
-                        src="https://pentacodesdemos.com/800logo-new.png"
-                        alt=""
-                      />
+                      <img src={headerLogo} alt="" />
                     </Link>
                   </div>
                   <div className="">

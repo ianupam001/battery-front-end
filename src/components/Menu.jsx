@@ -50,7 +50,7 @@ export default function Menu() {
         <li className="dropdown">
           <Link to="/services">Services</Link>
           <ul>
-            {userServices.map((service) => (
+            {userServices?.map((service) => (
               <li key={service._id}>
                 <Link to={`/service/${service.slug}`}>{service.title}</Link>
               </li>
@@ -61,7 +61,6 @@ export default function Menu() {
           <Link to="/products">Products</Link>
           <ul>
             {userProducts.map((product) => (
-              
               <li key={product._id}>
                 <Link to={`/product/${product.slug}`}>{product.title}</Link>
               </li>
