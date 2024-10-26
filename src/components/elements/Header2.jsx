@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { ContactModal } from "./ContactModal";
 import { Button } from "flowbite-react";
 import headerLogo from "/assets/images/800bbattery.png";
-// import MobileMenu from "../MobileMenu";
 
 export default function Header2() {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -12,24 +11,18 @@ export default function Header2() {
   const [isSticky, setIsSticky] = useState(false);
 
   const handleScroll = () => {
-    if (window.scrollY > 0) {
-      setIsSticky(true);
-    } else {
-      setIsSticky(false);
-    }
+    setIsSticky(window.scrollY > 0);
   };
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <>
       <header className={`main-header-two ${isSticky ? "sticky" : ""}`}>
-        <div className="main-menu-two__top">
+        <div className="main-menu-two__top hidden md:block">
           <div className="container">
             <div className="main-menu-two__top-inner">
               <div className="main-menu-two__top-left">
@@ -70,58 +63,62 @@ export default function Header2() {
         </div>
         <nav className="main-menu main-menu-two bg-color-extra">
           <div className="main-menu-two__wrapper">
-            <div className="container">
-              <div className="main-menu-two__wrapper-inner">
-                <div className="main-menu-two__left">
-                  <div className="main-menu-two__logo">
-                    <Link to="/">
-                      <img src={headerLogo} alt="" />
-                    </Link>
-                  </div>
-                  <div className="">
-                    <button
-                      className="md:hidden"
-                      // onClick={() => setIsMenuOpen(!isMenuOpen)}
-                    >
-                      <i className="fa fa-bars"></i>
-                    </button>
-                    <Menu />
-                  </div>
-                </div>
-                <div className="main-menu-two__right">
-                  <div className="main-menu-two__call-and-btn-box">
-                    <div className="main-menu-two__call">
-                      <div className="main-menu-two__call-icon">
-                        <span className="icon-phone-call"></span>
-                      </div>
-                      <div className="main-menu-two__call-number">
-                        <p>Make a call</p>
-                        <h5>
-                          <Link to="tel:+971509344668">+971509344668</Link>
-                        </h5>
-                      </div>
-                    </div>
-                    <div className="main-menu-two__btn-box">
-                      <Button
-                        className="main-menu-two__btn thm-btn"
-                        onClick={() => setModalOpen(true)}
-                      >
-                        Get Appointment
-                      </Button>
-                      <ContactModal
-                        isOpen={isModalOpen}
-                        onClose={() => setModalOpen(false)}
-                      />
-                    </div>
-                  </div>
-                </div>
+            <div className="container flex justify-between items-center">
+              <Link to="/" className="main-menu-two__logo">
+                <img src={headerLogo} alt="Logo" />
+              </Link>
+
+              <div className="hidden md:flex">
+                <Menu />
               </div>
+
+              <div className="hidden md:flex">
+                <Button
+                  onClick={() => setModalOpen(true)}
+                  className="main-menu-two__btn thm-btn"
+                >
+                  Get Appointment
+                </Button>
+                <ContactModal
+                  isOpen={isModalOpen}
+                  onClose={() => setModalOpen(false)}
+                />
+              </div>
+
+              <button
+                className="md:hidden text-2xl"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+              >
+                <i className={isMenuOpen ? "fa fa-times" : "fa fa-bars"}></i>
+              </button>
             </div>
           </div>
         </nav>
       </header>
-      {/* Sidebar Component */}
-      {/* <MobileMenu isSidebar={isSidebarOpen} handleMobileMenu={toggleSidebar} /> */}
+
+      <div
+        className={`fixed top-0 left-0 w-64 h-full bg-[#222121] text-white z-30 transform ${
+          isMenuOpen ? "translate-x-0" : "-translate-x-full"
+        } transition-transform duration-300 ease-in-out md:hidden`}
+      >
+        <div className="p-5 mt-20">
+          <div className="mb-6">
+            <Menu />
+          </div>
+          <Button
+            onClick={() => {
+              setModalOpen(true);
+              setIsMenuOpen(false);
+            }}
+            size="md"
+            className="w-full mt-4  bg-orange-400 hover:bg-orange-500"
+          >
+            Get Appointment
+          </Button>
+        </div>
+      </div>
+
+      <ContactModal isOpen={isModalOpen} onClose={() => setModalOpen(false)} />
     </>
   );
 }
