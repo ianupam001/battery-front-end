@@ -105,28 +105,30 @@ export function ContactFormModal({ sourcePage }) {
         />
       </div>
 
-      <div className="mb-4">
-        <TextInput
-          id="email"
-          type="email"
-          name="email"
-          placeholder="Email *"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
-      </div>
+      <div className="flex justify-between gap-2">
+        <div className="mb-4">
+          <TextInput
+            id="email"
+            type="email"
+            name="email"
+            placeholder="Email *"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+        </div>
 
-      <div className="mb-4">
-        <TextInput
-          id="phone"
-          type="text"
-          name="phone"
-          placeholder="Phone *"
-          value={formData.phone}
-          onChange={handleChange}
-          required
-        />
+        <div className="mb-4">
+          <TextInput
+            id="phone"
+            type="text"
+            name="phone"
+            placeholder="Phone *"
+            value={formData.phone}
+            onChange={handleChange}
+            required
+          />
+        </div>
       </div>
 
       <div className="mb-4">
@@ -142,7 +144,7 @@ export function ContactFormModal({ sourcePage }) {
             Select a Service *
           </option>
           {recentServices &&
-            recentServices.map((service, index) => (
+            recentServices?.map((service, index) => (
               <option key={index} value={service.title}>
                 {service.title}
               </option>
