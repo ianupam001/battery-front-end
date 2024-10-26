@@ -411,6 +411,9 @@ ul {
   text-transform: uppercase;
   z-index: 1;
 }
+.txt_whatsapp{
+  padding-left: 10px;
+}
 .thm-btn-new {
   position: relative;
   display: inline-flex;

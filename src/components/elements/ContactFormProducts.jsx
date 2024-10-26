@@ -31,7 +31,7 @@ export function ContactFormProducts({ sourcePage, formType }) {
   return (
     <form id="contact-form" name="contact_form" onSubmit={handleSubmit}>
       <div className="row">
-        <div className="col-xl-6 col-lg-12 col-md-12">
+        <div className="col-xl-12 col-lg-12 col-md-12">
           <div className="input-box">
             <input
               type="text"
@@ -39,19 +39,6 @@ export function ContactFormProducts({ sourcePage, formType }) {
               placeholder="Name *"
               required
               value={formData.ffname}
-              onChange={handleChange}
-            />
-          </div>
-        </div>
-
-        <div className="col-xl-6 col-lg-12 col-md-12">
-          <div className="input-box">
-            <input
-              type="email"
-              name="email"
-              placeholder="Email *"
-              required
-              value={formData.email}
               onChange={handleChange}
             />
           </div>
@@ -70,9 +57,22 @@ export function ContactFormProducts({ sourcePage, formType }) {
               onChange={handleChange}
             />
           </div>
+          </div>
+          <div className="col-xl-6 col-lg-12 col-md-12">
+          <div className="input-box">
+            <input
+              type="email"
+              name="email"
+              placeholder="Email *"
+              required
+              value={formData.email}
+              onChange={handleChange}
+            />
+          </div>
         </div>
-
-        <div className="col-xl-6 col-lg-12 col-md-12">
+        </div>
+        <div className="row">
+        <div className="col-xl-12 col-lg-12 col-md-12">
           <div className="input-box">
             <textarea
               name="form_message"
@@ -89,7 +89,7 @@ export function ContactFormProducts({ sourcePage, formType }) {
         </div>
       </div>
 
-      <div className="row">
+      {/* <div className="row">
         <div className="col-lg-12">
           <div className="product-form-box-checkbox">
             <div className="inner">
@@ -101,7 +101,7 @@ export function ContactFormProducts({ sourcePage, formType }) {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Hidden fields for 'our_services' and 'sourcePage' */}
       <input type="hidden" name="our_services" value={formData.our_services} />

@@ -104,7 +104,7 @@ export default function ProductPage() {
                     </div> */}
                 <div className="shop-details-page1__text">
                   <div
-                    className="p-3 max-w-2xl mx-auto w-full post-content"
+                    className="pt-2 pb-4 max-w-2xl mx-auto w-full post-content"
                     dangerouslySetInnerHTML={{
                       __html: product && product.content,
                     }}

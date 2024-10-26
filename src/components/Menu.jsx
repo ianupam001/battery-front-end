@@ -9,7 +9,7 @@ export default function Menu() {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const res = await fetch(`${apiUrl}/api/service/getservices?limit=5`);
+        const res = await fetch(`${apiUrl}/api/service/getservices?limit=6`);
         const data = await res.json();
         if (res.ok) {
           setUserServices(data.services);
@@ -25,7 +25,7 @@ export default function Menu() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await fetch(`${apiUrl}/api/product/getproducts?limit=5`);
+        const res = await fetch(`${apiUrl}/api/product/getproducts?limit=6`);
         const data = await res.json();
         if (res.ok) {
           setUserProducts(data.products);
