@@ -83,12 +83,12 @@ export default function Header2({ scroll, handlePopup }) {
                       <img src={headerLogo} alt="Logo" />
                     </Link>
                   </div>
-                  <Button
+                  {/* <Button
                     className="main-menu-two__btn thm-btn mobile_btn d-md-none w-68 h-12  px-4 text-sm"
                     onClick={() => setModalOpen(true)}
                   >
                     Get Appointment
-                  </Button>
+                  </Button> */}
                   <div className="d-md-none">
                     {/* Mobile menu toggle button */}
                     <button onClick={handleMobileMenu}>
