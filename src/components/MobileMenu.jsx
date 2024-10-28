@@ -15,7 +15,7 @@ const MobileMenu = ({ handleMobileMenu }) => {
   };
 
   return (
-    <div className="fixed top-24  p-4 left-0 w-1/2 h-full pt-16 bg-black text-white z-20">
+    <div className="fixed top-24 md:hidden p-4 left-0 w-1/2 h-full pt-16 bg-black text-white z-20">
       <div className="relative p-6">
         {/* Menu Links */}
         <div>
