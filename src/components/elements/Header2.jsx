@@ -84,7 +84,7 @@ export default function Header2({ scroll, handlePopup }) {
                     </Link>
                   </div>
                   <Button
-                    className="main-menu-two__btn thm-btn mobile_btn d-md-none"
+                    className="main-menu-two__btn thm-btn mobile_btn d-md-none w-68 h-12  px-4 text-sm"
                     onClick={() => setModalOpen(true)}
                   >
                     Get Appointment
