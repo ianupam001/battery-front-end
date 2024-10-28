@@ -7,6 +7,7 @@ import {
   Spinner,
   Alert,
 } from "flowbite-react";
+import { toast } from "react-toastify";
 
 const apiUrl = import.meta.env.VITE_BASE_URL;
 
@@ -51,19 +52,48 @@ export function ContactFormContactPage({ sourcePage }) {
     }));
   };
 
+  const submitForm = async (data) => {
+    const payload = {
+      name: data.ffname,
+      email: data.email,
+      phone: data.phone,
+      message: data.form_message,
+      service: data.services,
+      sourcePage: data.sourcePage,
+    };
+    try {
+      const token = localStorage.getItem("access_token");
+      const response = await fetch(`${apiUrl}/api/inquery/create/inquery`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`, // Corrected typo here
+        },
+        body: JSON.stringify(payload), // Corrected from 'data' to 'body'
+      });
+      console.log(response);
+      if (response.ok) {
+        toast.success("Form submitted successfully!");
+        setFormData({
+          ffname: "",
+          email: "",
+          phone: "",
+          form_message: "",
+          our_services: sourcePage.split("/").pop(),
+          sourcePage: sourcePage,
+        });
+      } else {
+        const errorData = await response.json();
+        toast.error(errorData.message);
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    console.log("Form Data Submitted:", formData);
-
-    setFormData({
-      ffname: "",
-      email: "",
-      phone: "",
-      services: "",
-      form_message: "",
-      sourcePage: sourcePage || "",
-    });
+    submitForm(formData);
     setPublishError(null);
   };
 

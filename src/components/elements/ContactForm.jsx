@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { TextInput, Textarea, Button } from "flowbite-react";
-
+const apiUrl = import.meta.env.VITE_BASE_URL;
+import { toast } from "react-toastify";
 export function ContactForm({ sourcePage, formType }) {
   const [formData, setFormData] = useState({
     ffname: "",
@@ -10,6 +11,43 @@ export function ContactForm({ sourcePage, formType }) {
     our_services: sourcePage.split("/").pop(),
     sourcePage: sourcePage,
   });
+
+  const submitForm = async (data) => {
+    const payload = {
+      name: data.ffname,
+      email: data.email,
+      phone: data.phone,
+      message: data.form_message,
+      sourcePage: data.sourcePage,
+    };
+    try {
+      const token = localStorage.getItem("access_token");
+      const response = await fetch(`${apiUrl}/api/forms/create/service`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`, // Corrected typo here
+        },
+        body: JSON.stringify(payload), // Corrected from 'data' to 'body'
+      });
+      if (response.ok) {
+        toast.success("Form submitted successfully!");
+        setFormData({
+          ffname: "",
+          email: "",
+          phone: "",
+          form_message: "",
+          our_services: sourcePage.split("/").pop(),
+          sourcePage: sourcePage,
+        });
+      } else {
+        const errorData = await response.json();
+        toast.error(errorData.message);
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,12 +59,7 @@ export function ContactForm({ sourcePage, formType }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted with:", {
-      sourcePage: formData.sourcePage,
-      our_services: formData.our_services,
-    });
-    console.log("Form Data:", formData);
-    // handle form submission logic here
+    submitForm(formData);
   };
 
   return (

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { TextInput, Select, Textarea, Button, Spinner } from "flowbite-react";
 import { useParams } from "react-router-dom";
-
+import { toast } from "react-toastify";
 const apiUrl = import.meta.env.VITE_BASE_URL;
 
 export function ContactFormModal({ sourcePage }) {
@@ -80,9 +80,51 @@ export function ContactFormModal({ sourcePage }) {
     }));
   };
 
+  const submitForm = async (data) => {
+    const payload = {
+      name: data.ffname,
+      email: data.email,
+      phone: data.phone,
+      service: data.services,
+      message: data.form_message,
+      sourcePage: data.sourcePage,
+    };
+    try {
+      const token = localStorage.getItem("access_token");
+      const res = await fetch(`${apiUrl}/api/forms/create/form`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`, // Corrected typo here
+        },
+        body: JSON.stringify(payload), // Corrected from 'data' to 'body'
+      });
+      if (res.ok) {
+        toast.success("Form submitted successfully!");
+        setFormData({
+          ffname: "",
+          email: "",
+          phone: "",
+          services: "",
+          form_message: "",
+          sourcePage: "",
+        });
+      }
+
+      if (!res.ok) {
+        throw new Error("Failed to submit form");
+      }
+      const responseData = await res.json();
+      console.log(responseData);
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to submit form. Please try again.");
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form Data:", formData);
+    submitForm(formData);
   };
 
   return (

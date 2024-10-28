@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-
+const apiUrl = import.meta.env.VITE_BASE_URL;
+import { toast } from "react-toastify";
 export function ContactFormProducts({ sourcePage, formType }) {
   const [formData, setFormData] = useState({
     ffname: "",
@@ -17,15 +18,50 @@ export function ContactFormProducts({ sourcePage, formType }) {
       [name]: value,
     }));
   };
+  // to do add products query
+
+  const submitForm = async (data) => {
+    const payload = {
+      name: data.ffname,
+      email: data.email,
+      phone: data.phone,
+      message: data.form_message,
+      sourcePage: data.sourcePage,
+    };
+    try {
+      const token = localStorage.getItem("access_token");
+      const response = await fetch(`${apiUrl}/api/forms/create/product`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`, // Corrected typo here
+        },
+        body: JSON.stringify(payload), // Corrected from 'data' to 'body'
+      });
+      console.log(response);
+      if (response.ok) {
+        toast.success("Form submitted successfully!");
+        setFormData({
+          ffname: "",
+          email: "",
+          phone: "",
+          form_message: "",
+          our_services: sourcePage.split("/").pop(),
+          sourcePage: sourcePage,
+        });
+      } else {
+        const errorData = await response.json();
+        toast.error(errorData.message);
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted with:", {
-      sourcePage: formData.sourcePage,
-      our_services: formData.our_services,
-    });
-    console.log("Form Data:", formData);
-    // Handle form submission logic here
+    console.log(formData);
+    submitForm(formData);
   };
 
   return (
@@ -57,8 +93,8 @@ export function ContactFormProducts({ sourcePage, formType }) {
               onChange={handleChange}
             />
           </div>
-          </div>
-          <div className="col-xl-6 col-lg-12 col-md-12">
+        </div>
+        <div className="col-xl-6 col-lg-12 col-md-12">
           <div className="input-box">
             <input
               type="email"
@@ -70,8 +106,8 @@ export function ContactFormProducts({ sourcePage, formType }) {
             />
           </div>
         </div>
-        </div>
-        <div className="row">
+      </div>
+      <div className="row">
         <div className="col-xl-12 col-lg-12 col-md-12">
           <div className="input-box">
             <textarea

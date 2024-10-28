@@ -10,6 +10,9 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/free-mode";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import { store, persistor } from "./redux/store.js";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
@@ -22,6 +25,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <Provider store={store}>
         <ThemeProvider>
           <App />
+          <ToastContainer />
         </ThemeProvider>
       </Provider>
     </HelmetProvider>
