@@ -1,14 +1,12 @@
-"use client";
 import { useEffect, useState } from "react";
-import Counter from "./Counter";
 
-export default function CounterUp({ end }) {
+export default function CounterUp({ end, duration = 2000 }) {
+  const [count, setCount] = useState(0);
   const [inViewport, setInViewport] = useState(false);
 
   const handleScroll = () => {
-    const elements = document.getElementsByClassName("count-text");
-    if (elements.length > 0) {
-      const element = elements[0];
+    const element = document.querySelector(".count-text");
+    if (element) {
       const rect = element.getBoundingClientRect();
       const isInViewport = rect.top >= 0 && rect.bottom <= window.innerHeight;
       if (isInViewport && !inViewport) {
@@ -22,12 +20,23 @@ export default function CounterUp({ end }) {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
-  return (
-    <>
-      <span className="count-text">
-        {inViewport && <Counter end={end} duration={20} />}
-      </span>
-    </>
-  );
+  }, [inViewport]);
+
+  useEffect(() => {
+    if (inViewport && count < end) {
+      const increment = end / (duration / 10);
+      const interval = setInterval(() => {
+        setCount((prevCount) => {
+          if (prevCount + increment >= end) {
+            clearInterval(interval);
+            return end;
+          }
+          return prevCount + increment;
+        });
+      }, 10);
+      return () => clearInterval(interval);
+    }
+  }, [inViewport, end, duration, count]);
+
+  return <span className="count-text">{Math.floor(count)}</span>;
 }
