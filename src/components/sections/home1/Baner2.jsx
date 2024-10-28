@@ -58,9 +58,7 @@ export default function Banner() {
                     <div
                       className="main-slider-three__bg"
                       style={{
-                        backgroundImage:
-                          // `url(${slider.image})`,
-                          `url(public/assets/images/banner-800bbattery.jpg)`,
+                        backgroundImage: `url(${slider.image})`,
                       }}
                     ></div>
                     {/* <div className="main-slider-three__shape-1">
