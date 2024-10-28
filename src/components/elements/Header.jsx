@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import Menu from "../Menu"
 import MobileMenu from "../MobileMenu"
-
+import headerLogo from "/assets/images/800bbattery.png";
 export default function Header({ scroll, handlePopup, handleMobileMenu }) {
 
     return (
@@ -42,7 +42,7 @@ export default function Header({ scroll, handlePopup, handleMobileMenu }) {
                         <div className="main-menu__wrapper-inner">
                             <div className="main-menu__left">
                                 <div className="main-menu__logo">
-                                    <Link to={`/`}><img src="https://static.wixstatic.com/media/128eb4_3ced2d249b1445e0975e433ba3bdfd10~mv2.png/v1/fill/w_73,h_88,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/128eb4_3ced2d249b1445e0975e433ba3bdfd10~mv2.png" alt=""/></Link>
+                                    <Link to={`/`}><img src={headerLogo} alt=""/></Link>
                                 </div>
                                 <div className="main-menu__main-menu-box">
                                     <Link to={`/`} className="mobile-nav__toggler" onClick={handleMobileMenu}><i className="fa fa-bars"></i></Link>

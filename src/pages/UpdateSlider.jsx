@@ -95,12 +95,14 @@ export default function UpdateSlider() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const token = localStorage.getItem("access_token");
       const res = await fetch(
-        `/api/slider/updateslider/${id}/${currentUser._id}`,
+        `${apiUrl}/api/slider/updateslider/${id}/${currentUser._id}`,
         {
           method: "PUT",
           headers: {
-            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`, // Correctly set the Authorization header
+            "Content-Type": "application/json", // Content-Type header
           },
           body: JSON.stringify(formData),
         }

@@ -3,10 +3,12 @@ import Menu from "../Menu";
 import { useState, useEffect } from "react";
 import { ContactModal } from "./ContactModal";
 import { Button } from "flowbite-react";
+import headerLogo from "/assets/images/800bbattery.png";
+import MobileMenu from "../MobileMenu";
 
-export default function Header2() {
+export default function Header2( { scroll, handlePopup, handleMobileMenu }) {
   const [isModalOpen, setModalOpen] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  // const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
 
   const handleScroll = () => {
@@ -21,6 +23,7 @@ export default function Header2() {
   }, []);
 
   return (
+    <>
     <header className={`main-header-two ${isSticky ? "sticky" : ""}`}>
       <div className="main-menu-two__top">
         <div className="container">
@@ -69,15 +72,21 @@ export default function Header2() {
                 <div className="main-menu-two__logo">
                   <Link to="/">
                     <img
-                      src="https://pentacodesdemos.com/800logo-new.png"
+                      src={headerLogo}
                       alt=""
                     />
                   </Link>
                 </div>
+                <Button
+                      className="main-menu-two__btn thm-btn mobile_btn d-md-none"
+                      onClick={() => setModalOpen(true)}
+                    >
+                      Get Appointment
+                    </Button>
                 <div>
                   <button
                     className="md:hidden"
-                    onClick={() => setIsMenuOpen(!isMenuOpen)}
+                    onClick={handleMobileMenu}
                   >
                     <i className="fa fa-bars"></i>
                   </button>
@@ -116,5 +125,8 @@ export default function Header2() {
         </div>
       </nav>
     </header>
+    <MobileMenu handleMobileMenu={handleMobileMenu} />
+
+    </>
   );
 }

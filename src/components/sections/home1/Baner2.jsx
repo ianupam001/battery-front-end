@@ -28,10 +28,21 @@ const swiperOptions = {
 };
 
 export default function Banner() {
+  const apiUrl = import.meta.env.VITE_BASE_URL;
   const [sourcePage, setSourcePage] = useState("");
+  
+  const [sliders, setPosts] = useState([]);
+
   useEffect(() => {
-    setSourcePage(window.location.pathname);
+    const fetchPosts = async () => {
+      const res = await fetch(`${apiUrl}/api/slider/getSliders?limit=1`);
+      const blogslider = await res.json();
+      setPosts(blogslider.sliders);
+    };
+    fetchPosts();
   }, []);
+
+
   return (
     <>
       {/* Main Slider Two Start */}
@@ -40,56 +51,63 @@ export default function Banner() {
           {...swiperOptions}
           className="main-slider-three__carousel owl-carousel owl-theme"
         >
-          <SwiperSlide>
-            <div className="item">
-              <div
-                className="main-slider-three__bg"
-                style={{
-                  backgroundImage:
-                    "url(https://firebasestorage.googleapis.com/v0/b/blogs-app-e2c7f.appspot.com/o/1729598128060-128eb4_bb8559d032404d22a027a51dd14e7419~mv2.webp?alt=media&amp;token=1ac7496f-66be-4d0f-abaf-c11f0c9e4ff2)",
-                }}
-              ></div>
-              <div className="main-slider-three__shape-1">
-                <img
-                  src="assets/images/shapes/main-slider-three-shape-1.png"
-                  alt=""
-                />
-              </div>
-              <div className="main-slider-three__shape-2">
-                <img
-                  src="assets/images/shapes/main-slider-three-shape-2.png"
-                  alt=""
-                />
-              </div>
-              <div className="main-slider-three__shape-3">
-                <img
-                  src="assets/images/shapes/main-slider-three-shape-3.png"
-                  alt=""
-                  className="img-bounce"
-                />
-              </div>
-              <div className="container flex justify-between banner_section">
-                <div className="main-slider-three__content banner_content">
-                  <div className="main-slider-three__sub-title-box">
-                    <p className="main-slider-three__sub-title">Best Battery</p>
+          {sliders && sliders.length > 0 && (
+            <div>
+            {sliders?.map((slider, index) => (
+            
+            <SwiperSlide>
+              <div className="item" key={index}>
+                <div
+                  className="main-slider-three__bg"
+                  style={{
+                    backgroundImage:
+                      `url(${slider.image})`,
+                  }}
+                ></div>
+                {/* <div className="main-slider-three__shape-1">
+                  <img
+                    src="assets/images/shapes/main-slider-three-shape-1.png"
+                    alt=""
+                  />
+                </div>
+                <div className="main-slider-three__shape-2">
+                  <img
+                    src="assets/images/shapes/main-slider-three-shape-2.png"
+                    alt=""
+                  />
+                </div>
+                <div className="main-slider-three__shape-3">
+                  <img
+                    src="assets/images/shapes/main-slider-three-shape-3.png"
+                    alt=""
+                    className="img-bounce"
+                  />
+                </div> */}
+                <div className="container flex justify-between banner_section">
+                  <div className="main-slider-three__content banner_content">
+                    {/* <div className="main-slider-three__sub-title-box">
+                      <p className="main-slider-three__sub-title">Best Battery</p>
+                    </div>
+                    <h2 className="main-slider-three__title">800 B Battery</h2>
+                    <p className="main-slider-three__text">800 B Battery</p>
+                    <div className="main-slider-three__btn-box">
+                      <Link
+                        to="services"
+                        className="main-slider-three__btn thm-btn"
+                      >
+                        Check Now
+                      </Link>
+                    </div> */}
                   </div>
-                  <h2 className="main-slider-three__title">800 B Battery</h2>
-                  <p className="main-slider-three__text">800 B Battery</p>
-                  <div className="main-slider-three__btn-box">
-                    <Link
-                      to="services"
-                      className="main-slider-three__btn thm-btn"
-                    >
-                      Check Now
-                    </Link>
+                  <div className="main-slider-three__content banner_form">
+                    <ContactFormModal sourcePage={sourcePage} />
                   </div>
                 </div>
-                <div className="main-slider-three__content banner_form">
-                  <ContactFormModal sourcePage={sourcePage} />
-                </div>
               </div>
-            </div>
-          </SwiperSlide>
+            </SwiperSlide>
+          ))}
+          </div>
+      )}
         </Swiper>
       </section>
       {/*Main Slider Start */}

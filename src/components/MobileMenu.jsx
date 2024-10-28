@@ -1,14 +1,14 @@
 "use client";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-
+import footerLogo from "/assets/images/800bbatterywhite.png";
 const MobileMenu = ({ isSidebar, handleMobileMenu, handleSidebar }) => {
   const [isActive, setIsActive] = useState({
     status: false,
     key: "",
     subMenuKey: "",
   });
-
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const handleToggle = (key, subMenuKey = "") => {
     if (isActive.key === key && isActive.subMenuKey === subMenuKey) {
       setIsActive({
@@ -42,7 +42,7 @@ const MobileMenu = ({ isSidebar, handleMobileMenu, handleSidebar }) => {
           <div className="logo-box">
             <Link to={`/`} aria-label="logo image">
               <img
-                src="assets/images/resources/logo-1.png"
+                src={footerLogo}
                 width="150"
                 alt=""
               />
@@ -58,18 +58,18 @@ const MobileMenu = ({ isSidebar, handleMobileMenu, handleSidebar }) => {
                 <li>
                   <Link to={`/`}>Home</Link>
                 </li>
-                {/* <li className={isActive.key == 1 ? "dropdown current" : "dropdown"}><Link to={`/`} >Home</Link>
+                <li className={isActive.key == 1 ? "dropdown current" : "dropdown"}><Link to={`/`} >Home</Link>
                                     <ul style={{ display: `${isActive.key == 1 ? "block" : "none"}` }}>
                                         <li><Link href="index2">Home Two</Link></li>
                                         <li><Link href="index3">Home Three</Link></li>
                                         <li><Link href="index-dark">Home Dark</Link></li>
                                     </ul>
                                     <button className={isActive.key == 1 ? "expanded open" : ""} onClick={() => handleToggle(1)}><span className="fa fa-angle-right" /></button>
-                                </li> */}
+                                </li>
                 <li>
                   <Link to={`/about`}>About</Link>
                 </li>
-                {/* <li className={isActive.key == 2 ? "dropdown current" : "dropdown"}><Link href="/#">Pages</Link>
+                <li className={isActive.key == 2 ? "dropdown current" : "dropdown"}><Link href="/#">Pages</Link>
                                     <ul style={{ display: `${isActive.key == 2 ? "block" : "none"}` }}>                                 
                                         <li><Link href="team">Team</Link></li>
                                         <li><Link href="team-details">Team Details</Link></li>
@@ -116,7 +116,7 @@ const MobileMenu = ({ isSidebar, handleMobileMenu, handleSidebar }) => {
                                         <li><Link href="blog-details">Blog Details</Link></li>
                                     </ul>
                                     <button className={isActive.key == 5 ? "expanded open" : ""} onClick={() => handleToggle(5)}><span className="fa fa-angle-right" /></button>
-                                </li> */}
+                                </li>
                 <li>
                   <Link to={`/contact`}>Contact</Link>
                 </li>
