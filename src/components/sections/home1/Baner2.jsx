@@ -30,7 +30,7 @@ const swiperOptions = {
 export default function Banner() {
   const apiUrl = import.meta.env.VITE_BASE_URL;
   const [sourcePage, setSourcePage] = useState("");
-  
+
   const [sliders, setPosts] = useState([]);
 
   useEffect(() => {
@@ -42,7 +42,6 @@ export default function Banner() {
     fetchPosts();
   }, []);
 
-
   return (
     <>
       {/* Main Slider Two Start */}
@@ -53,18 +52,18 @@ export default function Banner() {
         >
           {sliders && sliders.length > 0 && (
             <div>
-            {sliders?.map((slider, index) => (
-            
-            <SwiperSlide>
-              <div className="item" key={index}>
-                <div
-                  className="main-slider-three__bg"
-                  style={{
-                    backgroundImage:
-                      `url(${slider.image})`,
-                  }}
-                ></div>
-                {/* <div className="main-slider-three__shape-1">
+              {sliders?.map((slider, index) => (
+                <SwiperSlide>
+                  <div className="item" key={index}>
+                    <div
+                      className="main-slider-three__bg"
+                      style={{
+                        backgroundImage:
+                          // `url(${slider.image})`,
+                          `url(public/assets/images/banner-800bbattery.jpg)`,
+                      }}
+                    ></div>
+                    {/* <div className="main-slider-three__shape-1">
                   <img
                     src="assets/images/shapes/main-slider-three-shape-1.png"
                     alt=""
@@ -83,9 +82,9 @@ export default function Banner() {
                     className="img-bounce"
                   />
                 </div> */}
-                <div className="container flex justify-between banner_section">
-                  <div className="main-slider-three__content banner_content">
-                    {/* <div className="main-slider-three__sub-title-box">
+                    <div className="container flex justify-between banner_section">
+                      <div className="main-slider-three__content banner_content">
+                        {/* <div className="main-slider-three__sub-title-box">
                       <p className="main-slider-three__sub-title">Best Battery</p>
                     </div>
                     <h2 className="main-slider-three__title">800 B Battery</h2>
@@ -98,16 +97,16 @@ export default function Banner() {
                         Check Now
                       </Link>
                     </div> */}
+                      </div>
+                      <div className="main-slider-three__content banner_form">
+                        <ContactFormModal sourcePage={sourcePage} />
+                      </div>
+                    </div>
                   </div>
-                  <div className="main-slider-three__content banner_form">
-                    <ContactFormModal sourcePage={sourcePage} />
-                  </div>
-                </div>
-              </div>
-            </SwiperSlide>
-          ))}
-          </div>
-      )}
+                </SwiperSlide>
+              ))}
+            </div>
+          )}
         </Swiper>
       </section>
       {/*Main Slider Start */}
