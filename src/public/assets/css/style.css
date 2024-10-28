@@ -411,7 +411,7 @@ ul {
   text-transform: uppercase;
   z-index: 1;
 }
-.txt_whatsapp{
+.txt_whatsapp {
   padding-left: 10px;
 }
 .thm-btn-new {
@@ -4442,49 +4442,49 @@ ul {
 
 @media only screen and (min-width: 1200px) and (max-width: 1400px) {
 }
-@media  (max-width: 992px) {
-  .banner_section{
+@media (max-width: 992px) {
+  .banner_section {
     display: block;
   }
-  .banner_section .banner_form{
+  .banner_section .banner_form {
     margin-top: 20px;
   }
-
 }
 @media only screen and (max-width: 767px) {
   .services-two__single {
     margin-right: 20px;
-    padding:  20px;
+    padding: 20px;
   }
-  .services-two__icon{
+  .services-two__icon {
     position: relative;
-    top:inherit;
+    top: inherit;
     left: inherit;
     height: 250px;
-  width: 250px;
+    width: 250px;
   }
   .services-two__icon img {
     height: 250px;
-  width: 250px;
+    width: 250px;
   }
 }
 
 .fixedrightSidebar {
   position: fixed;
   right: 2%;
-  z-index: 1001;
-  bottom: 55%
+  z-index: 9999999 !important;
+  bottom: 55%;
 }
 
 .fixedrightSidebar .socialMedia {
-  display: grid
+  display: grid;
 }
 
-.fixedrightSidebar .socialMedia .QuickSideRightBar,.fixedrightSidebar .socialMedia .QuickSideRightBar .CallRight {
+.fixedrightSidebar .socialMedia .QuickSideRightBar,
+.fixedrightSidebar .socialMedia .QuickSideRightBar .CallRight {
   position: relative;
-  color:var(--erepair-white)
+  color: var(--erepair-white);
 }
-.fixedrightSidebar .socialMedia .QuickSideRightBar .img_box .icon-whatsapp svg{
+.fixedrightSidebar .socialMedia .QuickSideRightBar .img_box .icon-whatsapp svg {
   fill: var(--erepair-white);
 }
 .fixedrightSidebar .socialMedia .QuickSideRightBar .img_box {
@@ -4496,11 +4496,11 @@ ul {
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: ease-in-out .5s
+  transition: ease-in-out 0.5s;
 }
 
 .fixedrightSidebar .socialMedia .QuickSideRightBar .img_box img {
-  width: 20px
+  width: 20px;
 }
 
 .fixedrightSidebar .socialMedia .QuickSideRightBar .slideLeft {
@@ -4516,8 +4516,8 @@ ul {
   z-index: -1;
   opacity: 0;
   overflow: hidden;
-  transition: ease-in-out .5s;
-  border-radius: 30px 0 0 30px
+  transition: ease-in-out 0.5s;
+  border-radius: 30px 0 0 30px;
 }
 
 .fixedrightSidebar .socialMedia .QuickSideRightBar .slideLeft .textRight {
@@ -4530,24 +4530,29 @@ ul {
 
 .fixedrightSidebar .socialMedia .QuickSideRightBar:hover .slideLeft {
   opacity: 1;
-  transition: .5s ease-in-out;
+  transition: 0.5s ease-in-out;
   width: 150px;
   background: #fff;
-  box-shadow: 0 3px 6px rgba(0,0,0,.4)
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
 }
 
 .fixedrightSidebar .socialMedia .QuickSideRightBar:hover .img_box {
-  box-shadow: 0 3px 6px rgba(0,0,0,.4);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
   background: #f2871c;
 }
-.fixedrightSidebar .socialMedia .QuickSideRightBar:hover .img_box span{
+.fixedrightSidebar .socialMedia .QuickSideRightBar:hover .img_box span {
   color: #fff;
 }
-.fixedrightSidebar .socialMedia .QuickSideRightBar:hover .img_box .icon-whatsapp svg{
+.fixedrightSidebar
+  .socialMedia
+  .QuickSideRightBar:hover
+  .img_box
+  .icon-whatsapp
+  svg {
   fill: #fff;
 }
 .fixedrightSidebar .socialMedia .QuickSideRightBarWhatsapp {
-  margin-bottom: 15px
+  margin-bottom: 15px;
 }
 
 .fixedBottomBar {
@@ -4557,13 +4562,13 @@ ul {
   z-index: 10;
   left: 0;
   width: 100%;
-  background-color:var(--erepair-primary);
-  padding: 15px 0
+  background-color: var(--erepair-primary);
+  padding: 15px 0;
 }
 
 .fixedBottomBar ul {
   display: flex;
-  justify-content: center
+  justify-content: center;
 }
 
 .fixedBottomBar ul li {
@@ -4571,7 +4576,7 @@ ul {
   align-items: center;
   justify-content: center;
   border-right: 1px solid #fff;
-  padding: 0 30px
+  padding: 0 30px;
 }
 
 .fixedBottomBar ul li a {
@@ -4579,7 +4584,7 @@ ul {
   flex-direction: column;
   width: 100%;
   justify-content: center;
-  align-items: center
+  align-items: center;
 }
 
 .fixedBottomBar ul li a .icon {
@@ -4589,11 +4594,11 @@ ul {
   border-radius: 100%;
   display: flex;
   align-items: center;
-  justify-content: center
+  justify-content: center;
 }
 
 .fixedBottomBar ul li a .icon img {
-  width: 60%
+  width: 60%;
 }
 
 .fixedBottomBar ul li a p {
@@ -4604,19 +4609,19 @@ ul {
   padding: 15px 20px;
   font-weight: 500;
   display: flex;
-  align-items: center
+  align-items: center;
 }
 
 .fixedBottomBar ul li a p i {
-  margin-right: 5px
+  margin-right: 5px;
 }
 
 .fixedBottomBar ul li a p:hover {
   background: #000;
-  color: #fff
+  color: #fff;
 }
 
 .fixedBottomBar ul li:last-child {
   margin-right: 0;
-  border-right: 0
+  border-right: 0;
 }

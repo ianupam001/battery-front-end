@@ -6,13 +6,17 @@ import { Button } from "flowbite-react";
 import headerLogo from "/assets/images/800bbattery.png";
 import MobileMenu from "../MobileMenu";
 
-export default function Header2({ scroll, handlePopup, handleMobileMenu }) {
+export default function Header2({ scroll, handlePopup }) {
   const [isModalOpen, setModalOpen] = useState(false);
-  // const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleScroll = () => {
     setIsSticky(window.scrollY > 0);
+  };
+
+  const handleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   useEffect(() => {
@@ -24,7 +28,12 @@ export default function Header2({ scroll, handlePopup, handleMobileMenu }) {
 
   return (
     <>
-      <header className={`main-header-two ${isSticky ? "sticky" : ""}`}>
+      {/* Conditionally add the "mobile-menu-visible" class to the header */}
+      <header
+        className={`main-header-two ${isSticky ? "sticky" : ""} ${
+          isMobileMenuOpen ? "mobile-menu-visible" : ""
+        }`}
+      >
         <div className="main-menu-two__top">
           <div className="container">
             <div className="main-menu-two__top-inner">
@@ -71,7 +80,7 @@ export default function Header2({ scroll, handlePopup, handleMobileMenu }) {
                 <div className="main-menu-two__left">
                   <div className="main-menu-two__logo">
                     <Link to="/">
-                      <img src={headerLogo} alt="" />
+                      <img src={headerLogo} alt="Logo" />
                     </Link>
                   </div>
                   <Button
@@ -80,10 +89,17 @@ export default function Header2({ scroll, handlePopup, handleMobileMenu }) {
                   >
                     Get Appointment
                   </Button>
-                  <div>
-                    <button className="md:hidden" onClick={handleMobileMenu}>
-                      <i className="fa fa-bars"></i>
+                  <div className="d-md-none">
+                    {/* Mobile menu toggle button */}
+                    <button onClick={handleMobileMenu}>
+                      <i
+                        className={`fa text-2xl ${
+                          isMobileMenuOpen ? "fa-times" : "fa-bars"
+                        }`}
+                      ></i>
                     </button>
+                  </div>
+                  <div className="d-none d-md-block">
                     <Menu />
                   </div>
                 </div>
@@ -119,7 +135,13 @@ export default function Header2({ scroll, handlePopup, handleMobileMenu }) {
           </div>
         </nav>
       </header>
-      <MobileMenu handleMobileMenu={handleMobileMenu} />
+      {/* Conditionally render MobileMenu when isMobileMenuOpen is true */}
+      {isMobileMenuOpen && (
+        <MobileMenu
+          handleMobileMenu={handleMobileMenu}
+          isSidebar={isMobileMenuOpen}
+        />
+      )}
     </>
   );
 }
