@@ -7,8 +7,8 @@ const FixedRightSidebar = () => {
       style={{
         position: "fixed",
         right: "2%",
-        zIndex: 9999999,
-        bottom: "55%",
+        zIndex: 999,
+        bottom: "25%",
       }}
     >
       <div className="socialMedia">

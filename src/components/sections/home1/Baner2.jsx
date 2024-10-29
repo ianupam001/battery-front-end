@@ -44,80 +44,37 @@ export default function Banner() {
 
   return (
     <>
-      {/* Main Slider Two Start */}
-      <section className="main-slider-threes">
-        <img src="assets/images/banner-mobile.jpeg" alt="" />
-        <div className="banner_form_mobile">
-                        <ContactFormModal sourcePage={sourcePage} />
-                      </div>
-        {/* <img src="assets/images/banner-desktop.jpeg" alt="" /> */}
+      <section className="md:hidden relative h-screen mb-[90vh] ">
+        <img
+          src="assets/images/banner-mobile.jpeg"
+          alt="Banner"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute top-[90vh] left-0 right-0 flex justify-center">
+          <ContactFormModal sourcePage={sourcePage} />
+        </div>
       </section>
-      <section className="main-slider-three">
-        {/* <img src="assets/images/banner-mobile.jpeg" alt="" />
-        <img src="assets/images/banner-desktop.jpeg" alt="" /> */}
-        <Swiper
-          {...swiperOptions}
-          className="main-slider-three__carousel owl-carousel owl-theme"
+
+      <section className="hidden md:block">
+        <div
+          className="flex justify-between items-center"
+          style={{
+            backgroundImage: `url(assets/images/banner-desktop.jpeg)`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            height: "100vh",
+            position: "relative",
+            overflow: "hidden",
+          }}
         >
-          {sliders && sliders.length > 0 && (
-            <div>
-              {sliders?.map((slider, index) => (
-                <SwiperSlide>
-                  <div className="item" key={index}>
-                    <div
-                      className="main-slider-three__bg"
-                      style={{
-                        backgroundImage: `url(assets/images/banner-mobile.jpeg)`,
-                        // backgroundImage: `url(${slider.image})`,
-                      }}
-                    ></div>
-                    {/* <div className="main-slider-three__shape-1">
-                  <img
-                    src="assets/images/shapes/main-slider-three-shape-1.png"
-                    alt=""
-                  />
-                </div>
-                <div className="main-slider-three__shape-2">
-                  <img
-                    src="assets/images/shapes/main-slider-three-shape-2.png"
-                    alt=""
-                  />
-                </div>
-                <div className="main-slider-three__shape-3">
-                  <img
-                    src="assets/images/shapes/main-slider-three-shape-3.png"
-                    alt=""
-                    className="img-bounce"
-                  />
-                </div> */}
-                    <div className="container flex justify-between banner_section">
-                      <div className="main-slider-three__content banner_content">
-                        {/* <div className="main-slider-three__sub-title-box">
-                      <p className="main-slider-three__sub-title">Best Battery</p>
-                    </div>
-                    <h2 className="main-slider-three__title">800 B Battery</h2>
-                    <p className="main-slider-three__text">800 B Battery</p>
-                    <div className="main-slider-three__btn-box">
-                      <Link
-                        to="services"
-                        className="main-slider-three__btn thm-btn"
-                      >
-                        Check Now
-                      </Link>
-                    </div> */}
-                      </div>
-                      <div className="main-slider-three__content banner_form">
-                        <ContactFormModal sourcePage={sourcePage} />
-                      </div>
-                    </div>
-                  </div>
-                </SwiperSlide>
-              ))}
+          <div className="container flex justify-between items-center banner_section">
+            <div className="main-slider-three__content banner_content"></div>
+            <div className="main-slider-three__content banner_form">
+              <ContactFormModal sourcePage={sourcePage} />
             </div>
-          )}
-        </Swiper>
+          </div>
+        </div>
       </section>
-      {/*Main Slider Start */}
     </>
   );
 }
