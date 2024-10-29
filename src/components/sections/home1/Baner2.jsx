@@ -52,7 +52,7 @@ export default function Banner() {
             className="w-full "
           />
         </div>
-        <div className="-mt-10 flex justify-center">
+        <div className="-mt-10 flex justify-center mx-10">
           <ContactFormModal sourcePage={sourcePage} />
         </div>
       </section>
