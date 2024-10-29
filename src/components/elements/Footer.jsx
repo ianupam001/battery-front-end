@@ -3,6 +3,7 @@ import Cta from "../sections/home1/Cta";
 import { useEffect, useState } from "react";
 import FixedRightSidebar from "./FloatingIcons";
 import footerLogo from "/assets/images/800bbatterywhite.png";
+import QrCode from "/assets/images/GmapCode.jpeg";
 const apiUrl = import.meta.env.VITE_BASE_URL;
 export default function Footer() {
   const [userServices, setUserServices] = useState([]);
@@ -72,6 +73,9 @@ export default function Footer() {
                     <Link to={"https://www.instagram.com/800b.battery/"}>
                       <i className="icon-instagram"></i>
                     </Link>
+                  </div>
+                  <div className="site-footer__social QrCode">
+                      <img src={QrCode} alt="logo" />
                   </div>
                 </div>
               </div>

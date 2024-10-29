@@ -90,7 +90,7 @@ export default function Contact() {
               <div className="col-xl-6">
                 <div className="contact-three__left">
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4562.753041141002!2d-118.80123790098536!3d34.152323469614075!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80e82469c2162619%3A0xba03efb7998eef6d!2sCostco+Wholesale!5e0!3m2!1sbn!2sbd!4v1562518641290!5m2!1sbn!2sbd"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4445.013291254087!2d55.21927878663667!3d25.120295377482847!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f692dd65e4465%3A0xc7b4c46be55cd897!2s800%20BBattery!5e1!3m2!1sen!2sae!4v1730179961056!5m2!1sen!2sae"
                     className="google-map__one"
                   ></iframe>
                 </div>

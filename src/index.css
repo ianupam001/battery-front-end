@@ -59,3 +59,19 @@ body {
 .mobile-menu.open {
   transform: translateX(0);
 }
+.main-header-two .main-menu-two__logo img {
+  width: 170px;
+}
+.main-header-two .main-menu-two__logo {
+  padding: 15px 0;
+}
+.main-header-two .main-menu-two__btn-box .main-menu-two__btn{
+  padding: 10px;
+}
+.main-header-two .main-menu-two__call-and-btn-box{
+  padding: 10px 0;
+}
+.QrCode img{
+  max-width: 90px;
+  border-radius: 10px;
+}
