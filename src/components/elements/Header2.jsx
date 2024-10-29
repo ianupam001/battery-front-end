@@ -88,7 +88,7 @@ export default function Header2({ scroll, handlePopup }) {
                     </Link>
                   </div>
                   <Button
-                    className="main-menu-two__btn thm-btn mobile_btn d-md-none w-68 h-12  px-4 text-sm"
+                    className="main-menu-two__btn thm-btn mobile_btn d-md-none w-32 h-10  px-2 text-sm"
                     onClick={() => setModalOpen(true)}
                   >
                     Enquiry
