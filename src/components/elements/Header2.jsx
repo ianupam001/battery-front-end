@@ -74,14 +74,14 @@ export default function Header2({ scroll, handlePopup }) {
           </div>
         </div>
         <nav className="main-menu main-menu-two bg-color-extra">
-          <div className="main-menu-two__wrapper">
+          <div className="main-menu-two__wrapper ">
             <div className="container">
-              <div className="main-menu-two__wrapper-inner">
+              <div className="main-menu-two__wrapper-inner ">
                 <div className="main-menu-two__left">
                   <div className="main-menu-two__logo">
                     <Link to="/">
                       <img
-                        className="h-10 w-auto"
+                        className="h-10 md:h-12 w-auto"
                         src={headerLogo}
                         alt="Logo"
                       />
@@ -122,7 +122,7 @@ export default function Header2({ scroll, handlePopup }) {
                     </div>
                     <div className="main-menu-two__btn-box">
                       <Button
-                        className="main-menu-two__btn thm-btn"
+                        className="main-menu-two__btn thm-btn h-12 px-2"
                         onClick={() => setModalOpen(true)}
                       >
                         Get Appointment
