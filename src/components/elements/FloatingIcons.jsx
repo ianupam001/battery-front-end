@@ -3,15 +3,15 @@ import React from "react";
 const FixedRightSidebar = () => {
   return (
     <div
-      className="fixedrightSidebar "
+      className="fixedrightSidebar"
       style={{
         position: "fixed",
         right: "2%",
-        zIndex: 999,
+        zIndex: 9999,
         bottom: "25%",
       }}
     >
-      <div className="socialMedia">
+      <div className="socialMedia" style={{ zIndex: 9999 }}>
         <div className="QuickSideRightBar QuickSideRightBarWhatsapp">
           <a href="tel:+971509344668">
             <div className="img_box">

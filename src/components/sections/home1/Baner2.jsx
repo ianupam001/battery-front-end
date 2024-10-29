@@ -44,13 +44,15 @@ export default function Banner() {
 
   return (
     <>
-      <section className="md:hidden relative h-screen mb-[90vh] ">
-        <img
-          src="assets/images/banner-mobile.jpeg"
-          alt="Banner"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute top-[90vh] left-0 right-0 flex justify-center">
+      <section className="md:hidden relative flex flex-col">
+        <div>
+          <img
+            src="assets/images/banner-mobile.jpeg"
+            alt="Banner"
+            className="w-full "
+          />
+        </div>
+        <div className="-mt-10 flex justify-center">
           <ContactFormModal sourcePage={sourcePage} />
         </div>
       </section>
