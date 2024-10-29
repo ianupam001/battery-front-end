@@ -692,14 +692,14 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(var(--erepair-black-rgb), .40);
+    /* background-color: rgba(var(--erepair-black-rgb), .40); */
     z-index: -1;
 }
 
-.swiper-slide-active .main-slider-three__bg {
+/* .swiper-slide-active .main-slider-three__bg {
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
-}
+} */
 
 .main-slider-three__shape-1 {
     position: absolute;

@@ -45,7 +45,16 @@ export default function Banner() {
   return (
     <>
       {/* Main Slider Two Start */}
+      <section className="main-slider-threes">
+        <img src="assets/images/banner-mobile.jpeg" alt="" />
+        <div className="banner_form_mobile">
+                        <ContactFormModal sourcePage={sourcePage} />
+                      </div>
+        {/* <img src="assets/images/banner-desktop.jpeg" alt="" /> */}
+      </section>
       <section className="main-slider-three">
+        {/* <img src="assets/images/banner-mobile.jpeg" alt="" />
+        <img src="assets/images/banner-desktop.jpeg" alt="" /> */}
         <Swiper
           {...swiperOptions}
           className="main-slider-three__carousel owl-carousel owl-theme"
@@ -58,7 +67,8 @@ export default function Banner() {
                     <div
                       className="main-slider-three__bg"
                       style={{
-                        backgroundImage: `url(${slider.image})`,
+                        backgroundImage: `url(assets/images/banner-mobile.jpeg)`,
+                        // backgroundImage: `url(${slider.image})`,
                       }}
                     ></div>
                     {/* <div className="main-slider-three__shape-1">
