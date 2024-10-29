@@ -7,11 +7,11 @@ const FixedRightSidebar = () => {
       style={{
         position: "fixed",
         right: "2%",
-        zIndex: 9999,
+        zIndex: 9,
         bottom: "25%",
       }}
     >
-      <div className="socialMedia" style={{ zIndex: 9999 }}>
+      <div className="socialMedia" style={{ zIndex: 9 }}>
         <div className="QuickSideRightBar QuickSideRightBarWhatsapp">
           <a href="tel:+971509344668">
             <div className="img_box">
