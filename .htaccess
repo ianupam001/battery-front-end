@@ -1,0 +1,38 @@
+# Enable URL rewriting
+RewriteEngine On
+
+# Redirect HTTP to HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Handle routing for a single page application (SPA)
+# Redirect all requests to index.html
+# This is necessary for client-side routing to work correctly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.html [L]
+
+# Cache control headers (optional, can be adjusted)
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault "access plus 1 year"
+    
+    # CSS and JS files
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+
+    # Images
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+
+    # HTML files
+    ExpiresByType text/html "access plus 1 hour"
+</IfModule>
+
+# Prevent access to .htaccess file
+<Files .htaccess>
+    Order allow,deny
+    Deny from all
+</Files>
