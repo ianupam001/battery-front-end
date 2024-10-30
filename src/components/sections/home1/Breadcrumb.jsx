@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import breadcrumsImage from "/assets/images/page-header-img-1.png";
+import breadcrumsImage from "/assets/images/breadcrumb-image.png";
 export default function Breadcrumb({ title, breadcrumbs }) {
   return (
     <>
@@ -13,7 +13,7 @@ export default function Breadcrumb({ title, breadcrumbs }) {
         <div className="container">
           <div className="page-header__inner">
             <div className="page-header__img-1">
-              <img src={breadcrumsImage} alt="" />
+              <img className="w-auto h-96" src={breadcrumsImage} alt="about" />
             </div>
             <h3>{title}</h3>
             <div className="thm-breadcrumb__inner">

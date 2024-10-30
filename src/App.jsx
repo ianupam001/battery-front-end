@@ -43,6 +43,7 @@ import { useSelector } from "react-redux";
 
 import { renderToString } from "react-dom/server";
 import Header2 from "./components/elements/Header2";
+import ThankYouMessage from "./components/ThankYouMessage";
 
 export default function App() {
   const { currentUser } = useSelector((state) => state.user);
@@ -93,6 +94,7 @@ export default function App() {
         <Route path="/projects" element={<Projects />} />
         <Route path="/services" element={<Services />} />
         <Route path="/products" element={<Products />} />
+        <Route path="/thank-you" element={<ThankYouMessage />} />
         <Route path="/blogs" element={<Blog />} />
         <Route path="/post/:postSlug" element={<PostPage />} />
         <Route path="/product/:productSlug" element={<ProductPage />} />

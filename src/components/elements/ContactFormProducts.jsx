@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 const apiUrl = import.meta.env.VITE_BASE_URL;
 import { toast } from "react-toastify";
 export function ContactFormProducts({ sourcePage, formType }) {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     ffname: "",
     email: "",
@@ -40,6 +42,7 @@ export function ContactFormProducts({ sourcePage, formType }) {
       });
       console.log(response);
       if (response.ok) {
+        navigate("/thank-you");
         toast.success("Form submitted successfully!");
         setFormData({
           ffname: "",

@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { TextInput, Textarea, Button } from "flowbite-react";
 const apiUrl = import.meta.env.VITE_BASE_URL;
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 export function ContactForm({ sourcePage, formType }) {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     ffname: "",
     email: "",
@@ -31,6 +33,7 @@ export function ContactForm({ sourcePage, formType }) {
         body: JSON.stringify(payload), // Corrected from 'data' to 'body'
       });
       if (response.ok) {
+        navigate("/thank-you");
         toast.success("Form submitted successfully!");
         setFormData({
           ffname: "",

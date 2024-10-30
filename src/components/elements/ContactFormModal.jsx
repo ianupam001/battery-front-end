@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { TextInput, Select, Textarea, Button, Spinner } from "flowbite-react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 const apiUrl = import.meta.env.VITE_BASE_URL;
 
 export function ContactFormModal({ sourcePage }) {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     ffname: "",
     email: "",
@@ -100,6 +101,7 @@ export function ContactFormModal({ sourcePage }) {
         body: JSON.stringify(payload), // Corrected from 'data' to 'body'
       });
       if (res.ok) {
+        navigate("/thank-you");
         toast.success("Form submitted successfully!");
         setFormData({
           ffname: "",

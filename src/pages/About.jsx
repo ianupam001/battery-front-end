@@ -5,6 +5,7 @@ import Video from "../components/sections/home1/Video";
 import Funfacts from "../components/sections/home1/Funfacts";
 import Testimonial from "../components/sections/home1/Testimonial";
 import { Helmet } from "react-helmet-async";
+import Process from "../components/Process";
 export default function About() {
   const title = "About";
   const breadcrumbs = [
@@ -23,6 +24,7 @@ export default function About() {
       </Helmet>
       <Breadcrumb title={title} breadcrumbs={breadcrumbs} />
       <AboutHome />
+      <Process />
       <Video />
       <Funfacts />
       <Testimonial />

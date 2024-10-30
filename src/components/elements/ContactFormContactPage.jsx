@@ -8,10 +8,12 @@ import {
   Alert,
 } from "flowbite-react";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const apiUrl = import.meta.env.VITE_BASE_URL;
 
 export function ContactFormContactPage({ sourcePage }) {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     ffname: "",
     email: "",
@@ -73,6 +75,7 @@ export function ContactFormContactPage({ sourcePage }) {
       });
       console.log(response);
       if (response.ok) {
+        navigate("/thank-you");
         toast.success("Form submitted successfully!");
         setFormData({
           ffname: "",
