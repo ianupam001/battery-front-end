@@ -43,10 +43,10 @@ export default function Footer() {
   return (
     <>
       <Cta />
-      
+
       <footer className="site-footer">
         <div className="site-footer__shape-1 float-bob-x">
-          <img src="assets/images/shapes/footer-shape-1.png" alt="" />
+          <img src="assets/images/shapes/800-battery-03.png" alt="" />
         </div>
         <div className="container">
           <div className="site-footer__top">
@@ -67,7 +67,11 @@ export default function Footer() {
                     battery is in top condition.
                   </p>
                   <div className="site-footer__social">
-                    <Link to={"https://www.facebook.com/profile.php?id=61565118175123"}>
+                    <Link
+                      to={
+                        "https://www.facebook.com/profile.php?id=61565118175123"
+                      }
+                    >
                       <i className="icon-facebook"></i>
                     </Link>
                     <Link to={"https://www.instagram.com/800b.battery/"}>
@@ -75,7 +79,7 @@ export default function Footer() {
                     </Link>
                   </div>
                   <div className="site-footer__social QrCode">
-                      <img src={QrCode} alt="logo" />
+                    <img src={QrCode} alt="logo" />
                   </div>
                 </div>
               </div>
@@ -172,7 +176,7 @@ export default function Footer() {
           <div className="container">
             <div className="site-footer__bottom-inner">
               <p className="site-footer__bottom-text">
-              Copyright © 2024 by Barcode Auto Care LLC. All rights reserved.
+                Copyright © 2024 by Barcode Auto Care LLC. All rights reserved.
               </p>
               <ul className="list-unstyled site-footer__bottom-menu">
                 {/* <li><Link href="contact">Support</Link></li>

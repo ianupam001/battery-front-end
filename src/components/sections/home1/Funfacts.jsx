@@ -56,7 +56,7 @@ export default function Funfacts() {
                     <CounterUp end={800} />
                     <span>+</span>
                   </div>
-                  <p className="counter-one__text">Project Completed</p>
+                  <p className="counter-one__text">Turnaround time 25mins</p>
                 </div>
               </div>
               {/* Counter Three End */}

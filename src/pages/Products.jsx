@@ -27,7 +27,7 @@ export default function Products() {
       <section className="shop-page-one">
         <div className="container">
           <div className="row">
-            <div className="col-xl-8 col-lg-6 col-md-6">
+            <div className="col-xl-12 col-lg-6 col-md-6">
               <div className="shop-page-one-content">
                 {/*Start Shop items*/}
                 {/* <div className="row">
@@ -82,9 +82,9 @@ export default function Products() {
             </div>
 
             {/*Start Shop Page One*/}
-            <div className="col-xl-4 col-lg-4 col-md-4">
+            {/* <div className="col-xl-4 col-lg-4 col-md-4">
               <div className="shop-page-one-sidebar">
-                {/*Start Single Sidebar Box*/}
+               
                 <div className="shop-widget-single">
                   <div className="title">
                     <h3>Popular Products</h3>
@@ -143,7 +143,7 @@ export default function Products() {
                   </ul>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
 
           {/* <ul className="styled-pagination pdtop30 clearfix">
