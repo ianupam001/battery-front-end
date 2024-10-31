@@ -1,9 +1,9 @@
 import React from "react";
 
-const Process: React.FC = () => {
+const Process = () => {
   return (
     <>
-      {/*Process One Start*/}
+      {/* Process One Start */}
       <section className="process-one">
         <div
           className="process-one__bg jarallax"
@@ -28,7 +28,7 @@ const Process: React.FC = () => {
             </h2>
           </div>
           <div className="row">
-            {/*Process One Single Start*/}
+            {/* Process One Single Start */}
             <div className="col-xl-3 col-lg-6 col-md-6">
               <div className="process-one__single">
                 <div className="process-one__icon">
@@ -38,8 +38,8 @@ const Process: React.FC = () => {
                 <h3 className="process-one__title">Up to 18 Months Warranty</h3>
               </div>
             </div>
-            {/*Process One Single End*/}
-            {/*Process One Single Start*/}
+            {/* Process One Single End */}
+            {/* Process One Single Start */}
             <div className="col-xl-3 col-lg-6 col-md-6">
               <div className="process-one__single">
                 <div className="process-one__icon">
@@ -51,8 +51,8 @@ const Process: React.FC = () => {
                 </h3>
               </div>
             </div>
-            {/*Process One Single End*/}
-            {/*Process One Single Start*/}
+            {/* Process One Single End */}
+            {/* Process One Single Start */}
             <div className="col-xl-3 col-lg-6 col-md-6">
               <div className="process-one__single">
                 <div className="process-one__icon">
@@ -62,8 +62,8 @@ const Process: React.FC = () => {
                 <h3 className="process-one__title">German Brands Batteries</h3>
               </div>
             </div>
-            {/*Process One Single End*/}
-            {/*Process One Single Start*/}
+            {/* Process One Single End */}
+            {/* Process One Single Start */}
             <div className="col-xl-3 col-lg-6 col-md-6">
               <div className="process-one__single">
                 <div className="process-one__icon">
@@ -71,15 +71,15 @@ const Process: React.FC = () => {
                   <div className="process-one__count-box"></div>
                 </div>
                 <h3 className="process-one__title">
-                  Pay in 4 Easy Installments
+                  Pay in 4 Easy Installments
                 </h3>
               </div>
             </div>
-            {/*Process One Single End*/}
+            {/* Process One Single End */}
           </div>
         </div>
       </section>
-      {/*Process One End*/}
+      {/* Process One End */}
     </>
   );
 };

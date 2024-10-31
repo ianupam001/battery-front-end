@@ -1,6 +1,6 @@
 import React from "react";
 
-const ThankYouMessage: React.FC = () => {
+const ThankYouMessage = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-[80vh] bg-white">
       {/* Envelope Icon */}
