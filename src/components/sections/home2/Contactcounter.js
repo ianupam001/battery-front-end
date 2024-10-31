@@ -133,7 +133,7 @@ export default function Contactcounter() {
                         <CounterUp end={25} />
                         <span>+</span>
                       </div>
-                      <p className="counter-two__text">Turnaround time </p>
+                      <p className="counter-two__text">Turnaround time</p>
                     </div>
                   </div>
                   {/*Counter Two Single End*/}

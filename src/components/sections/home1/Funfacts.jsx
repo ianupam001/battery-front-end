@@ -53,10 +53,10 @@ export default function Funfacts() {
                     <span className="icon-project-complete"></span>
                   </div>
                   <div className="counter-one__count-box">
-                    <CounterUp end={800} />
-                    <span>+</span>
+                    <CounterUp end={25} />
+                    {/* <span>+</span> */}
                   </div>
-                  <p className="counter-one__text">Turnaround time 25mins</p>
+                  <p className="counter-one__text">Turnaround time</p>
                 </div>
               </div>
               {/* Counter Three End */}
