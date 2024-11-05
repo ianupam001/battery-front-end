@@ -6,7 +6,7 @@
   display: block;
   padding: 0 0 120px;
   overflow: hidden;
-  z-index: 2;
+  /* z-index: 2; */
 }
 
 .about-one__shape-one {
@@ -137,7 +137,7 @@
   margin-bottom: 20px;
   gap: 40px;
   padding: 21px 30px 20px;
-  z-index: 2;
+  /* z-index: 2; */
 }
 
 .about-one__cirtified .icon {

@@ -7,7 +7,7 @@
     background-color: var(--erepair-black);
     margin-top: -293px;
     overflow: hidden;
-    z-index: 1;
+    /* z-index: 1; */
 }
 
 .site-footer__shape-1 {

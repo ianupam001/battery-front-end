@@ -4,7 +4,7 @@
 .cta-one {
     position: relative;
     display: block;
-    z-index: 2;
+    /* z-index: 2; */
 }
 
 .cta-one .section-title__tagline {

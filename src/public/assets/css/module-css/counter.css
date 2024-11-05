@@ -5,7 +5,7 @@
   position: relative;
   display: block;
   margin-top: -150px;
-  z-index: 2;
+  /* z-index: 2; */
 }
 
 .counter-one__inner {
