@@ -50,7 +50,7 @@ export default function SignIn() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-white">
+    <div className="flex justify-center items-center my-10  md:min-h-screen bg-white">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
         <h2 className="text-2xl font-semibold text-gray-800 text-center">Welcome back!</h2>
         <p className="text-sm text-gray-600 text-center mt-2">
