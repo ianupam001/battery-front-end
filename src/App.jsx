@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Helmet, HelmetProvider } from "react-helmet-async";
+
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
@@ -7,10 +7,10 @@ import SignIn from "./pages/SignIn";
 import Dashboard from "./pages/Dashboard";
 import Projects from "./pages/Projects";
 import SignUp from "./pages/SignUp";
-import HeaderBackend from "./components/Header";
-import Header from "./components/elements/Header";
+
+
 import Footer from "./components/elements/Footer";
-import FooterBackend from "./components/Footer";
+
 import PrivateRoute from "./components/PrivateRoute";
 import OnlyAdminPrivateRoute from "./components/OnlyAdminPrivateRoute";
 import CreatePost from "./pages/CreatePost";
@@ -41,10 +41,11 @@ import Services from "./pages/Services";
 import Products from "./pages/Products";
 import { useSelector } from "react-redux";
 
-import { renderToString } from "react-dom/server";
+
 import Header2 from "./components/elements/Header2";
-import ThankYouMessage from "./components/ThankYouMessage";
+
 import ThankYou from "./pages/ThankYou";
+import PageNotFound from "./pages/PageNotFound";
 
 export default function App() {
   const { currentUser } = useSelector((state) => state.user);
@@ -61,7 +62,8 @@ export default function App() {
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/search" element={<Search />} />
         <Route element={<PrivateRoute />}>
-          <Route path="/dashboard" element={<Dashboard />} />
+       
+        <Route path="/dashboard" element={<Dashboard />} />
         </Route>
         <Route element={<OnlyAdminPrivateRoute />}>
           <Route path="/create-post" element={<CreatePost />} />
@@ -100,6 +102,7 @@ export default function App() {
         <Route path="/post/:postSlug" element={<PostPage />} />
         <Route path="/product/:productSlug" element={<ProductPage />} />
         <Route path="/service/:serviceSlug" element={<ServicePage />} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
 
       {/* {currentUser ? <FooterBackend /> : <Footer />} */}

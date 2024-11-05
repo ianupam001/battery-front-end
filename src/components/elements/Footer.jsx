@@ -176,7 +176,7 @@ export default function Footer() {
           <div className="container">
             <div className="site-footer__bottom-inner">
               <p className="site-footer__bottom-text">
-                Copyright © 2024 by Barcode Auto Care LLC. All rights reserved.
+                Copyright © 2024 by Barcode Auto Care LLC. All rights reserved. Developed by Mighty Warners
               </p>
               <ul className="list-unstyled site-footer__bottom-menu">
                 {/* <li><Link href="contact">Support</Link></li>
