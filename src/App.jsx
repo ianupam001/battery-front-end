@@ -46,12 +46,14 @@ import Header2 from "./components/elements/Header2";
 
 import ThankYou from "./pages/ThankYou";
 import PageNotFound from "./pages/PageNotFound";
+import TopSpace from "./components/elements/TopSpace";
 
 export default function App() {
   const { currentUser } = useSelector((state) => state.user);
   return (
     <BrowserRouter>
       <ScrollToTop />
+      <TopSpace/>
       {/* {currentUser ? <HeaderBackend /> : <Header />} */}
       <Header2 />
       <Routes>

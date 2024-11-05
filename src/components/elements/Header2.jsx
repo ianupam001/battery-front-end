@@ -30,7 +30,7 @@ export default function Header2({ scroll, handlePopup }) {
     <>
       {/* Conditionally add the "mobile-menu-visible" class to the header */}
       <header
-        className={`main-header-two ${isSticky ? "sticky" : ""} ${
+        className={`main-header-two ${isSticky ? "sticky" : "sticky"} ${
           isMobileMenuOpen ? "mobile-menu-visible" : ""
         }`}
       >

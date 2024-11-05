@@ -48,7 +48,7 @@ export default function Menu2({ isMobile }) {
   };
 
   return (
-    <ul className="main-menu__list text-[#F2871C] ">
+    <ul className="main-menu__list text-[#F2871C] mt-14">
       <li>
         <Link to="/">Home</Link>
       </li>
@@ -60,13 +60,13 @@ export default function Menu2({ isMobile }) {
       <li className="dropdown">
         <div
           onClick={toggleServices}
-          className="flex justify-between items-center cursor-pointer p-2 pl-0"
+          className="flex justify-between items-center cursor-pointer"
         >
           Services
           {isServicesOpen ? <FaChevronUp /> : <FaChevronDown />}
         </div>
         {isMobile && isServicesOpen && (
-          <div className="accordion-content bg-gray-800 p-2">
+          <div className="accordion-content bg-gray-800 p-1 mt-2">
             <ul>
               {userServices?.map((service) => (
                 <li key={service._id} className="pl-4 py-1">
@@ -84,13 +84,13 @@ export default function Menu2({ isMobile }) {
       <li className="dropdown">
         <div
           onClick={toggleProducts}
-          className="flex justify-between items-center cursor-pointer p-2 pl-0"
+          className="flex justify-between items-center cursor-pointer"
         >
           Products
           {isProductsOpen ? <FaChevronUp className="text-[#F2871C]" /> : <FaChevronDown className="text-[#F2871C]" />}
         </div>
         {isMobile && isProductsOpen && (
-          <div className="accordion-content bg-gray-800 p-2">
+          <div className="accordion-content bg-gray-800 p-1 mt-2">
             <ul>
               {userProducts?.map((product) => (
                 <li key={product._id} className="pl-4 py-1">
