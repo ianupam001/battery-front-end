@@ -6,7 +6,7 @@ const FixedRightSidebar = () => {
   return (
     <>
       <div
-        className="fixedrightSidebar "
+        className="fixedrightSidebar d-none d-md-block"
         style={{
           position: "fixed",
           right: "2%",
@@ -15,7 +15,7 @@ const FixedRightSidebar = () => {
         }}
       >
         <div
-          className="socialMedia hidden md:flex !md:block"
+          className="socialMedia "
           style={{ zIndex: 9 }}
         >
           <div className="QuickSideRightBar QuickSideRightBarWhatsapp">
@@ -60,22 +60,66 @@ const FixedRightSidebar = () => {
         </div>
       </div>
       {/* for mobile */}
-      {/* <div className="fixed bottom-4 left-0 right-0 flex justify-around md:hidden px-4 z-[99999]">
+
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          gap: "15px", 
+          position: "fixed",
+          bottom: "20px",
+          left: "20px", 
+          right: "20px", 
+          zIndex: 1000,
+        }}
+        className="d-md-none" 
+      >
+        {/* WhatsApp Button */}
         <a
-          href="https://wa.me/yourNumber"
-          className="flex items-center justify-center w-1/2 mx-1 py-3 bg-gradient-to-r from-orange-400 via-orange-500 to-orange-500 text-white rounded-lg font-semibold"
+          href="https://wa.me/+971509344668?text=Can I get more details about your service?" 
           target="_blank"
           rel="noopener noreferrer"
+          className=""
+          style={{
+            backgroundColor: "#F2871C",
+            flex: 1, 
+            padding: "12px 0", 
+            color: "white",
+            borderRadius: "50px",
+            textAlign: "center", 
+            textDecoration: "none",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center", 
+            fontWeight: "bold",
+            fontSize: "14px",
+          }}
         >
-          <i className="fab fa-whatsapp mr-2"></i> Whatsapp
+          WhatsApp
         </a>
+
+        {/* Call Now Button */}
         <a
-          href="tel:+1234567890"
-          className="flex items-center justify-center w-1/2 mx-1 py-3 bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 text-white rounded-lg font-semibold"
+          href="tel:+971509344668" 
+          className=""
+          style={{
+            backgroundColor: "#F2871C",
+            flex: 1, 
+            padding: "12px 0",
+            color: "white",
+            borderRadius: "50px",
+            textAlign: "center",
+            textDecoration: "none",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            fontWeight: "bold",
+            fontSize: "14px",
+          }}
         >
-          <i className="fas fa-phone-alt mr-2"></i> Call Now
+          Call Now
         </a>
-      </div> */}
+      </div>
     </>
   );
 };
