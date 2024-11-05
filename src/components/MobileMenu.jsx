@@ -1,32 +1,26 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import footerLogo from "/assets/images/800bbatterywhite.png";
-import Menu from "./Menu";
+import { FaTimes } from "react-icons/fa";
+import Menu2 from "./Menu2";
 
 const MobileMenu = ({ handleMobileMenu }) => {
-  const [isActive, setIsActive] = useState({
-    status: false,
-    key: "",
-  });
-
-  const handleToggle = (key) => {
-    setIsActive((prev) =>
-      prev.key === key ? { status: false, key: "" } : { status: true, key }
-    );
-  };
-
   return (
-    <div className="fixed top-16 md:hidden p-4 left-0 w-[70%] h-full pt-16 bg-black text-white z-20">
-      <div className="relative p-2 ">
-        {/* Menu Links */}
-        <div>
-          <Menu />
+    <div className="fixed md:hidden inset-0 z-20 bg-black bg-opacity-50" onClick={handleMobileMenu} >
+      {/* Side slider container */}
+      <div
+        className="fixed top-0 left-0 w-[60%] h-full bg-black text-[#F2871C] p-4"
+        onClick={(e) => e.stopPropagation()} 
+      >
+        <div className="flex justify-end mb-4">
+          <FaTimes onClick={handleMobileMenu} className="text-2xl cursor-pointer" />
         </div>
+        
+        {/* Menu Links */}
+        <Menu2 isMobile={true} />
 
         {/* Contact Information */}
-        <ul className="mt-0 text-sm text-gray-400">
+        <ul className="mt-4 text-sm text-gray-400">
           <li className="flex items-center mb-2">
-            <i className="fa fa-envelope text-orange-400 mr-2 "></i>
+            <i className="fa fa-envelope text-orange-400 mr-2"></i>
             <Link
               to="mailto:support@800bbattery.com"
               className="hover:text-orange-300"
