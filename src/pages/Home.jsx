@@ -15,6 +15,7 @@ import Banner from "../components/sections/home1/Banner";
 import { Helmet } from "react-helmet-async";
 import Banner2 from "../components/sections/home1/Baner2";
 import Products from "../components/sections/home1/Products";
+import Process from "../components/Process";
 const apiUrl = import.meta.env.VITE_BASE_URL;
 export default function Home() {
   const [posts, setPosts] = useState([]);
@@ -41,6 +42,7 @@ export default function Home() {
       <Banner2 />
       <Service />
       <AboutHome />
+      <Process />
       <Testimonial />
       <Products />
       <Brand />

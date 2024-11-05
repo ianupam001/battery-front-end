@@ -24,7 +24,7 @@ export default function About() {
       </Helmet>
       <Breadcrumb title={title} breadcrumbs={breadcrumbs} />
       <AboutHome />
-      <Process />
+      
       <Video />
       <Funfacts />
       <Testimonial />
