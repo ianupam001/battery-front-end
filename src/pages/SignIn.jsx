@@ -7,41 +7,19 @@ import {
   signInSuccess,
   signInFailure,
 } from "../redux/user/userSlice";
+
 const apiUrl = import.meta.env.VITE_BASE_URL;
-console.log(apiUrl);
+
 export default function SignIn() {
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({ email: "", password: "" });
   const { loading, error: errorMessage } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
   };
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   if (!formData.email || !formData.password) {
-  //     return dispatch(signInFailure("Please fill all the fields"));
-  //   }
-  //   try {
-  //     dispatch(signInStart());
-  //     const res = await fetch(`${apiUrl}/api/auth/signin`, {
-  //       method: "POST",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify(formData),
-  //     });
-  //     const data = await res.json();
-  //     if (data.success === false) {
-  //       dispatch(signInFailure(data.message));
-  //     }
 
-  //     if (res.ok) {
-  //       dispatch(signInSuccess(data));
-  //       navigate("/dashboard");
-  //     }
-  //   } catch (error) {
-  //     dispatch(signInFailure(error.message));
-  //   }
-  // };
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.email || !formData.password) {
@@ -64,6 +42,7 @@ export default function SignIn() {
         dispatch(signInSuccess(data));
         localStorage.setItem("access_token", data.access_token); // Save token in local storage
         navigate("/dashboard"); // Redirect to the dashboard page
+        setFormData({ email: "", password: "" }); // Clear form data
       }
     } catch (error) {
       dispatch(signInFailure(error.message));
@@ -71,69 +50,67 @@ export default function SignIn() {
   };
 
   return (
-    <div className="min-h-screen mt-20">
-      <div className="flex p-3 max-w-3xl mx-auto flex-col md:flex-row md:items-center gap-5">
-        {/* left */}
-        <div className="flex-1">
-          <Link to="/" className="font-bold dark:text-white text-4xl">
-            <span className="px-2 py-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg text-white">
-              Sahand's
-            </span>
-            Blog
-          </Link>
-          <p className="text-sm mt-5">
-            This is a demo project. You can sign in with your email and password
-            or with Google.
-          </p>
-        </div>
-        {/* right */}
+    <div className="flex justify-center items-center min-h-screen bg-white">
+      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+        <h2 className="text-2xl font-semibold text-gray-800 text-center">Welcome back!</h2>
+        <p className="text-sm text-gray-600 text-center mt-2">
+          Enter your email and password to access your account.
+        </p>
 
-        <div className="flex-1">
-          <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-            <div>
-              <Label value="Your email" />
-              <TextInput
-                type="email"
-                placeholder="name@company.com"
-                id="email"
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <Label value="Your password" />
-              <TextInput
-                type="password"
-                placeholder="**********"
-                id="password"
-                onChange={handleChange}
-              />
-            </div>
-            <Button
-              gradientDuoTone="purpleToPink"
-              type="submit"
-              disabled={loading}
-            >
-              {!loading ? (
-                <>
-                  <Spinner size="sm" />
-                  <span className="pl-3">Loading...</span>
-                </>
-              ) : (
-                "Sign In"
-              )}
-            </Button>
-          </form>
-          {/* <div className='flex gap-2 text-sm mt-5'>
-            <span>Dont Have an account?</span>
-            <Link to='/sign-up' className='text-blue-500'>
-              Sign Up
-            </Link>
-          </div> */}
-          {errorMessage && (
-            <Alert className="mt-5" color="failure">
-              {errorMessage}
-            </Alert>
-          )}
+        {/* {errorMessage && (
+          <Alert className="mt-5" color="failure">
+            {errorMessage}
+          </Alert>
+        )} */}
+
+        <form className="flex flex-col gap-4 mt-6" onSubmit={handleSubmit}>
+          <div>
+            <Label value="Email" className="mb-1" />
+            <TextInput
+              type="email"
+              placeholder="my@example.com"
+              id="email"
+              value={formData.email}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <Label value="Password" className="mb-1" />
+            <TextInput
+              type="password"
+              placeholder="**********"
+              id="password"
+              value={formData.password}
+              onChange={handleChange}
+            />
+          </div>
+          <Button
+            gradientDuoTone="purpleToPink"
+            type="submit"
+            disabled={loading}
+            className="mt-4 w-full"
+          >
+            {loading ? (
+              <>
+                <Spinner size="sm" />
+                <span className="pl-3">Loading...</span>
+              </>
+            ) : (
+              "Sign In"
+            )}
+          </Button>
+        </form>
+
+        <div className="mt-6 text-center">
+          <Link to="/forgot-password" className="text-sm text-blue-600 hover:underline">
+            Forgot password?
+          </Link>
+        </div>
+        <div className="mt-4 text-center">
+          <span className="text-sm text-gray-600">Don't have an account? </span>
+          <Link to="/signup" className="text-sm text-blue-600 hover:underline">
+            Sign up
+          </Link>
         </div>
       </div>
     </div>
