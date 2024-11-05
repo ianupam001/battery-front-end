@@ -7,7 +7,7 @@ const MobileMenu = ({ handleMobileMenu }) => {
     <div className="fixed md:hidden inset-0 z-20 bg-black bg-opacity-50" onClick={handleMobileMenu} >
       {/* Side slider container */}
       <div
-        className="fixed top-0 left-0 w-[60%] h-full bg-black text-[#F2871C] p-4"
+        className="fixed top-0 left-0 w-[70%] h-full bg-black text-[#F2871C] p-4"
         onClick={(e) => e.stopPropagation()} 
       >
         <div className="flex justify-end mb-4">

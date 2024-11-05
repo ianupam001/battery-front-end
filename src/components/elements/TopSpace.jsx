@@ -2,7 +2,7 @@ import React from 'react'
 
 const TopSpace = () => {
   return (
-    <div className='mt-24'></div>
+    <div className='mt-10 md:mt-24'></div>
   )
 }
 
