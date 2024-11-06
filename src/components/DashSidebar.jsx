@@ -49,39 +49,12 @@ export default function DashSidebar() {
     }
   };
   return (
-    <Sidebar className="w-full md:w-56">
+    <Sidebar className="w-full md:w-56 shadow mt-2">
       <Sidebar.Items>
         <Sidebar.ItemGroup className="flex flex-col gap-1">
           {currentUser.isAdmin && (
             <div>
-              {/* <Link to='#'>
-            <Sidebar.Item
-              icon={HiChartPie}
-              labelColor='dark'
-              as='div'
-            >
-           <div className="sidebar-item" onClick={toggleDropdown}>
-              <div className={`sidebar-title ${tab === 'sliders' ? 'active' : ''}`}>
-                <span>Home</span>
-                {isOpen ? <FaChevronUp /> : <FaChevronDown />}
-              </div>
-            </div>
-
-            {isOpen && (
-              <div className="dropdown">
-                <Link to="/dashboard?tab=sliders" className="dropdown-item">
-                  Slider
-                </Link>
-                <Link to="/dashboard?tab=testimonials" className="dropdown-item">
-                  Testimonial
-                </Link>
-                <Link to="/dashboard?tab=brands" className="dropdown-item">
-                  Brands
-                </Link>
-              </div>
-            )}
-            </Sidebar.Item>
-            </Link> */}
+              
               <Link to="/dashboard?tab=dash">
                 <Sidebar.Item
                   active={tab === "dash" || !tab}
@@ -99,6 +72,7 @@ export default function DashSidebar() {
                   label={currentUser.isAdmin ? "Admin" : "User"}
                   labelColor="dark"
                   as="div"
+                  
                 >
                   Profile
                 </Sidebar.Item>

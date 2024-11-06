@@ -40,9 +40,9 @@ export default function SignIn() {
 
       if (res.ok) {
         dispatch(signInSuccess(data));
-        localStorage.setItem("access_token", data.access_token); // Save token in local storage
-        navigate("/dashboard"); // Redirect to the dashboard page
-        setFormData({ email: "", password: "" }); // Clear form data
+        localStorage.setItem("access_token", data.access_token); 
+        navigate("/dashboard?tab=dash"); 
+        setFormData({ email: "", password: "" }); 
       }
     } catch (error) {
       dispatch(signInFailure(error.message));
