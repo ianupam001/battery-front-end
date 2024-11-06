@@ -85,8 +85,8 @@ export default function DashSlider() {
           <Link to={`/create-slider`}>
             <Button
               type="button"
-              className="bg-orange-400 text-white hover:bg-orange-400/90"
-              className="mb-3"
+              className="bg-orange-400 text-white hover:bg-orange-400/90 mb-3"
+              
             >
               Create New Slider
             </Button>

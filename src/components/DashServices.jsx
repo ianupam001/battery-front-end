@@ -87,8 +87,8 @@ export default function DashServices() {
               <Link to={`/create-service`}>
                 <Button
                   type="button"
-                  className="bg-orange-400 text-white hover:bg-orange-400/90"
-                  className="mb-3"
+                  className="bg-orange-400 text-white hover:bg-orange-400/90 mb-3"
+                  
                 >
                   Create New Service
                 </Button>
