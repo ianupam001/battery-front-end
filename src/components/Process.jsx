@@ -29,7 +29,7 @@ const Process = () => {
           </div>
           <div className="row">
             {/* Process One Single Start */}
-            <div className="col-xl-3 col-lg-6 col-md-6">
+            <div className="col-xl-3 col-lg-6 col-md-6 col-6">
               <div className="process-one__single">
                 <div className="process-one__icon">
                   <span className="icon-ac1"></span>
@@ -39,8 +39,9 @@ const Process = () => {
               </div>
             </div>
             {/* Process One Single End */}
+
             {/* Process One Single Start */}
-            <div className="col-xl-3 col-lg-6 col-md-6">
+            <div className="col-xl-3 col-lg-6 col-md-6 col-6">
               <div className="process-one__single">
                 <div className="process-one__icon">
                   <span className="icon-send"></span>
@@ -52,8 +53,9 @@ const Process = () => {
               </div>
             </div>
             {/* Process One Single End */}
+
             {/* Process One Single Start */}
-            <div className="col-xl-3 col-lg-6 col-md-6">
+            <div className="col-xl-3 col-lg-6 col-md-6 col-6">
               <div className="process-one__single">
                 <div className="process-one__icon">
                   <span className="icon-setting"></span>
@@ -63,8 +65,9 @@ const Process = () => {
               </div>
             </div>
             {/* Process One Single End */}
+
             {/* Process One Single Start */}
-            <div className="col-xl-3 col-lg-6 col-md-6">
+            <div className="col-xl-3 col-lg-6 col-md-6 col-6">
               <div className="process-one__single">
                 <div className="process-one__icon">
                   <span className="icon-services"></span>
