@@ -1,15 +1,17 @@
-import { Modal, Table, Button } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
+
 const apiUrl = import.meta.env.VITE_BASE_URL;
+
 export default function DashProducts() {
   const { currentUser } = useSelector((state) => state.user);
   const [userProducts, setUserProducts] = useState([]);
   const [showMore, setShowMore] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [productIdToDelete, setProductIdToDelete] = useState("");
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -36,7 +38,7 @@ export default function DashProducts() {
     const startIndex = userProducts.length;
     try {
       const res = await fetch(
-        `/api/product/getproducts?userId=${currentUser._id}&startIndex=${startIndex}`
+        `${apiUrl}/api/product/getproducts?userId=${currentUser._id}&startIndex=${startIndex}`
       );
       const data = await res.json();
       if (res.ok) {
@@ -49,7 +51,6 @@ export default function DashProducts() {
       console.log(error.message);
     }
   };
-  console.log("User:", currentUser); // Check if token is valid
 
   const handleDeleteProduct = async () => {
     setShowModal(false);
@@ -60,12 +61,11 @@ export default function DashProducts() {
         {
           method: "DELETE",
           headers: {
-            Authorization: `Bearer ${token}`, // Include the token in the Authorization header
-            "Content-Type": "application/json", // Optional: Specify content type if needed
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
           },
         }
       );
-      console.log(res);
       const data = await res.json();
       if (!res.ok) {
         console.log(data.message);
@@ -80,46 +80,39 @@ export default function DashProducts() {
   };
 
   return (
-    // <div className='table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500'>
-    <div className="overflow-x-scroll p-3">
+    <div className="mt-20 overflow-x-scroll p-3">
       {currentUser.isAdmin && userProducts.length > 0 ? (
         <>
           <div className="">
             {currentUser.isAdmin && (
               <Link to={`/create-product`}>
-                <Button
-                  type="button"
-                  gradientDuoTone="purpleToPink"
-                  className="mb-3"
-                >
+                <button className="bg-orange-400 text-white py-2 px-4 rounded-md mb-3">
                   Create New Product
-                </Button>
+                </button>
               </Link>
             )}
           </div>
-          <Table hoverable className="shadow-md">
-            <Table.Head>
-              <Table.HeadCell>Product title</Table.HeadCell>
-              <Table.HeadCell>Product image</Table.HeadCell>
-              <Table.HeadCell>Date updated</Table.HeadCell>
-              <Table.HeadCell>Delete</Table.HeadCell>
-              <Table.HeadCell>
-                <span>Edit</span>
-              </Table.HeadCell>
-              <Table.HeadCell>View</Table.HeadCell>
-            </Table.Head>
-            {userProducts.map((index, product) => (
-              <Table.Body key={index} className="divide-y">
-                <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                  <Table.Cell>
-                    <Link
-                      className="font-medium text-gray-900 dark:text-white"
-                      to={`/product/${product.slug}`}
-                    >
+
+          <table className="min-w-full table-auto border-collapse text-left shadow-md">
+            <thead className="bg-gray-200">
+              <tr>
+                <th className="px-4 py-2 font-semibold text-sm text-gray-600">Product Title</th>
+                <th className="px-4 py-2 font-semibold text-sm text-gray-600">Product Image</th>
+                <th className="px-4 py-2 font-semibold text-sm text-gray-600">Date Updated</th>
+                <th className="px-4 py-2 font-semibold text-sm text-gray-600">Delete</th>
+                <th className="px-4 py-2 font-semibold text-sm text-gray-600">Edit</th>
+                <th className="px-4 py-2 font-semibold text-sm text-gray-600">View</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y">
+              {userProducts.map((product) => (
+                <tr key={product._id} className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                  <td className="px-4 py-2 text-sm text-gray-500">
+                    <Link className="font-medium text-gray-900 dark:text-white" to={`/product/${product.slug}`}>
                       {product.title}
                     </Link>
-                  </Table.Cell>
-                  <Table.Cell>
+                  </td>
+                  <td className="px-4 py-2 text-sm text-gray-500">
                     <Link to={`/product/${product.slug}`}>
                       <img
                         src={product.image}
@@ -127,41 +120,36 @@ export default function DashProducts() {
                         className="w-20 h-10 object-cover bg-gray-500"
                       />
                     </Link>
-                  </Table.Cell>
-                  <Table.Cell>
+                  </td>
+                  <td className="px-4 py-2 text-sm text-gray-500">
                     {new Date(product.updatedAt).toLocaleDateString()}
-                  </Table.Cell>
-                  <Table.Cell>
-                    <span
+                  </td>
+                  <td className="px-4 py-2 text-sm text-gray-500">
+                    <button
                       onClick={() => {
                         setShowModal(true);
                         setProductIdToDelete(product._id);
                       }}
-                      className="font-medium text-red-500 hover:underline cursor-pointer"
+                      className="text-red-500 hover:underline"
                     >
                       Delete
-                    </span>
-                  </Table.Cell>
-                  <Table.Cell>
-                    <Link
-                      className="text-teal-500 hover:underline"
-                      to={`/update-product/${product._id}`}
-                    >
-                      <span>Edit</span>
+                    </button>
+                  </td>
+                  <td className="px-4 py-2 text-sm text-gray-500">
+                    <Link className="text-teal-500 hover:underline" to={`/update-product/${product._id}`}>
+                      Edit
                     </Link>
-                  </Table.Cell>
-                  <Table.Cell>
-                    <Link
-                      className="font-medium text-gray-900 dark:text-white"
-                      to={`/product/${product.slug}`}
-                    >
+                  </td>
+                  <td className="px-4 py-2 text-sm text-gray-500">
+                    <Link className="font-medium text-gray-900 dark:text-white" to={`/product/${product.slug}`}>
                       View Product
                     </Link>
-                  </Table.Cell>
-                </Table.Row>
-              </Table.Body>
-            ))}
-          </Table>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
           {showMore && (
             <button
               onClick={handleShowMore}
@@ -174,30 +162,32 @@ export default function DashProducts() {
       ) : (
         <p>You have no products yet!</p>
       )}
-      <Modal
-        show={showModal}
-        onClose={() => setShowModal(false)}
-        popup
-        size="md"
-      >
-        <Modal.Header />
-        <Modal.Body>
-          <div className="text-center">
-            <HiOutlineExclamationCircle className="h-14 w-14 text-gray-400 dark:text-gray-200 mb-4 mx-auto" />
-            <h3 className="mb-5 text-lg text-gray-500 dark:text-gray-400">
-              Are you sure you want to delete this product?
-            </h3>
-            <div className="flex justify-center gap-4">
-              <Button color="failure" onClick={handleDeleteProduct}>
-                Yes, I'm sure
-              </Button>
-              <Button color="gray" onClick={() => setShowModal(false)}>
-                No, cancel
-              </Button>
+
+      {/* Custom Modal */}
+      {showModal && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white rounded-lg p-6 max-w-sm w-full">
+            <div className="text-center">
+              <HiOutlineExclamationCircle className="h-14 w-14 text-gray-400 mb-4 mx-auto" />
+              <h3 className="mb-5 text-lg text-gray-500">Are you sure you want to delete this product?</h3>
+              <div className="flex justify-center gap-4">
+                <button
+                  onClick={handleDeleteProduct}
+                  className="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600"
+                >
+                  Yes, I'm sure
+                </button>
+                <button
+                  onClick={() => setShowModal(false)}
+                  className="bg-gray-300 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-400"
+                >
+                  No, cancel
+                </button>
+              </div>
             </div>
           </div>
-        </Modal.Body>
-      </Modal>
+        </div>
+      )}
     </div>
   );
 }
