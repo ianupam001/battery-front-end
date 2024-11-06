@@ -101,7 +101,7 @@ export function ContactFormModal({ sourcePage }) {
         body: JSON.stringify(payload), // Corrected from 'data' to 'body'
       });
       if (res.ok) {
-        navigate("/thank-you");
+        navigate("/thank-you", { state: { fromFormSubmission: true }} );
         toast.success("Form submitted successfully!");
         setFormData({
           ffname: "",

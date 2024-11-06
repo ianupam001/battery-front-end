@@ -75,7 +75,7 @@ export function ContactFormContactPage({ sourcePage }) {
       });
       console.log(response);
       if (response.ok) {
-        navigate("/thank-you");
+        navigate("/thank-you", { state: { fromFormSubmission: true }} );
         toast.success("Form submitted successfully!");
         setFormData({
           ffname: "",

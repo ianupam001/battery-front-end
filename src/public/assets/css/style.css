@@ -3249,6 +3249,8 @@ ul {
 
   .services-one__service-list {
     flex-direction: column;
+        align-items: start;
+        padding-left: 20px;
   }
 
   .services-one__single::before {

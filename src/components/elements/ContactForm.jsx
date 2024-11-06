@@ -33,7 +33,7 @@ export function ContactForm({ sourcePage, formType }) {
         body: JSON.stringify(payload), // Corrected from 'data' to 'body'
       });
       if (response.ok) {
-        navigate("/thank-you");
+        navigate("/thank-you", { state: { fromFormSubmission: true }} );
         toast.success("Form submitted successfully!");
         setFormData({
           ffname: "",
@@ -63,6 +63,8 @@ export function ContactForm({ sourcePage, formType }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     submitForm(formData);
+    
+      
   };
 
   return (
