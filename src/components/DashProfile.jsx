@@ -245,7 +245,7 @@ export default function DashProfile() {
           <Link to={"/create-post"}>
             <Button
               type="button"
-              gradientDuoTone="purpleToPink"
+              className="bg-orange-400 text-white hover:bg-orange-400/90"
               className="w-full"
             >
               Create a post

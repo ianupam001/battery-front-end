@@ -207,7 +207,7 @@ export default function UpdateSlider() {
             setFormData({ ...formData, content: value });
           }}
         /> */}
-        <Button type="submit" gradientDuoTone="purpleToPink">
+        <Button type="submit" className="bg-orange-400 text-white hover:bg-orange-400/90">
           Update slider
         </Button>
         {publishError && (

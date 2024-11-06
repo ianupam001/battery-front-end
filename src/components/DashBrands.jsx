@@ -87,7 +87,7 @@ export default function DashBrand() {
               <Link to={`/create-brand`}>
                 <Button
                   type="button"
-                  gradientDuoTone="purpleToPink"
+                  className="bg-orange-400 text-white hover:bg-orange-400/90"
                   className="mb-3"
                 >
                   Create New Brand
