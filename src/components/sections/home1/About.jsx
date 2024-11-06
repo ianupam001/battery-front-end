@@ -1,5 +1,9 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+
 export default function About() {
+    const location = useLocation();
+    const isAboutPage = location.pathname === '/about';
+
     return (
         <>
         {/*About One Start */}
@@ -47,7 +51,13 @@ export default function About() {
                             </div>
                             <p className="about-one__text-1">At 800 B Battery, we specialize in reliable car battery services, from emergency roadside assistance to onsite battery replacement. We are committed to providing fast, professional, and hassle-free solutions to keep your vehicle running smoothly.</p>
                             <p className="about-one__text-2">Our team understands that your time and safety are important, which is why we focus on delivering prompt service with expert advice. Whether you need a new battery or quick support in a roadside emergency, we’re here to help you get back on the road with ease.</p>
+                            
                            
+                            {!isAboutPage && (
+                                <div className="about-one__btn-box">
+                                    <Link to={`/about`} className="about-one__btn thm-btn">About Us More</Link>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -56,5 +66,5 @@ export default function About() {
         {/*About One End */}
         
         </>
-    )
+    );
 }
