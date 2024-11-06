@@ -174,9 +174,16 @@ export default function Footer() {
         </div>
         <div className="site-footer__bottom">
           <div className="container">
-            <div className="site-footer__bottom-inner">
-              <p className="site-footer__bottom-text">
-                Copyright © 2024 by Barcode Auto Care LLC. All rights reserved. Developed by Mighty Warners
+            <div className="site-footer__bottom-inner mb-4 mb-md-0">
+              <p className="site-footer__bottom-text mb-5 mb-md-0">
+                Copyright © 2024 by Barcode Auto Care LLC. All rights reserved.
+                Developed by{" "}
+                <span>
+                  {" "}
+                  <Link target="_blank" to="https://www.mightywarner.ae/">
+                    Mighty Warners
+                  </Link>
+                </span>
               </p>
               <ul className="list-unstyled site-footer__bottom-menu">
                 {/* <li><Link href="contact">Support</Link></li>
