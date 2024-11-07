@@ -79,7 +79,7 @@ const FixedRightSidebar = () => {
           href="https://wa.me/+971509344668?text=Can I get more details about your service?" 
           target="_blank"
           rel="noopener noreferrer"
-          className=""
+          className="main-menu-two__btn thm-btn"
           style={{
             backgroundColor: "#F2871C",
             flex: 1, 
@@ -101,7 +101,7 @@ const FixedRightSidebar = () => {
         {/* Call Now Button */}
         <a
           href="tel:+971509344668" 
-          className=""
+          className="main-menu-two__btn thm-btn"
           style={{
             backgroundColor: "#F2871C",
             flex: 1, 
