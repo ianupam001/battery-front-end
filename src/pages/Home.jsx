@@ -1,33 +1,47 @@
 import { Link } from "react-router-dom";
-import CallToAction from "../components/CallToAction";
+
 import { useEffect, useState } from "react";
-import PostCard from "../components/PostCard";
+
 import AboutHome from "../components/sections/home1/About";
 import Blog from "../components/sections/home1/Blog";
 import ServiceHighlight from "../components/sections/home1/ServiceHighlight";
 import Service from "../components/sections/home1/Service";
-import Cta from "../components/sections/home1/Cta";
+
 import Video from "../components/sections/home1/Video";
 import Brand from "../components/sections/home1/Brand";
 import Funfacts from "../components/sections/home1/Funfacts";
 import Testimonial from "../components/sections/home1/Testimonial";
-import Banner from "../components/sections/home1/Banner";
+
 import { Helmet } from "react-helmet-async";
 import Banner2 from "../components/sections/home1/Baner2";
 import Products from "../components/sections/home1/Products";
 import Process from "../components/Process";
+
 const apiUrl = import.meta.env.VITE_BASE_URL;
+
 export default function Home() {
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);  
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await fetch(`${apiUrl}/api/post/getPosts`);
-      const data = await res.json();
-      setPosts(data.posts);
+      try {
+        const res = await fetch(`${apiUrl}/api/post/getPosts`);
+        const data = await res.json();
+        setPosts(data.posts);
+        setLoading(false);  
+      } catch (error) {
+        console.error("Failed to fetch posts", error);
+        setLoading(false);  
+      }
     };
     fetchPosts();
   }, []);
+
+  if (loading) {
+    null
+  }
+
   return (
     <div>
       <Helmet>
@@ -37,8 +51,6 @@ export default function Home() {
           content="Welcome to our homepage. Discover our services and products."
         />
       </Helmet>
-
-      {/* <Banner /> */}
       <Banner2 />
       <Service />
       <AboutHome />
