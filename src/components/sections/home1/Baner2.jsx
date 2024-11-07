@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { ContactFormModal } from "../../elements/ContactFormModal";
 
 export default function Banner() {
@@ -22,11 +22,8 @@ export default function Banner() {
       {/* Mobile Banner */}
       <section className="md:hidden relative flex flex-col">
         <div>
-          <img
-            
-            src="assets/images/banner-mobile-light.jpeg"
-            srcSet="assets/images/banner-mobile-light.jpeg 480w, assets/images/banner-mobile.jpeg 1200w"
-            sizes="(max-width: 600px) 480px, (max-width: 960px) 768px, 1200px"
+          <img            
+            src="assets/images/banner-mobile-light.jpeg" 
             alt="Mobile Banner"
             className={`w-full transition-opacity duration-1000 ${isImageLoaded ? 'opacity-100' : 'opacity-0'}`} 
             loading="eager" 
