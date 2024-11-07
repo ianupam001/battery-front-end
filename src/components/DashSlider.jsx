@@ -1,15 +1,17 @@
-import { Modal, Table, Button } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
+
 const apiUrl = import.meta.env.VITE_BASE_URL;
+
 export default function DashSlider() {
   const { currentUser } = useSelector((state) => state.user);
   const [userSlider, setUserSlider] = useState([]);
   const [showMore, setShowMore] = useState(true);
   const [showModal, setShowModal] = useState(false);
-  const [sliderIdToDelete, setServiceIdToDelete] = useState("");
+  const [sliderIdToDelete, setSliderIdToDelete] = useState("");
+
   useEffect(() => {
     const fetchSlider = async () => {
       try {
@@ -50,7 +52,7 @@ export default function DashSlider() {
     }
   };
 
-  const handleDeleteService = async () => {
+  const handleDeleteSlider = async () => {
     setShowModal(false);
     try {
       const token = localStorage.getItem("access_token");
@@ -59,8 +61,8 @@ export default function DashSlider() {
         {
           method: "DELETE",
           headers: {
-            Authorization: `Bearer ${token}`, // Include the token in the Authorization header
-            "Content-Type": "application/json", // Optional: Specify content type if needed
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
           },
         }
       );
@@ -78,40 +80,36 @@ export default function DashSlider() {
   };
 
   return (
-    // <div className='table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500'>
-    <div className="overflow-x-scroll p-3">
-      <div className="">
+    <div className="overflow-x-auto p-3 mt-20">
+      <div>
         {currentUser.isAdmin && (
           <Link to={`/create-slider`}>
-            <Button
-              type="button"
-              className="bg-orange-400 text-white hover:bg-orange-400/90 mb-3"
-              
-            >
+            <button className="bg-orange-400 text-white px-4 py-2 rounded hover:bg-orange-400/90 mb-3">
               Create New Slider
-            </Button>
+            </button>
           </Link>
         )}
       </div>
+
       {currentUser.isAdmin && userSlider.length > 0 ? (
         <>
-          <Table hoverable className="shadow-md">
-            <Table.Head>
-              <Table.HeadCell>Date updated</Table.HeadCell>
-              <Table.HeadCell>Slider image</Table.HeadCell>
-              <Table.HeadCell>Slider title</Table.HeadCell>
-              <Table.HeadCell>Delete</Table.HeadCell>
-              <Table.HeadCell>
-                <span>Edit</span>
-              </Table.HeadCell>
-            </Table.Head>
-            {userSlider.map((slider) => (
-              <Table.Body className="divide-y">
-                <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                  <Table.Cell>
+          <table className="min-w-full bg-white shadow-md rounded mb-3">
+            <thead>
+              <tr>
+                <th className="py-2 px-4 border-b">Date Updated</th>
+                <th className="py-2 px-4 border-b">Slider Image</th>
+                <th className="py-2 px-4 border-b">Slider Title</th>
+                <th className="py-2 px-4 border-b">Delete</th>
+                <th className="py-2 px-4 border-b">Edit</th>
+              </tr>
+            </thead>
+            <tbody>
+              {userSlider.map((slider) => (
+                <tr key={slider._id} className="border-b">
+                  <td className="py-2 px-4">
                     {new Date(slider.updatedAt).toLocaleDateString()}
-                  </Table.Cell>
-                  <Table.Cell>
+                  </td>
+                  <td className="py-2 px-4">
                     <Link to={`/slider/${slider.slug}`}>
                       <img
                         src={slider.image}
@@ -119,35 +117,29 @@ export default function DashSlider() {
                         className="w-20 h-10 object-cover bg-gray-500"
                       />
                     </Link>
-                  </Table.Cell>
-                  <Table.Cell>{slider.title}</Table.Cell>
-                  <Table.Cell>
+                  </td>
+                  <td className="py-2 px-4">{slider.title}</td>
+                  <td className="py-2 px-4 text-red-500 cursor-pointer hover:underline">
                     <span
                       onClick={() => {
                         setShowModal(true);
-                        setServiceIdToDelete(slider._id);
+                        setSliderIdToDelete(slider._id);
                       }}
-                      className="font-medium text-red-500 hover:underline cursor-pointer"
                     >
                       Delete
                     </span>
-                  </Table.Cell>
-                  <Table.Cell>
-                    <Link
-                      className="text-teal-500 hover:underline"
-                      to={`/update-slider/${slider._id}`}
-                    >
-                      <span>Edit</span>
-                    </Link>
-                  </Table.Cell>
-                </Table.Row>
-              </Table.Body>
-            ))}
-          </Table>
+                  </td>
+                  <td className="py-2 px-4 text-teal-500 hover:underline">
+                    <Link to={`/update-slider/${slider._id}`}>Edit</Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
           {showMore && (
             <button
               onClick={handleShowMore}
-              className="w-full text-teal-500 self-center text-sm py-7"
+              className="w-full text-teal-500 text-sm py-7"
             >
               Show more
             </button>
@@ -156,30 +148,34 @@ export default function DashSlider() {
       ) : (
         <p>You have no sliders yet!</p>
       )}
-      <Modal
-        show={showModal}
-        onClose={() => setShowModal(false)}
-        popup
-        size="md"
-      >
-        <Modal.Header />
-        <Modal.Body>
-          <div className="text-center">
-            <HiOutlineExclamationCircle className="h-14 w-14 text-gray-400 dark:text-gray-200 mb-4 mx-auto" />
-            <h3 className="mb-5 text-lg text-gray-500 dark:text-gray-400">
-              Are you sure you want to delete this slider?
-            </h3>
-            <div className="flex justify-center gap-4">
-              <Button color="failure" onClick={handleDeleteService}>
-                Yes, I'm sure
-              </Button>
-              <Button color="gray" onClick={() => setShowModal(false)}>
-                No, cancel
-              </Button>
+
+      {/* Modal */}
+      {showModal && (
+        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded shadow-lg max-w-sm w-full">
+            <div className="text-center">
+              <HiOutlineExclamationCircle className="h-14 w-14 text-gray-400 mb-4 mx-auto" />
+              <h3 className="mb-5 text-lg text-gray-500">
+                Are you sure you want to delete this slider?
+              </h3>
+              <div className="flex justify-center gap-4">
+                <button
+                  onClick={handleDeleteSlider}
+                  className="bg-red-500 text-white px-4 py-2 rounded"
+                >
+                  Yes, I'm sure
+                </button>
+                <button
+                  onClick={() => setShowModal(false)}
+                  className="bg-gray-300 text-gray-700 px-4 py-2 rounded"
+                >
+                  No, cancel
+                </button>
+              </div>
             </div>
           </div>
-        </Modal.Body>
-      </Modal>
+        </div>
+      )}
     </div>
   );
 }

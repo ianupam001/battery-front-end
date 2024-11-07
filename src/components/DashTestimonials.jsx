@@ -82,7 +82,7 @@ export default function DashTestimonial() {
   };
 
   return (
-    <div className="overflow-x-scroll p-3 mt-20">
+    <div className="overflow-x-auto p-3 mt-20">
       <div>
         {currentUser.isAdmin && (
           <Link to={`/create-testimonial`}>

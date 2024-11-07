@@ -1,15 +1,17 @@
-import { Modal, Table, Button } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 const apiUrl = import.meta.env.VITE_BASE_URL;
+
 export default function DashBrand() {
   const { currentUser } = useSelector((state) => state.user);
   const [userBrand, setUserBrand] = useState([]);
   const [showMore, setShowMore] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [brandIdToDelete, setServiceIdToDelete] = useState("");
+
+  // Fetch brands on component mount
   useEffect(() => {
     const fetchBrand = async () => {
       try {
@@ -27,6 +29,7 @@ export default function DashBrand() {
         console.log(error.message);
       }
     };
+
     if (currentUser.isAdmin) {
       fetchBrand();
     }
@@ -78,76 +81,67 @@ export default function DashBrand() {
   };
 
   return (
-    // <div className='table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500'>
-    <div className="overflow-x-scroll p-3">
+    <div className="overflow-x-auto p-3 mt-20">
       {currentUser.isAdmin && userBrand.length > 0 ? (
         <>
-          <div className="">
+          <div className="mb-3">
             {currentUser.isAdmin && (
               <Link to={`/create-brand`}>
-                <Button
-                  type="button"
-                  className="bg-orange-400 text-white hover:bg-orange-400/90"
-                  className="mb-3"
-                >
+                <button className="bg-orange-400 text-white hover:bg-orange-400/90 px-4 py-2 rounded-md">
                   Create New Brand
-                </Button>
+                </button>
               </Link>
             )}
           </div>
-          <Table hoverable className="shadow-md">
-            <Table.Head>
-              <Table.HeadCell>Date updated</Table.HeadCell>
-              <Table.HeadCell>Brand image</Table.HeadCell>
-              <Table.HeadCell>Brand title</Table.HeadCell>
-              <Table.HeadCell>Delete</Table.HeadCell>
-              <Table.HeadCell>
-                <span>Edit</span>
-              </Table.HeadCell>
-            </Table.Head>
-            {userBrand.map((brand, index) => (
-              <Table.Body key={index} className="divide-y">
-                <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                  <Table.Cell>
+
+          {/* Table for displaying brands */}
+          <table className="min-w-full table-auto shadow-md bg-white dark:bg-gray-800 dark:border-gray-700">
+            <thead>
+              <tr>
+                <th className="py-3 px-4 text-left text-sm font-medium text-gray-500 dark:text-gray-300">Date updated</th>
+                <th className="py-3 px-4 text-left text-sm font-medium text-gray-500 dark:text-gray-300">Brand image</th>
+                <th className="py-3 px-4 text-left text-sm font-medium text-gray-500 dark:text-gray-300">Brand title</th>
+                <th className="py-3 px-4 text-left text-sm font-medium text-gray-500 dark:text-gray-300">Delete</th>
+                <th className="py-3 px-4 text-left text-sm font-medium text-gray-500 dark:text-gray-300">Edit</th>
+              </tr>
+            </thead>
+            <tbody>
+              {userBrand.map((brand, index) => (
+                <tr key={index} className="border-b dark:border-gray-700">
+                  <td className="py-3 px-4 text-sm text-gray-700 dark:text-gray-200">
                     {new Date(brand.updatedAt).toLocaleDateString()}
-                  </Table.Cell>
-                  <Table.Cell>
+                  </td>
+                  <td className="py-3 px-4 text-sm">
                     <Link to={`/brand/${brand.slug}`}>
-                      <img
-                        src={brand.image}
-                        alt={brand.title}
-                        className="w-20 h-10 object-cover bg-gray-500"
-                      />
+                      <img src={brand.image} alt={brand.title} className="w-20 h-10 object-cover bg-gray-300" />
                     </Link>
-                  </Table.Cell>
-                  <Table.Cell>{brand.title}</Table.Cell>
-                  <Table.Cell>
-                    <span
+                  </td>
+                  <td className="py-3 px-4 text-sm text-gray-700 dark:text-gray-200">{brand.title}</td>
+                  <td className="py-3 px-4 text-sm">
+                    <button
                       onClick={() => {
                         setShowModal(true);
                         setServiceIdToDelete(brand._id);
                       }}
-                      className="font-medium text-red-500 hover:underline cursor-pointer"
+                      className="text-red-500 hover:text-red-700 font-medium"
                     >
                       Delete
-                    </span>
-                  </Table.Cell>
-                  <Table.Cell>
-                    <Link
-                      className="text-teal-500 hover:underline"
-                      to={`/update-brand/${brand._id}`}
-                    >
-                      <span>Edit</span>
+                    </button>
+                  </td>
+                  <td className="py-3 px-4 text-sm">
+                    <Link to={`/update-brand/${brand._id}`} className="text-teal-500 hover:text-teal-700">
+                      Edit
                     </Link>
-                  </Table.Cell>
-                </Table.Row>
-              </Table.Body>
-            ))}
-          </Table>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
           {showMore && (
             <button
               onClick={handleShowMore}
-              className="w-full text-teal-500 self-center text-sm py-7"
+              className="w-full text-teal-500 text-sm py-4 hover:underline"
             >
               Show more
             </button>
@@ -156,30 +150,34 @@ export default function DashBrand() {
       ) : (
         <p>You have no brands yet!</p>
       )}
-      <Modal
-        show={showModal}
-        onClose={() => setShowModal(false)}
-        popup
-        size="md"
-      >
-        <Modal.Header />
-        <Modal.Body>
-          <div className="text-center">
-            <HiOutlineExclamationCircle className="h-14 w-14 text-gray-400 dark:text-gray-200 mb-4 mx-auto" />
-            <h3 className="mb-5 text-lg text-gray-500 dark:text-gray-400">
-              Are you sure you want to delete this brand?
-            </h3>
-            <div className="flex justify-center gap-4">
-              <Button color="failure" onClick={handleDeleteService}>
-                Yes, I'm sure
-              </Button>
-              <Button color="gray" onClick={() => setShowModal(false)}>
-                No, cancel
-              </Button>
+
+      {/* Modal for deleting brand */}
+      {showModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-600 bg-opacity-50">
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg max-w-sm w-full">
+            <div className="text-center">
+              <HiOutlineExclamationCircle className="h-14 w-14 text-gray-400 dark:text-gray-200 mb-4 mx-auto" />
+              <h3 className="mb-5 text-lg text-gray-500 dark:text-gray-400">
+                Are you sure you want to delete this brand?
+              </h3>
+              <div className="flex justify-center gap-4">
+                <button
+                  onClick={handleDeleteService}
+                  className="bg-red-500 text-white hover:bg-red-600 px-4 py-2 rounded-md"
+                >
+                  Yes, I'm sure
+                </button>
+                <button
+                  onClick={() => setShowModal(false)}
+                  className="bg-gray-500 text-white hover:bg-gray-600 px-4 py-2 rounded-md"
+                >
+                  No, cancel
+                </button>
+              </div>
             </div>
           </div>
-        </Modal.Body>
-      </Modal>
+        </div>
+      )}
     </div>
   );
 }

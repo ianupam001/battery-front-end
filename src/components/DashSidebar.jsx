@@ -1,5 +1,4 @@
 import { Sidebar } from "flowbite-react";
-import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import {
   HiUser,
   HiArrowSmRight,
@@ -8,30 +7,22 @@ import {
   HiAnnotation,
   HiChartPie,
 } from "react-icons/hi";
-import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { signoutSuccess } from "../redux/user/userSlice";
 import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+
 const apiUrl = import.meta.env.VITE_BASE_URL;
+
 export default function DashSidebar() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
-
   const location = useLocation();
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
-  const [tab, setTab] = useState("");
-  useEffect(() => {
-    const urlParams = new URLSearchParams(location.search);
-    const tabFromUrl = urlParams.get("tab");
-    if (tabFromUrl) {
-      setTab(tabFromUrl);
-    }
-  }, [location.search]);
+
+  const isActiveTab = (tab) => {
+    return location.search.includes(`tab=${tab}`);
+  };
+
   const handleSignout = async () => {
     try {
       const res = await fetch(`${apiUrl}/api/user/signout`, {
@@ -48,18 +39,18 @@ export default function DashSidebar() {
       console.log(error.message);
     }
   };
+
   return (
     <Sidebar className="w-full md:w-56 shadow mt-2">
       <Sidebar.Items>
         <Sidebar.ItemGroup className="flex flex-col gap-1">
           {currentUser.isAdmin && (
             <div>
-              
               <Link to="/dashboard?tab=dash">
                 <Sidebar.Item
-                  active={tab === "dash" || !tab}
+                  active={isActiveTab("dash")}
                   icon={HiChartPie}
-                  as="div"
+                  className={`cursor-pointer ${isActiveTab("dash") ? "bg-orange-200" : ""}`}
                 >
                   Dashboard
                 </Sidebar.Item>
@@ -67,102 +58,96 @@ export default function DashSidebar() {
 
               <Link to="/dashboard?tab=profile">
                 <Sidebar.Item
-                  active={tab === "profile"}
+                  active={isActiveTab("profile")}
                   icon={HiUser}
                   label={currentUser.isAdmin ? "Admin" : "User"}
-                  labelColor="dark"
-                  as="div"
-                  
+                  className={`cursor-pointer ${isActiveTab("profile") ? "bg-orange-200" : ""}`}
                 >
                   Profile
                 </Sidebar.Item>
               </Link>
+
               <Link to="/dashboard?tab=posts">
                 <Sidebar.Item
-                  active={tab === "posts"}
+                  active={isActiveTab("posts")}
                   icon={HiDocumentText}
-                  as="div"
+                  className={`cursor-pointer ${isActiveTab("posts") ? "bg-orange-200" : ""}`}
                 >
                   Posts
                 </Sidebar.Item>
               </Link>
+
               <Link to="/dashboard?tab=products">
                 <Sidebar.Item
-                  active={tab === "products"}
+                  active={isActiveTab("products")}
                   icon={HiDocumentText}
-                  as="div"
+                  className={`cursor-pointer ${isActiveTab("products") ? "bg-orange-200" : ""}`}
                 >
                   Products
                 </Sidebar.Item>
               </Link>
+
               <Link to="/dashboard?tab=services">
                 <Sidebar.Item
-                  active={tab === "services"}
+                  active={isActiveTab("services")}
                   icon={HiDocumentText}
-                  as="div"
+                  className={`cursor-pointer ${isActiveTab("services") ? "bg-orange-200" : ""}`}
                 >
                   Services
                 </Sidebar.Item>
               </Link>
+
               <Link to="/dashboard?tab=sliders">
                 <Sidebar.Item
-                  active={tab === "sliders"}
+                  active={isActiveTab("sliders")}
                   icon={HiDocumentText}
-                  as="div"
+                  className={`cursor-pointer ${isActiveTab("sliders") ? "bg-orange-200" : ""}`}
                 >
                   Sliders
                 </Sidebar.Item>
               </Link>
+
               <Link to="/dashboard?tab=brands">
                 <Sidebar.Item
-                  active={tab === "brands"}
+                  active={isActiveTab("brands")}
                   icon={HiDocumentText}
-                  as="div"
+                  className={`cursor-pointer ${isActiveTab("brands") ? "bg-orange-200" : ""}`}
                 >
                   Brands
                 </Sidebar.Item>
               </Link>
+
               <Link to="/dashboard?tab=testimonials">
                 <Sidebar.Item
-                  active={tab === "testimonials"}
+                  active={isActiveTab("testimonials")}
                   icon={HiDocumentText}
-                  as="div"
+                  className={`cursor-pointer ${isActiveTab("testimonials") ? "bg-orange-200" : ""}`}
                 >
                   Testimonials
                 </Sidebar.Item>
               </Link>
+
               <Link to="/dashboard?tab=inquiries">
                 <Sidebar.Item
-                  active={tab === "inquiries"}
+                  active={isActiveTab("inquiries")}
                   icon={HiDocumentText}
-                  as="div"
+                  className={`cursor-pointer ${isActiveTab("inquiries") ? "bg-orange-200" : ""}`}
                 >
                   Inquiries
                 </Sidebar.Item>
               </Link>
-              {/*           
-          {currentUser.isAdmin && (
-            <>
-              <Link to='/dashboard?tab=users'>
+
+             
+
+              {/* <Link to="/dashboard?tab=comments">
                 <Sidebar.Item
-                  active={tab === 'users'}
-                  icon={HiOutlineUserGroup}
-                  as='div'
-                >
-                  Users
-                </Sidebar.Item>
-              </Link>
-              <Link to='/dashboard?tab=comments'>
-                <Sidebar.Item
-                  active={tab === 'comments'}
+                  active={isActiveTab("comments")}
                   icon={HiAnnotation}
-                  as='div'
+                  className={`cursor-pointer ${isActiveTab("comments") ? "bg-orange-300" : ""}`}
                 >
                   Comments
                 </Sidebar.Item>
-              </Link>
-            </>
-          )} */}
+              </Link> */}
 
               <Sidebar.Item
                 icon={HiArrowSmRight}

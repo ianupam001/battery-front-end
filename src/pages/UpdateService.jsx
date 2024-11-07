@@ -122,7 +122,7 @@ export default function UpdateService() {
   };
   return (
     <div className="p-3 max-w-3xl mx-auto min-h-screen">
-      <h1 className="text-center text-3xl my-7 font-semibold">
+      <h1 className="text-center text-3xl my-7 font-semibold mt-20">
         Update service
       </h1>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
@@ -208,7 +208,7 @@ export default function UpdateService() {
             setFormData({ ...formData, content: value });
           }}
         />
-        <Button type="submit" className="bg-orange-400 text-white hover:bg-orange-400/90">
+        <Button type="submit" className="bg-orange-400 text-white hover:bg-orange-400/90 mb-5">
           Update service
         </Button>
         {publishError && (

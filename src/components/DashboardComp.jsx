@@ -12,7 +12,7 @@ const apiUrl = import.meta.env.VITE_BASE_URL;
 export default function DashboardComp() {
   
   return (
-    <div className="p-3 md:mx-auto flex justify-center items-center">
+    <div className="p-3 md:mx-auto flex justify-center items-center min-h-screen">
      <h1 className="text-gray-600">
       Hello
      </h1>

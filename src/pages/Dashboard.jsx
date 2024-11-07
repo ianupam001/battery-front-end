@@ -15,39 +15,39 @@ import DashServices from '../components/DashServices';
 
 export default function Dashboard() {
   const location = useLocation();
-  const [tab, setTab] = useState('');
+  const [tab, setTab] = useState('dash');
+
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
     const tabFromUrl = urlParams.get('tab');
     if (tabFromUrl) {
       setTab(tabFromUrl);
+    } else {
+      setTab('dash'); 
     }
   }, [location.search]);
+
   return (
-    <div className='min-h-screen flex flex-col md:flex-row'>
-      <div className='md:w-56'>
-        {/* Sidebar */}
+    <div className="min-h-screen flex flex-col md:flex-row">
+      <div className="md:w-56">
+     
         <DashSidebar />
       </div>
-      {/* profile... */}
-      {tab === 'profile' && <DashProfile />}
-      {/* posts... */}
-      
-      {tab === 'products' && <DashProducts />}
 
-      {tab === 'posts' && <DashPosts />}
-      
-      {tab === 'services' && <DashServices />}
-      {tab === 'sliders' && <DashSliders />}
-      {tab === 'brands' && <DashBrands />}
-      {tab === 'testimonials' && <DashTestimonials />}
-      {tab === 'inquiries' && <DashInquirys />}
-      {/* users */}
-      {tab === 'users' && <DashUsers />}
-      {/* comments  */}
-      {tab === 'comments' && <DashComments />}
-      {/* dashboard comp */}
-      {tab === 'dash' && <DashboardComp />}
+      <div className="flex-1 p-4">
+        
+        {tab === 'profile' && <DashProfile />}
+        {tab === 'posts' && <DashPosts />}
+        {tab === 'products' && <DashProducts />}
+        {tab === 'services' && <DashServices />}
+        {tab === 'sliders' && <DashSliders />}
+        {tab === 'brands' && <DashBrands />}
+        {tab === 'testimonials' && <DashTestimonials />}
+        {tab === 'inquiries' && <DashInquirys />}
+        {tab === 'users' && <DashUsers />}
+        {tab === 'comments' && <DashComments />}
+        {tab === 'dash' && <DashboardComp />}
+      </div>
     </div>
   );
 }

@@ -68,7 +68,7 @@ export default function DashInquiries() {
   };
 
   return (
-    <div className="overflow-x-scroll p-3 mt-20">
+    <div className="overflow-x-auto p-3 mt-20">
       {inquiries.length > 0 ? (
         <>
           {/* Table */}
