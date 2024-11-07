@@ -68,7 +68,7 @@ export function ContactFormModal({ sourcePage }) {
 
   if (loading)
     return (
-      <div className="flex justify-center items-center min-h-80">
+      <div className="flex justify-center items-center min-h-80 min-w-full rounded-md">
         <Spinner size="xl" />
       </div>
     );
@@ -133,7 +133,7 @@ export function ContactFormModal({ sourcePage }) {
     <form
       id="contact-form"
       name="contact_form"
-      className="p-4 max-w-lg bg-white rounded-lg"
+      className="p-4 max-w-lg bg-white rounded-lg border"
       onSubmit={handleSubmit}
     >
       <h2 className="mb-4 text-xl font-semibold">Book Now</h2>
