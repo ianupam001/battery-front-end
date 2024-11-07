@@ -133,7 +133,7 @@ export default function DashSidebar() {
                   icon={HiDocumentText}
                   className={`cursor-pointer ${isActiveTab("inquiries") ? "bg-orange-200" : ""}`}
                 >
-                  Inquiries
+                  Enquiries
                 </Sidebar.Item>
               </Link>
 
