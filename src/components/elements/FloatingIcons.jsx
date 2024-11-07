@@ -83,9 +83,9 @@ const FixedRightSidebar = () => {
           style={{
             backgroundColor: "#F2871C",
             flex: 1, 
-            padding: "12px 0", 
+            padding: "8px 0", 
             color: "white",
-            borderRadius: "50px",
+            borderRadius: "12px",
             textAlign: "center", 
             textDecoration: "none",
             display: "flex",
@@ -105,9 +105,9 @@ const FixedRightSidebar = () => {
           style={{
             backgroundColor: "#F2871C",
             flex: 1, 
-            padding: "12px 0",
+            padding: "8px 0",
             color: "white",
-            borderRadius: "50px",
+            borderRadius: "12px",
             textAlign: "center",
             textDecoration: "none",
             display: "flex",
