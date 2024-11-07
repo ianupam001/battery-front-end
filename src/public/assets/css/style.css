@@ -125,7 +125,7 @@ button {
 input:focus,
 textarea:focus,
 select:focus {
-  border-color: #43c3ea;
+  border-color: #eab043;
   outline: none;
 }
 
