@@ -1,4 +1,5 @@
 import { ContactFormModal } from "../../elements/ContactFormModal";
+import { lazy } from 'react';
 
 export default function Banner() {
 
@@ -8,10 +9,9 @@ export default function Banner() {
       <section className="md:hidden relative flex flex-col">
         <div>
           <img
-            src="assets/images/banner-mobile.jpeg"
-            srcSet="assets/images/banner-mobile-light.jpeg 480w"
-            sizes="(max-width: 600px) 480px, (max-width: 960px) 768px, 1200px"
+            src="assets/images/banner-mobile.jpeg"            
             alt="Mobile Banner"
+            loading="lazy" 
             className="w-full"
           />
         </div>
