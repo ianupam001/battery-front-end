@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Suspense, lazy } from "react";
+import FullPageLoader from "./components/elements/FullPageLoader";
 
 // Lazy loading of pages
 const Home = lazy(() => import("./pages/Home"));
@@ -44,7 +45,7 @@ export default function App() {
   return (
     <BrowserRouter>
       {/* Wrap the whole app inside Suspense */}
-      <Suspense fallback={<div className="loading-spinner">Loading...</div>}>
+      <Suspense fallback={<FullPageLoader />}>
         <ScrollToTop />
         <TopSpace />
         <Header2 />

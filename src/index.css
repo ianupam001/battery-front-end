@@ -116,3 +116,28 @@ body {
 .dropdown-content li a:hover {
   background: #555; 
 }
+
+.dot-1,
+.dot-2,
+.dot-3 {
+  display: inline-block;
+  animation: dotPing 1s infinite;
+}
+
+.dot-2 {
+  animation-delay: 0.2s;
+}
+.dot-3 {
+  animation-delay: 0.4s;
+}
+
+@keyframes dotPing {
+  0%, 100% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
