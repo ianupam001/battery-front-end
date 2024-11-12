@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function DashMetaDeta() {
+function DashMetaData() {
   const [form, setForm] = useState({
     title: '',
     description: '',
@@ -103,7 +103,7 @@ function DashMetaDeta() {
         <div className="px-3">
           <button
             type="submit"
-            className="px-6 py-2 bg-orange-500 text-white font-bold rounded-md hover:bg-orange-600"
+            className="px-6 py-2 bg-orange-400 text-white font-bold rounded-md hover:bg-orange-400/90"
           >
             Submit
           </button>
@@ -113,4 +113,4 @@ function DashMetaDeta() {
   );
 }
 
-export default DashMetaDeta;
+export default DashMetaData;
