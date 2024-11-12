@@ -92,7 +92,7 @@ export function ContactFormModal({ sourcePage }) {
     };
     try {
       const token = localStorage.getItem("access_token");
-      const res = await fetch(`${apiUrl}/api/forms/create/form`, {
+      const res = await fetch(`${apiUrl}/ QA/form`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

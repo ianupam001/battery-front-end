@@ -12,10 +12,10 @@ export default function DashInquiries() {
   useEffect(() => {
     const fetchInquiries = async () => {
       try {
-        const res = await fetch(`${apiUrl}/api/inquiry/getinquirys`);
+        const res = await fetch(`${apiUrl}/api/inquiry/getinquiries`);
         const data = await res.json();
         if (res.ok) {
-          setInquiries(data.inquiries || []); // Ensure data is an array
+          setInquiries(data.inquiries || []);
           if (data.inquiries.length < 9) {
             setShowMore(false);
           }
@@ -31,11 +31,12 @@ export default function DashInquiries() {
     const startIndex = inquiries.length;
     try {
       const res = await fetch(
-        `${apiUrl}/api/inquiry/getinquirys?startIndex=${startIndex}`
+        `${apiUrl}/api/inquiry/getinquiries?startIndex=${startIndex}`
       );
       const data = await res.json();
+      console.log(data);
       if (res.ok) {
-        setInquiries((prev) => [...prev, ...(data.inquiries || [])]); 
+        setInquiries((prev) => [...prev, ...(data.inquiries || [])]);
         if (data.inquiries.length < 9) {
           setShowMore(false);
         }
@@ -47,23 +48,32 @@ export default function DashInquiries() {
 
   const handleDeleteInquiry = async () => {
     setShowModal(false);
+
     try {
+      console.log(inquiryIdToDelete);
       const res = await fetch(
         `${apiUrl}/api/inquiry/deleteinquiry/${inquiryIdToDelete}`,
         {
           method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
       );
+
       const data = await res.json();
+
       if (!res.ok) {
-        console.log(data.message);
+        console.error("Failed to delete inquiry:", data.message);
       } else {
-        setInquiries((prev) =>
-          prev.filter((inquiry) => inquiry._id !== inquiryIdToDelete)
+        console.log(data.message);
+
+        setInquiries((prevInquiries) =>
+          prevInquiries.filter((inquiry) => inquiry._id !== inquiryIdToDelete)
         );
       }
     } catch (error) {
-      console.log(error.message);
+      console.error("Error deleting inquiry:", error.message);
     }
   };
 
@@ -75,21 +85,44 @@ export default function DashInquiries() {
           <table className="min-w-full table-auto border-collapse text-left shadow-md">
             <thead className="bg-gray-200">
               <tr>
-                <th className="px-4 py-2 font-semibold text-sm text-gray-600">Name</th>
-                <th className="px-4 py-2 font-semibold text-sm text-gray-600">Email</th>
-                <th className="px-4 py-2 font-semibold text-sm text-gray-600">Phone</th>
-                <th className="px-4 py-2 font-semibold text-sm text-gray-600">Inquiry Type</th>
-                <th className="px-4 py-2 font-semibold text-sm text-gray-600">Date</th>
-                <th className="px-4 py-2 font-semibold text-sm text-gray-600">Delete</th>
+                <th className="px-4 py-2 font-semibold text-sm text-gray-600">
+                  Name
+                </th>
+                <th className="px-4 py-2 font-semibold text-sm text-gray-600">
+                  Email
+                </th>
+                <th className="px-4 py-2 font-semibold text-sm text-gray-600">
+                  Phone
+                </th>
+                <th className="px-4 py-2 font-semibold text-sm text-gray-600">
+                  Inquiry Type
+                </th>
+                <th className="px-4 py-2 font-semibold text-sm text-gray-600">
+                  Date
+                </th>
+                <th className="px-4 py-2 font-semibold text-sm text-gray-600">
+                  Delete
+                </th>
               </tr>
             </thead>
             <tbody className="divide-y">
               {inquiries.map((inquiry) => (
-                <tr key={inquiry._id} className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                  <td className="px-4 py-2 text-sm text-gray-500">{inquiry.name}</td>
-                  <td className="px-4 py-2 text-sm text-gray-500">{inquiry.email}</td>
-                  <td className="px-4 py-2 text-sm text-gray-500">{inquiry.phone}</td>
-                  <td className="px-4 py-2 text-sm text-gray-500">{inquiry.inquiry_type}</td>
+                <tr
+                  key={inquiry._id}
+                  className="bg-white dark:border-gray-700 dark:bg-gray-800"
+                >
+                  <td className="px-4 py-2 text-sm text-gray-500">
+                    {inquiry.name}
+                  </td>
+                  <td className="px-4 py-2 text-sm text-gray-500">
+                    {inquiry.email}
+                  </td>
+                  <td className="px-4 py-2 text-sm text-gray-500">
+                    {inquiry.phone}
+                  </td>
+                  <td className="px-4 py-2 text-sm text-gray-500">
+                    {inquiry.inquiry_type}
+                  </td>
                   <td className="px-4 py-2 text-sm text-gray-500">
                     {new Date(inquiry.updatedAt).toLocaleDateString()}
                   </td>
@@ -129,7 +162,9 @@ export default function DashInquiries() {
           <div className="bg-white rounded-lg p-6 max-w-sm w-full">
             <div className="text-center">
               <HiOutlineExclamationCircle className="h-14 w-14 text-gray-400 mb-4 mx-auto" />
-              <h3 className="mb-5 text-lg text-gray-500">Are you sure you want to delete this inquiry?</h3>
+              <h3 className="mb-5 text-lg text-gray-500">
+                Are you sure you want to delete this inquiry?
+              </h3>
               <div className="flex justify-center gap-4">
                 <button
                   onClick={handleDeleteInquiry}

@@ -65,13 +65,13 @@ export function ContactFormContactPage({ sourcePage }) {
     };
     try {
       const token = localStorage.getItem("access_token");
-      const response = await fetch(`${apiUrl}/api/inquery/create/inquery`, {
+      const response = await fetch(`${apiUrl}/api/inquiry/create/inquiry`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`, // Corrected typo here
+          Authorization: `Bearer ${token}`, 
         },
-        body: JSON.stringify(payload), // Corrected from 'data' to 'body'
+        body: JSON.stringify(payload), 
       });
       console.log(response);
       if (response.ok) {

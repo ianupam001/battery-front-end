@@ -127,6 +127,16 @@ export default function DashSidebar() {
                 </Sidebar.Item>
               </Link>
 
+              <Link to="/dashboard?tab=metadata">
+                <Sidebar.Item
+                  active={isActiveTab("metadata")}
+                  icon={HiDocumentText}
+                  className={`cursor-pointer ${isActiveTab("metadata") ? "bg-orange-200" : ""}`}
+                >
+                  Metadata
+                </Sidebar.Item>
+              </Link>
+
               <Link to="/dashboard?tab=inquiries">
                 <Sidebar.Item
                   active={isActiveTab("inquiries")}
