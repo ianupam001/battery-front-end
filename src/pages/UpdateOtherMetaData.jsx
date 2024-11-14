@@ -5,36 +5,34 @@ import { toast } from "react-toastify";
 
 const apiUrl = import.meta.env.VITE_BASE_URL;
 
-export default function UpdateMetaData() {
-  const { metadataId } = useParams();
-  const { type } = useParams();
+export default function UpdateOtherMetaData() {
+  const { othermetadataId } = useParams();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     id: "",
-    title: "",
-    description: "",
-    keywords: "",
-    other: "",
+    header: "",
+    footer: "",
+    body: "",
+   
   });
   const [publishError, setPublishError] = useState(null);
   const [isUpdate, setIsUpdate] = useState(false);
 
   // Fetch metadata if `metaId` is provided (indicating an update)
   useEffect(() => {
-    if (metadataId) {
+    if (othermetadataId) {
       const fetchMetaData = async () => {
         try {
           const res = await fetch(
-            `${apiUrl}/api/metatags/${type}/${metadataId}`
+            `${apiUrl}/api/metatags/other/${othermetadataId}`
           );
           if (res.ok) {
             const data = await res.json();
             setFormData({
-              title: data.title || "",
-              description: data.description || "",
-              keywords: data.keywords || "",
-              other: data.other || "",
-              type: data.type || "",
+              header: data.header || "",
+              footer: data.footer || "",
+              body: data.body || "",
+              
             });
             setIsUpdate(true);
           } else {
@@ -46,7 +44,7 @@ export default function UpdateMetaData() {
       };
       fetchMetaData();
     }
-  }, [type, metadataId]);
+  }, [ othermetadataId]);
 
   // Handle form input changes
   const handleChange = (e) => {
@@ -58,15 +56,15 @@ export default function UpdateMetaData() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const payload = {
-      title: formData.title,
-      description: formData.description,
-      keywords: formData.keywords,
-      other: formData.other,
+      header: formData.header,
+      footer: formData.footer,
+      body: formData.body,
+      
     };
     console.log(payload);
 
     try {
-      const res = await fetch(`${apiUrl}/api/metatags/${type}/${metadataId}`, {
+      const res = await fetch(`${apiUrl}/api/metatags/other/${othermetadataId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -76,7 +74,7 @@ export default function UpdateMetaData() {
       const data = await res.json();
       if (res.ok) {
         toast.success("Metadata updated successfully");
-        navigate(`/dashboard?tab=metadata`);
+        navigate(`/dashboard?tab=othermetadata`);
       } else {
         setPublishError(data.message || "Failed to update metadata");
       }
@@ -88,47 +86,39 @@ export default function UpdateMetaData() {
   return (
     <div className="p-3 max-w-3xl mt-40 pt-20 mx-auto min-h-screen">
       <h1 className="text-center text-3xl my-7 font-semibold capitalize">
-        Update Meta Data {type} page
+        Update Meta Data Other page
       </h1>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <TextInput
           type="text"
-          placeholder="Meta Title"
+          placeholder="Meta Header"
           required
-          name="title"
+          name="header"
           onChange={handleChange}
-          value={formData.title}
+          value={formData.header}
           className="w-full"
         />
 
         <Textarea
-          placeholder="Meta Description"
+          placeholder="Meta footer"
           required
-          name="description"
+          name="footer"
           rows={3}
           onChange={handleChange}
-          value={formData.description}
+          value={formData.footer}
           className="w-full"
         />
 
         <Textarea
-          placeholder="Meta Keywords (comma-separated)"
+          placeholder="Meta Body"
           required
-          name="keywords"
+          name="body"
           rows={2}
           onChange={handleChange}
-          value={formData.keywords}
+          value={formData.body}
           className="w-full"
         />
 
-        <Textarea
-          placeholder="Other Meta Tags"
-          name="other"
-          rows={2}
-          onChange={handleChange}
-          value={formData.other}
-          className="w-full"
-        />
 
         {publishError && <Alert color="failure">{publishError}</Alert>}
 

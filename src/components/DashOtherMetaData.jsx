@@ -5,12 +5,12 @@ import { HiOutlineExclamationCircle } from "react-icons/hi";
 
 const apiUrl = import.meta.env.VITE_BASE_URL;
 
-export default function DashMetaData() {
+export default function DashOtherMetaData() {
   const { currentUser } = useSelector((state) => state.user);
   const [metaData, setMetaData] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [productIdToDelete, setProductIdToDelete] = useState("");
-  const [type, setType] = useState("Product");
+  const [type, setType] = useState("Other");
   const navigate = useNavigate();
 
   // Handle change for dropdown select
@@ -27,12 +27,13 @@ export default function DashMetaData() {
         if (res.ok) {
           setMetaData(data);
         }
+        console.log(data)
       } catch (error) {
         console.error(error.message);
       }
     };
     fetchMetaData();
-  }, [type]);
+  }, []);
 
   // Handle deleting metadata
   const handleDeleteMetaData = async () => {
@@ -63,15 +64,15 @@ export default function DashMetaData() {
 
   // Handle edit metadata
   const handleEditMetaData = (metaId) => {
-    navigate(`/update-metadata/${type.toLowerCase()}/${metaId}`);
+    navigate(`/update-othermetadata/${type.toLowerCase()}/${metaId}`);
   };
 
   return (
     <div className="mt-20 overflow-x-auto p-3">
       <div className="flex gap-2">
-        <Link to={`/create-metadata`}>
+        <Link to={`/create-othermetadata`}>
           <button className="bg-orange-400 text-white py-2 px-4 rounded-md mb-3">
-            Create New Meta Data
+            Create Other Meta Data
           </button>
         </Link>
         <div className="w-md px-3 mb-2">
@@ -83,10 +84,8 @@ export default function DashMetaData() {
               value={type}
               onChange={handleChangeType}
             >
-              <option value="Service">Service</option>
-              <option value="Product">Product</option>
-              <option value="Blog">Blog</option>
-              <option value="Common">Common</option>
+              <option value="Service">Other</option>
+            
             </select>
           </div>
         </div>
@@ -98,17 +97,15 @@ export default function DashMetaData() {
             <thead className="bg-gray-200">
               <tr>
                 <th className="px-4 py-2 font-semibold text-sm text-gray-600">
-                  Title
+                  Header
                 </th>
                 <th className="px-4 py-2 font-semibold text-sm text-gray-600">
-                  Description
+                  Footer
                 </th>
                 <th className="px-4 py-2 font-semibold text-sm text-gray-600">
-                  Keyword
+                  body
                 </th>
-                <th className="px-4 py-2 font-semibold text-sm text-gray-600">
-                  Other
-                </th>
+               
                 <th className="px-4 py-2 font-semibold text-sm text-gray-600">
                   Date Updated
                 </th>
@@ -127,17 +124,15 @@ export default function DashMetaData() {
                   className="bg-white dark:border-gray-700 dark:bg-gray-800"
                 >
                   <td className="px-4 py-2 text-sm text-gray-500">
-                    {data.title}
+                    {data.header}
                   </td>
                   <td className="px-4 py-2 text-sm text-gray-500">
-                    {data.description}
+                    {data.footer}
                   </td>
                   <td className="px-4 py-2 text-sm text-gray-500">
-                    {data.keywords}
+                    {data.body}
                   </td>
-                  <td className="px-4 py-2 text-sm text-gray-500">
-                    {data.other}
-                  </td>
+                 
                   <td className="px-4 py-2 text-sm text-gray-500">
                     {new Date(data.updatedAt).toLocaleDateString()}
                   </td>
@@ -171,7 +166,7 @@ export default function DashMetaData() {
 
       {/* Delete Confirmation Modal */}
       {showModal && (
-        <div className="fixed inset-0 mt-40 flex items-center justify-center bg-black bg-opacity-50 z-50">
+        <div className="fixed inset-0 mt-40   flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white rounded-lg p-6 max-w-sm w-full">
             <div className="text-center">
               <HiOutlineExclamationCircle className="h-14 w-14 text-gray-400 mb-4 mx-auto" />

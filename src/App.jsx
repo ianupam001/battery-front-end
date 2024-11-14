@@ -4,6 +4,8 @@ import { Suspense, lazy } from "react";
 import FullPageLoader from "./components/elements/FullPageLoader";
 import CreateMetaData from "./pages/CreateMetadata";
 import UpdateMetaData from "./pages/UpdateMetaData";
+import UpdateOtherMetaData from "./pages/UpdateOtherMetaData";
+import CreateOtherMetaData from "./pages/CreateOtherMetaData";
 
 // Lazy loading of pages
 const Home = lazy(() => import("./pages/Home"));
@@ -80,6 +82,8 @@ export default function App() {
             <Route path="/update-service/:serviceId" element={<UpdateService />} />
             <Route path="/create-metadata" element={<CreateMetaData />} />
             <Route path="/update-metadata/:type/:metadataId" element={<UpdateMetaData />} />
+            <Route path="/create-othermetadata" element={<CreateOtherMetaData />} />
+            <Route path="/update-othermetadata/other/:othermetadataId" element={<UpdateOtherMetaData />} />
           </Route>
 
           <Route path="/projects" element={<Projects />} />
