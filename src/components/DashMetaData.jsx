@@ -107,6 +107,9 @@ export default function DashMetaData() {
                   Keyword
                 </th>
                 <th className="px-4 py-2 font-semibold text-sm text-gray-600">
+                  Other
+                </th>
+                <th className="px-4 py-2 font-semibold text-sm text-gray-600">
                   Date Updated
                 </th>
                 <th className="px-4 py-2 font-semibold text-sm text-gray-600">
@@ -131,6 +134,9 @@ export default function DashMetaData() {
                   </td>
                   <td className="px-4 py-2 text-sm text-gray-500">
                     {data.keywords}
+                  </td>
+                  <td className="px-4 py-2 text-sm text-gray-500">
+                    {data.other}
                   </td>
                   <td className="px-4 py-2 text-sm text-gray-500">
                     {new Date(data.updatedAt).toLocaleDateString()}

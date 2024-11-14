@@ -6,28 +6,27 @@ import { toast } from "react-toastify";
 const apiUrl = import.meta.env.VITE_BASE_URL;
 
 export default function UpdateMetaData() {
-  const { type, metaId } = useParams();
-  console.log(type)
-  console.log(metaId)
+  const { metadataId } = useParams();
+  const { type } = useParams();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    id:"",
+    id: "",
     title: "",
     description: "",
-    keyword: "",
-    otherTag: "",
-    type: "Service",
+    keywords: "",
+    other: "",
   });
   const [publishError, setPublishError] = useState(null);
   const [isUpdate, setIsUpdate] = useState(false);
 
   // Fetch metadata if `metaId` is provided (indicating an update)
   useEffect(() => {
-    if (metaId) {
+    if (metadataId) {
       const fetchMetaData = async () => {
         try {
-          const res = await fetch(`${apiUrl}/api/metatags/${type}/${metaId}`);
-          console.log(res)
+          const res = await fetch(
+            `${apiUrl}/api/metatags/${type}/${metadataId}`
+          );
           if (res.ok) {
             const data = await res.json();
             setFormData({
@@ -47,7 +46,7 @@ export default function UpdateMetaData() {
       };
       fetchMetaData();
     }
-  }, [type,metaId]);
+  }, [type, metadataId]);
 
   // Handle form input changes
   const handleChange = (e) => {
@@ -61,22 +60,19 @@ export default function UpdateMetaData() {
     const payload = {
       title: formData.title,
       description: formData.description,
-      keywords: formData.keyword,
-      other: formData.otherTag,
+      keywords: formData.keywords,
+      other: formData.other,
     };
-    const selectedType = formData.type.toLowerCase();
+    console.log(payload);
 
     try {
-      const res = await fetch(
-        `${apiUrl}/api/metatags/${selectedType}/${metaId}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(payload),
-        }
-      );
+      const res = await fetch(`${apiUrl}/api/metatags/${type}/${metadataId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
       const data = await res.json();
       if (res.ok) {
         toast.success("Metadata updated successfully");
@@ -118,38 +114,28 @@ export default function UpdateMetaData() {
         <Textarea
           placeholder="Meta Keywords (comma-separated)"
           required
-          name="keyword"
+          name="keywords"
           rows={2}
           onChange={handleChange}
-          value={formData.keyword}
+          value={formData.keywords}
           className="w-full"
         />
 
         <Textarea
           placeholder="Other Meta Tags"
-          name="otherTag"
+          name="other"
           rows={2}
           onChange={handleChange}
-          value={formData.otherTag}
+          value={formData.other}
           className="w-full"
         />
 
-        <Select
-          id="type"
-          name="type"
-          required
-          value={formData.type}
-          onChange={handleChange}
-        >
-          <option value="Service">Service</option>
-          <option value="Product">Product</option>
-          <option value="Blog">Blog</option>
-          <option value="Common">Common</option>
-        </Select>
-
         {publishError && <Alert color="failure">{publishError}</Alert>}
 
-        <Button type="submit" className="bg-orange-400 text-white hover:bg-orange-400/90">
+        <Button
+          type="submit"
+          className="bg-orange-400 text-white hover:bg-orange-400/90"
+        >
           Update Metadata
         </Button>
       </form>
