@@ -9,7 +9,7 @@ export default function PostPage() {
   const [error, setError] = useState(false);
   const [post, setPost] = useState(null);
   const [recentPosts, setRecentPosts] = useState(null);
-
+  const [metaTags, setMetaTags] = useState(null);
   const postUrl = `${postSlug}`;
   const postTitle = encodeURIComponent({ postSlug }); // Encode title for URL
   const postDescription = encodeURIComponent({ postSlug }); // Optional description
@@ -38,18 +38,34 @@ export default function PostPage() {
     fetchPost();
   }, [postSlug]);
 
+  // useEffect(() => {
+  //   try {
+  //     const fetchRecentPosts = async () => {
+  //       const res = await fetch(`${apiUrl}/api/post/getposts?limit=3`);
+  //       const data = await res.json();
+  //       if (res.ok) {
+  //         setRecentPosts(data.posts);
+  //       }
+  //     };
+  //     fetchRecentPosts();
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   }
+  // }, []);
+
   useEffect(() => {
     try {
-      const fetchRecentPosts = async () => {
-        const res = await fetch(`/api/post/getposts?limit=3`);
+      const fetchMetadata = async () => {
+        const res = await fetch(`${apiUrl}/api/metatags/blog`);
         const data = await res.json();
+        // console.log(data[0]);
         if (res.ok) {
-          setRecentPosts(data.posts);
+          setMetaTags(data[0]);
         }
       };
-      fetchRecentPosts();
+      fetchMetadata();
     } catch (error) {
-      console.log(error.message);
+      console.error(error.message);
     }
   }, []);
 
@@ -62,15 +78,9 @@ export default function PostPage() {
   return (
     <>
       <Helmet>
-        <title>{post && post.title}</title>
-        <meta
-          name="title"
-          content={post && post.title}
-        />
-        <meta
-          name="description"
-          content={post && post.title}
-        />
+        <title>{post && metaTags.title}</title>
+        <meta name="title" content={post && metaTags.title} />
+        <meta name="description" content={post && metaTags.description} />
       </Helmet>
       {/*Blog Details Start*/}
       <section className="blog-details">

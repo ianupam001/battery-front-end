@@ -8,6 +8,7 @@ import { ContactForm } from "../components/elements/ContactForm";
 import { useLocation } from "react-router-dom";
 const apiUrl = import.meta.env.VITE_BASE_URL;
 import { ContactFormProducts } from "./../components/elements/ContactFormProducts";
+import { Helmet } from "react-helmet-async";
 
 export default function ProductPage() {
   const location = useLocation();
@@ -18,6 +19,22 @@ export default function ProductPage() {
   const [error, setError] = useState(false);
   const [product, setProduct] = useState(null);
   const [recentProducts, setRecentProducts] = useState(null);
+  const [metaTags, setMetaTags] = useState(null);
+  useEffect(() => {
+    try {
+      const fetchMetadata = async () => {
+        const res = await fetch(`${apiUrl}/api/metatags/product`);
+        const data = await res.json();
+        if (res.ok) {
+          setMetaTags(data[0]);
+        }
+      };
+      fetchMetadata();
+    } catch (error) {
+      console.error(error.message);
+    }
+  }, []);
+
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -45,6 +62,9 @@ export default function ProductPage() {
     fetchProduct();
   }, [productSlug]);
 
+ 
+
+
   useEffect(() => {
     try {
       const fetchRecentProducts = async () => {
@@ -68,6 +88,11 @@ export default function ProductPage() {
     );
   return (
     <div>
+      <Helmet>
+        <title>{ metaTags.title}</title>
+        <meta name="title" content={metaTags.title} />
+        <meta name="description" content={metaTags.description} />
+      </Helmet>
       {/*Start Shop Details Page1*/}
       <section className="shop-details-page1">
         <div className="big-title">shop</div>
@@ -264,9 +289,9 @@ export default function ProductPage() {
           </div>
           <div className="row">
             {recentProducts &&
-              recentProducts.map((productrecent) => (
+              recentProducts?.map((productrecent, index) => (
                 <ProductCard
-                  key={productrecent._id}
+                  key={index}
                   productrecent={productrecent}
                 />
               ))}

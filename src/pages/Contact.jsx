@@ -3,6 +3,7 @@ import Breadcrumb from "../components/sections/home1/Breadcrumb";
 import { Link, useParams } from "react-router-dom";
 import { Alert, Button } from "flowbite-react";
 import { ContactFormContactPage } from "../components/elements/ContactFormContactPage";
+import { Helmet } from "react-helmet-async";
 
 const apiUrl = import.meta.env.VITE_BASE_URL;
 
@@ -45,6 +46,11 @@ export default function Contact() {
 
   return (
     <div>
+      <Helmet >
+        <title>Contact Us | 800 BBattery</title>
+        <meta name="title" content="Contact us page 800 BBattery" />
+        <meta name="description" content="Contact us description  800 BBattery" />
+      </Helmet>
       <Breadcrumb title={title} breadcrumbs={breadcrumbs} />
       <section className="contact-two">
       <div className="container">

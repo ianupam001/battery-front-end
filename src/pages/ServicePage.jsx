@@ -5,6 +5,7 @@ import CallToAction from "../components/CallToAction";
 import CommentSection from "../components/CommentSection";
 import ServiceCard from "../components/PostCard";
 import { ContactForm } from "../components/elements/ContactForm";
+import { Helmet } from "react-helmet-async";
 const apiUrl = import.meta.env.VITE_BASE_URL;
 export default function ServicePage() {
   const location = useLocation();
@@ -14,6 +15,21 @@ export default function ServicePage() {
   const [error, setError] = useState(false);
   const [service, setService] = useState(null);
   const [recentServices, setRecentServices] = useState(null);
+  const [metaTags, setMetaTags] = useState(null);
+  useEffect(() => {
+    try {
+      const fetchMetadata = async () => {
+        const res = await fetch(`${apiUrl}/api/metatags/service`);
+        const data = await res.json();
+        if (res.ok) {
+          setMetaTags(data[0]);
+        }
+      };
+      fetchMetadata();
+    } catch (error) {
+      console.error(error.message);
+    }
+  }, []);
 
   useEffect(() => {
     const fetchService = async () => {
@@ -64,6 +80,11 @@ export default function ServicePage() {
     );
   return (
     <>
+    <Helmet>
+        <title>{ metaTags.title}</title>
+        <meta name="title" content={metaTags.title} />
+        <meta name="description" content={metaTags.description} />
+      </Helmet>
       <section className="service-details">
         <div className="container">
           <div className="row">

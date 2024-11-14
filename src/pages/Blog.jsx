@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Breadcrumb from "../components/sections/home1/Breadcrumb";
+import { Helmet } from "react-helmet-async";
 const apiUrl = import.meta.env.VITE_BASE_URL;
 export default function Blog() {
   const title = "Blog";
@@ -22,6 +23,11 @@ export default function Blog() {
 
   return (
     <>
+    <Helmet>
+        <title>Blog | 800 BBattery</title>
+        <meta name="title" content="blog page 800 BBattery" />
+        <meta name="description" content="Blogpage description  800 BBattery" />
+      </Helmet>
       <Breadcrumb title={title} breadcrumbs={breadcrumbs} />
       {/*Blog One Start*/}
       {posts && posts.length > 0 && (
