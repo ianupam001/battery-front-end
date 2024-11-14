@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
-
+import React, { useState } from "react";
+const apiUrl = import.meta.env.VITE_BASE_URL;
+import { toast } from "react-toastify";
 function DashMetaData() {
   const [form, setForm] = useState({
-    title: '',
-    description: '',
-    keyword: '',
-    otherTag: '',
-    type: 'Service',
+    title: "",
+    description: "",
+    keyword: "",
+    otherTag: "",
+    type: "Service",
   });
 
   const handleChange = (e) => {
@@ -14,9 +15,39 @@ function DashMetaData() {
     setForm({ ...form, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', form);
+    const payload = {
+      title: form.title,
+      description: form.description,
+      keyword: form.keyword,
+      otherTag: form.otherTag,
+    };
+    const type = form.type.toLowerCase();
+    try {
+      const res = await fetch(`${apiUrl}/api/metatags/${type}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+      if (res.ok) {
+        toast.success("Form submitted successfully");
+        setForm({
+          title: "",
+          description: "",
+          keyword: "",
+          otherTag: "",
+          type: "Service",
+        });
+      } else {
+        toast.error(`Form submission failed`);
+      }
+    } catch (error) {
+      toast.error("Form submission failed");
+      console.error(error);
+    }
   };
 
   return (
@@ -24,7 +55,10 @@ function DashMetaData() {
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="flex flex-wrap -mx-3">
           <div className="w-full md:w-1/2 px-3 mb-6">
-            <label className="block text-gray-700 font-bold mb-2" htmlFor="title">
+            <label
+              className="block text-gray-700 font-bold mb-2"
+              htmlFor="title"
+            >
               Meta Title
             </label>
             <textarea
@@ -38,7 +72,10 @@ function DashMetaData() {
           </div>
 
           <div className="w-full md:w-1/2 px-3 mb-2">
-            <label className="block text-gray-700 font-bold mb-2" htmlFor="description">
+            <label
+              className="block text-gray-700 font-bold mb-2"
+              htmlFor="description"
+            >
               Meta Description
             </label>
             <textarea
@@ -54,7 +91,10 @@ function DashMetaData() {
 
         <div className="flex flex-wrap -mx-3">
           <div className="w-full md:w-1/2 px-3 mb-2">
-            <label className="block text-gray-700 font-bold mb-2" htmlFor="keyword">
+            <label
+              className="block text-gray-700 font-bold mb-2"
+              htmlFor="keyword"
+            >
               Meta Keyword
             </label>
             <textarea
@@ -68,7 +108,10 @@ function DashMetaData() {
           </div>
 
           <div className="w-full md:w-1/2 px-3 mb-2">
-            <label className="block text-gray-700 font-bold mb-2" htmlFor="otherTag">
+            <label
+              className="block text-gray-700 font-bold mb-2"
+              htmlFor="otherTag"
+            >
               Other Meta Tag
             </label>
             <textarea

@@ -7,6 +7,7 @@ import {
   signInSuccess,
   signInFailure,
 } from "../redux/user/userSlice";
+import { toast } from "react-toastify";
 
 const apiUrl = import.meta.env.VITE_BASE_URL;
 
@@ -33,18 +34,19 @@ export default function SignIn() {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
-
       if (data.success === false) {
         dispatch(signInFailure(data.message));
       }
 
       if (res.ok) {
         dispatch(signInSuccess(data));
-        localStorage.setItem("access_token", data.access_token); 
-        navigate("/dashboard?tab=dash"); 
-        setFormData({ email: "", password: "" }); 
+        localStorage.setItem("access_token", data.access_token);
+        toast.success("Login successful");
+        navigate("/dashboard?tab=dash");
+        setFormData({ email: "", password: "" });
       }
     } catch (error) {
+      toast.error(error.message);
       dispatch(signInFailure(error.message));
     }
   };
@@ -52,7 +54,9 @@ export default function SignIn() {
   return (
     <div className="flex justify-center items-center my-10 pt-4  md:min-h-screen bg-white">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-        <h2 className="text-2xl font-semibold text-gray-800 text-center">Welcome back!</h2>
+        <h2 className="text-2xl font-semibold text-gray-800 text-center">
+          Welcome back!
+        </h2>
         <p className="text-sm text-gray-600 text-center mt-2">
           Enter your email and password to access your account.
         </p>
@@ -101,7 +105,10 @@ export default function SignIn() {
         </form>
 
         <div className="mt-6 text-center">
-          <Link to="/forgot-password" className="text-sm text-blue-600 hover:underline">
+          <Link
+            to="/forgot-password"
+            className="text-sm text-blue-600 hover:underline"
+          >
             Forgot password?
           </Link>
         </div>
