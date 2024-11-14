@@ -1,159 +1,195 @@
-import React, { useState } from "react";
-const apiUrl = import.meta.env.VITE_BASE_URL;
-import { toast } from "react-toastify";
-function DashMetaData() {
-  const [form, setForm] = useState({
-    title: "",
-    description: "",
-    keyword: "",
-    otherTag: "",
-    type: "Service",
-  });
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { HiOutlineExclamationCircle } from "react-icons/hi";
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setForm({ ...form, [name]: value });
+const apiUrl = import.meta.env.VITE_BASE_URL;
+
+export default function DashMetaData() {
+  const { currentUser } = useSelector((state) => state.user);
+  const [metaData, setMetaData] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [productIdToDelete, setProductIdToDelete] = useState("");
+  const [type, setType] = useState("Product");
+  const navigate = useNavigate();
+
+  // Handle change for dropdown select
+  const handleChangeType = (event) => {
+    setType(event.target.value);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const payload = {
-      title: form.title,
-      description: form.description,
-      keyword: form.keyword,
-      otherTag: form.otherTag,
+  // Fetch metadata based on the selected type
+  useEffect(() => {
+    const fetchMetaData = async () => {
+      try {
+        const res = await fetch(`${apiUrl}/api/metatags/${type.toLowerCase()}`);
+        const data = await res.json();
+        if (res.ok) {
+          setMetaData(data);
+        }
+      } catch (error) {
+        console.error(error.message);
+      }
     };
-    const type = form.type.toLowerCase();
+    fetchMetaData();
+  }, [type]);
+
+  // Handle deleting metadata
+  const handleDeleteMetaData = async () => {
     try {
-      const res = await fetch(`${apiUrl}/api/metatags/${type}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
+      const token = localStorage.getItem("access_token");
+      const res = await fetch(
+        `${apiUrl}/api/metatags/${type.toLowerCase()}/${productIdToDelete}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const data = await res.json();
       if (res.ok) {
-        toast.success("Form submitted successfully");
-        setForm({
-          title: "",
-          description: "",
-          keyword: "",
-          otherTag: "",
-          type: "Service",
-        });
+        setMetaData((prev) =>
+          prev.filter((item) => item._id !== productIdToDelete)
+        );
+        setShowModal(false);
       } else {
-        toast.error(`Form submission failed`);
+        console.error(data.message);
       }
     } catch (error) {
-      toast.error("Form submission failed");
-      console.error(error);
+      console.error(error.message);
     }
   };
 
+  // Handle edit metadata
+  const handleEditMetaData = (metaId) => {
+    navigate(`/update-metadata/${type.toLowerCase()}/${metaId}`);
+  };
+
   return (
-    <div className="max-w-2xl mx-auto mt-20 p-6 bg-white shadow-md rounded-md">
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="flex flex-wrap -mx-3">
-          <div className="w-full md:w-1/2 px-3 mb-6">
-            <label
-              className="block text-gray-700 font-bold mb-2"
-              htmlFor="title"
-            >
-              Meta Title
-            </label>
-            <textarea
-              name="title"
-              id="title"
-              rows="2"
-              className="w-full p-2 border border-gray-300 rounded-md resize-none"
-              value={form.title}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="w-full md:w-1/2 px-3 mb-2">
-            <label
-              className="block text-gray-700 font-bold mb-2"
-              htmlFor="description"
-            >
-              Meta Description
-            </label>
-            <textarea
-              name="description"
-              id="description"
-              rows="2"
-              className="w-full p-2 border border-gray-300 rounded-md resize-none"
-              value={form.description}
-              onChange={handleChange}
-            />
-          </div>
-        </div>
-
-        <div className="flex flex-wrap -mx-3">
-          <div className="w-full md:w-1/2 px-3 mb-2">
-            <label
-              className="block text-gray-700 font-bold mb-2"
-              htmlFor="keyword"
-            >
-              Meta Keyword
-            </label>
-            <textarea
-              name="keyword"
-              id="keyword"
-              rows="2"
-              className="w-full p-2 border border-gray-300 rounded-md resize-none"
-              value={form.keyword}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="w-full md:w-1/2 px-3 mb-2">
-            <label
-              className="block text-gray-700 font-bold mb-2"
-              htmlFor="otherTag"
-            >
-              Other Meta Tag
-            </label>
-            <textarea
-              name="otherTag"
-              id="otherTag"
-              rows="2"
-              className="w-full p-2 border border-gray-300 rounded-md resize-none"
-              value={form.otherTag}
-              onChange={handleChange}
-            />
-          </div>
-        </div>
-
-        <div className="w-full px-3 mb-2">
-          <label className="block text-gray-700 font-bold mb-2" htmlFor="type">
-            Meta Type
-          </label>
-          <select
-            name="type"
-            id="type"
-            className="w-full p-2 border border-gray-300 rounded-md"
-            value={form.type}
-            onChange={handleChange}
-          >
-            <option value="Service">Service</option>
-            <option value="Product">Product</option>
-            <option value="Blog">Blog</option>
-            <option value="Common">Common</option>
-          </select>
-        </div>
-
-        <div className="px-3">
-          <button
-            type="submit"
-            className="px-6 py-2 bg-orange-400 text-white font-bold rounded-md hover:bg-orange-400/90"
-          >
-            Submit
+    <div className="mt-20 overflow-x-auto p-3">
+      <div className="flex gap-2">
+        <Link to={`/create-metadata`}>
+          <button className="bg-orange-400 text-white py-2 px-4 rounded-md mb-3">
+            Create New Meta Data
           </button>
+        </Link>
+        <div className="w-md px-3 mb-2">
+          <div className="relative w-40">
+            <select
+              name="type"
+              id="type"
+              className="w-full p-2 border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-0"
+              value={type}
+              onChange={handleChangeType}
+            >
+              <option value="Service">Service</option>
+              <option value="Product">Product</option>
+              <option value="Blog">Blog</option>
+              <option value="Common">Common</option>
+            </select>
+          </div>
         </div>
-      </form>
+      </div>
+
+      {currentUser.isAdmin && metaData.length > 0 ? (
+        <>
+          <table className="min-w-full table-auto border-collapse text-left shadow-md">
+            <thead className="bg-gray-200">
+              <tr>
+                <th className="px-4 py-2 font-semibold text-sm text-gray-600">
+                  Title
+                </th>
+                <th className="px-4 py-2 font-semibold text-sm text-gray-600">
+                  Description
+                </th>
+                <th className="px-4 py-2 font-semibold text-sm text-gray-600">
+                  Keyword
+                </th>
+                <th className="px-4 py-2 font-semibold text-sm text-gray-600">
+                  Date Updated
+                </th>
+                <th className="px-4 py-2 font-semibold text-sm text-gray-600">
+                  Delete
+                </th>
+                <th className="px-4 py-2 font-semibold text-sm text-gray-600">
+                  Edit
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y">
+              {metaData.map((data) => (
+                <tr
+                  key={data._id}
+                  className="bg-white dark:border-gray-700 dark:bg-gray-800"
+                >
+                  <td className="px-4 py-2 text-sm text-gray-500">
+                    {data.title}
+                  </td>
+                  <td className="px-4 py-2 text-sm text-gray-500">
+                    {data.description}
+                  </td>
+                  <td className="px-4 py-2 text-sm text-gray-500">
+                    {data.keywords}
+                  </td>
+                  <td className="px-4 py-2 text-sm text-gray-500">
+                    {new Date(data.updatedAt).toLocaleDateString()}
+                  </td>
+                  <td className="px-4 py-2 text-sm text-gray-500">
+                    <button
+                      onClick={() => {
+                        setShowModal(true);
+                        setProductIdToDelete(data._id);
+                      }}
+                      className="text-red-500 hover:underline"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                  <td className="px-4 py-2 text-sm text-gray-500">
+                    <button
+                      onClick={() => handleEditMetaData(data._id)}
+                      className="text-blue-500 hover:underline"
+                    >
+                      Edit
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </>
+      ) : (
+        <p>No metadata available.</p>
+      )}
+
+      {/* Delete Confirmation Modal */}
+      {showModal && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white rounded-lg p-6 max-w-sm w-full">
+            <div className="text-center">
+              <HiOutlineExclamationCircle className="h-14 w-14 text-gray-400 mb-4 mx-auto" />
+              <h3 className="mb-5 text-lg text-gray-500">
+                Are you sure you want to delete this metadata?
+              </h3>
+              <div className="flex justify-center gap-4">
+                <button
+                  onClick={handleDeleteMetaData}
+                  className="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600"
+                >
+                  Yes, delete it
+                </button>
+                <button
+                  onClick={() => setShowModal(false)}
+                  className="bg-gray-300 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-400"
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
-
-export default DashMetaData;

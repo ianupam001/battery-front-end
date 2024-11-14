@@ -1,103 +1,193 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { HiOutlineExclamationCircle } from "react-icons/hi";
+
 const apiUrl = import.meta.env.VITE_BASE_URL;
-import { toast } from "react-toastify";
-const DashMetaDataOther = () => {
-  const [formData, setFormData] = useState({
-    headerTag: "",
-    footerTag: "",
-    bodyTag: "",
-  });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+export default function DashMetaDataOther() {
+  const { currentUser } = useSelector((state) => state.user);
+  const [userProducts, setUserProducts] = useState([]);
+  const [showMore, setShowMore] = useState(true);
+  const [showModal, setShowModal] = useState(false);
+  const [productIdToDelete, setProductIdToDelete] = useState("");
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const type = "other";
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const res = await fetch(
+          `${apiUrl}/api/product/getproducts?userId=${currentUser._id}`
+        );
+        const data = await res.json();
+        if (res.ok) {
+          setUserProducts(data.products);
+          if (data.products.length < 9) {
+            setShowMore(false);
+          }
+        }
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+    if (currentUser.isAdmin) {
+      fetchProducts();
+    }
+  }, [currentUser._id]);
+
+  const handleShowMore = async () => {
+    const startIndex = userProducts.length;
     try {
-      const res = await fetch(`${apiUrl}/api/metatags/${type}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const res = await fetch(
+        `${apiUrl}/api/product/getproducts?userId=${currentUser._id}&startIndex=${startIndex}`
+      );
+      const data = await res.json();
       if (res.ok) {
-        toast.success("Form submitted successfully");
-        setFormData({
-          headerTag: "",
-          footerTag: "",
-          bodyTag: "",
-        });
-      } else {
-        toast.error(`Form submission failed`);
+        setUserProducts((prev) => [...prev, ...data.products]);
+        if (data.products.length < 9) {
+          setShowMore(false);
+        }
       }
     } catch (error) {
-      toast.error("Form submission failed");
-      console.error(error);
+      console.log(error.message);
+    }
+  };
+
+  const handleDeleteProduct = async () => {
+    setShowModal(false);
+    try {
+      const token = localStorage.getItem("access_token");
+      const res = await fetch(
+        `${apiUrl}/api/product/deleteproduct/${productIdToDelete}/${currentUser._id}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const data = await res.json();
+      if (!res.ok) {
+        console.log(data.message);
+      } else {
+        setUserProducts((prev) =>
+          prev.filter((product) => product._id !== productIdToDelete)
+        );
+      }
+    } catch (error) {
+      console.log(error.message);
     }
   };
 
   return (
-    <div className="max-w-3xl mt-20 mx-auto p-6 bg-white shadow-md rounded-lg">
-      <form onSubmit={handleSubmit}>
-        <div className="flex flex-col md:flex-row gap-4 mb-2">
-          <div className="flex-1">
-            <label htmlFor="headerTag" className="block font-semibold mb-2">
-              Header Tag
-            </label>
-            <textarea
-              id="headerTag"
-              name="headerTag"
-              rows="2"
-              className="w-full p-2 border rounded-md"
-              value={formData.headerTag}
-              onChange={handleChange}
-            />
+    <div className="mt-20 overflow-x-auto p-3">
+      {currentUser.isAdmin && userProducts.length > 0 ? (
+        <>
+          <div className="">
+            {currentUser.isAdmin && (
+              <Link to={`/create-metadata`}>
+                <button className="bg-orange-400 text-white py-2 px-4 rounded-md mb-3">
+                  Create Other Meta Data
+                </button>
+              </Link>
+            )}
           </div>
 
-          <div className="flex-1">
-            <label htmlFor="footerTag" className="block font-semibold mb-2">
-              Footer Tag
-            </label>
-            <textarea
-              id="footerTag"
-              name="footerTag"
-              rows="2"
-              className="w-full p-2 border rounded-md"
-              value={formData.footerTag}
-              onChange={handleChange}
-            />
+          <table className="min-w-full table-auto border-collapse text-left shadow-md">
+            <thead className="bg-gray-200">
+              <tr>
+                <th className="px-4 py-2 font-semibold text-sm text-gray-600">Product Title</th>
+                <th className="px-4 py-2 font-semibold text-sm text-gray-600">Product Image</th>
+                <th className="px-4 py-2 font-semibold text-sm text-gray-600">Date Updated</th>
+                <th className="px-4 py-2 font-semibold text-sm text-gray-600">Delete</th>
+                <th className="px-4 py-2 font-semibold text-sm text-gray-600">Edit</th>
+                <th className="px-4 py-2 font-semibold text-sm text-gray-600">View</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y">
+              {userProducts.map((product) => (
+                <tr key={product._id} className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                  <td className="px-4 py-2 text-sm text-gray-500">
+                    <Link className="font-medium text-gray-900 dark:text-white" to={`/product/${product.slug}`}>
+                      {product.title}
+                    </Link>
+                  </td>
+                  <td className="px-4 py-2 text-sm text-gray-500">
+                    <Link to={`/product/${product.slug}`}>
+                      <img
+                        src={product.image}
+                        alt={product.title}
+                        className="w-20 h-10 object-cover bg-gray-500"
+                      />
+                    </Link>
+                  </td>
+                  <td className="px-4 py-2 text-sm text-gray-500">
+                    {new Date(product.updatedAt).toLocaleDateString()}
+                  </td>
+                  <td className="px-4 py-2 text-sm text-gray-500">
+                    <button
+                      onClick={() => {
+                        setShowModal(true);
+                        setProductIdToDelete(product._id);
+                      }}
+                      className="text-red-500 hover:underline"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                  <td className="px-4 py-2 text-sm text-gray-500">
+                    <Link className="text-teal-500 hover:underline" to={`/update-product/${product._id}`}>
+                      Edit
+                    </Link>
+                  </td>
+                  <td className="px-4 py-2 text-sm text-gray-500">
+                    <Link className="font-medium text-gray-900 dark:text-white" to={`/product/${product.slug}`}>
+                      View Product
+                    </Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
+          {showMore && (
+            <button
+              onClick={handleShowMore}
+              className="w-full text-teal-500 self-center text-sm py-7"
+            >
+              Show more
+            </button>
+          )}
+        </>
+      ) : (
+        <p>You have no products yet!</p>
+      )}
+
+      {/* Custom Modal */}
+      {showModal && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white rounded-lg p-6 max-w-sm w-full">
+            <div className="text-center">
+              <HiOutlineExclamationCircle className="h-14 w-14 text-gray-400 mb-4 mx-auto" />
+              <h3 className="mb-5 text-lg text-gray-500">Are you sure you want to delete this product?</h3>
+              <div className="flex justify-center gap-4">
+                <button
+                  onClick={handleDeleteProduct}
+                  className="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600"
+                >
+                  Yes, I'm sure
+                </button>
+                <button
+                  onClick={() => setShowModal(false)}
+                  className="bg-gray-300 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-400"
+                >
+                  No, cancel
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-
-        <div className="mb-2">
-          <label htmlFor="bodyTag" className="block font-semibold mb-2">
-            Body Tag
-          </label>
-          <textarea
-            id="bodyTag"
-            name="bodyTag"
-            rows="3"
-            className="w-full p-2 border rounded-md"
-            value={formData.bodyTag}
-            onChange={handleChange}
-          />
-        </div>
-
-        <div className="flex justify-center">
-          <button
-            type="submit"
-            className="px-6 py-2 bg-orange-400 text-white font-semibold rounded-md hover:bg-orange-400/90"
-          >
-            Submit
-          </button>
-        </div>
-      </form>
+      )}
     </div>
   );
-};
-
-export default DashMetaDataOther;
+}

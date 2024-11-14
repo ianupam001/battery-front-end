@@ -2,6 +2,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Suspense, lazy } from "react";
 import FullPageLoader from "./components/elements/FullPageLoader";
+import CreateMetaData from "./pages/CreateMetadata";
+import UpdateMetaData from "./pages/UpdateMetaData";
 
 // Lazy loading of pages
 const Home = lazy(() => import("./pages/Home"));
@@ -76,6 +78,8 @@ export default function App() {
             <Route path="/update-testimonial/:testimonialId" element={<UpdateTestimonial />} />
             <Route path="/create-service" element={<CreateService />} />
             <Route path="/update-service/:serviceId" element={<UpdateService />} />
+            <Route path="/create-metadata" element={<CreateMetaData />} />
+            <Route path="/update-metadata/:type/:metadataId" element={<UpdateMetaData />} />
           </Route>
 
           <Route path="/projects" element={<Projects />} />
