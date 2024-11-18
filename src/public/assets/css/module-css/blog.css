@@ -1220,8 +1220,8 @@
     background-color: var(--erepair-white);
     border: 1px solid var(--erepair-bdr-color);
     border-left: 0;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
     padding: 24px 20px 23px;
 }
 

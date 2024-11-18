@@ -30,7 +30,7 @@ export default function Service() {
                     </div>
                 </div>
                 <div className="row">
-                    {services.map((post) => (
+                    {services?.map((post) => (
                         <ServiceCard key={post._id} post={post}/>
    
                     ))}
