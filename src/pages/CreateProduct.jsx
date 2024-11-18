@@ -66,8 +66,8 @@ export default function CreateProduct() {
       const res = await fetch(`${apiUrl}/api/product/create`, {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${token}`, // Correctly set the Authorization header
-          "Content-Type": "application/json", // Content-Type header
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
@@ -87,86 +87,90 @@ export default function CreateProduct() {
   };
   return (
     <div className="max-w-3xl mx-auto min-h-screen border p-5 mt-32">
-  <h1 className="text-center text-3xl my-7 font-semibold">
-    Create Product
-  </h1>
-  <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-    {/* Title Field */}
-    <div className="flex flex-col gap-4 sm:flex-row justify-between">
-      <div className="flex-1">
-        <label htmlFor="title" className="mb-1 text-sm font-medium">
-          Title
-        </label>
-        <TextInput
-          type="text"
-          placeholder="Enter product title"
-          required
-          id="title"
-          onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-        />
-      </div>
-    </div>
+      <h1 className="text-center text-3xl my-7 font-semibold">
+        Create Product
+      </h1>
+      <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+        {/* Title Field */}
+        <div className="flex flex-col gap-4 sm:flex-row justify-between">
+          <div className="flex-1">
+            <label htmlFor="title" className="mb-1 text-sm font-medium">
+              Title
+            </label>
+            <TextInput
+              type="text"
+              placeholder="Enter product title"
+              required
+              id="title"
+              onChange={(e) =>
+                setFormData({ ...formData, title: e.target.value })
+              }
+            />
+          </div>
+        </div>
 
-    {/* File Upload Field */}
-    <div className="flex flex-col gap-4 ">
-      <label htmlFor="image" className="mb-1 text-sm font-medium">
-        Product Image
-      </label>
-      <div className="flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-3">
-        <FileInput
-          type="file"
-          accept="image/*"
-          id="image"
-          onChange={(e) => setFile(e.target.files[0])}
-        />
-        <Button
-          type="button"
-          gradientDuoTone="purpleToBlue"
-          size="sm"
-          outline
-          onClick={handleUpdloadImage}
-          disabled={imageUploadProgress}
-        >
-          {imageUploadProgress ? (
-            <div className="w-16 h-16">
-              <CircularProgressbar
-                value={imageUploadProgress}
-                text={`${imageUploadProgress || 0}%`}
-              />
-            </div>
-          ) : (
-            "Upload Image"
+        {/* File Upload Field */}
+        <div className="flex flex-col gap-4 ">
+          <label htmlFor="image" className="mb-1 text-sm font-medium">
+            Product Image
+          </label>
+          <div className="flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-3">
+            <FileInput
+              type="file"
+              accept="image/*"
+              id="image"
+              onChange={(e) => setFile(e.target.files[0])}
+            />
+            <Button
+              type="button"
+              gradientDuoTone="purpleToBlue"
+              size="sm"
+              outline
+              onClick={handleUpdloadImage}
+              disabled={imageUploadProgress}
+            >
+              {imageUploadProgress ? (
+                <div className="w-16 h-16">
+                  <CircularProgressbar
+                    value={imageUploadProgress}
+                    text={`${imageUploadProgress || 0}%`}
+                  />
+                </div>
+              ) : (
+                "Upload Image"
+              )}
+            </Button>
+          </div>
+          {imageUploadError && (
+            <Alert color="failure">{imageUploadError}</Alert>
           )}
-        </Button>
-      </div>
-      {imageUploadError && <Alert color="failure">{imageUploadError}</Alert>}
-      {formData.image && (
-        <img
-          src={formData.image}
-          alt="Uploaded preview"
-          className="w-full h-72 object-cover"
-        />
-      )}
-    </div>
+          {formData.image && (
+            <img
+              src={formData.image}
+              alt="Uploaded preview"
+              className="w-full h-72 object-cover"
+            />
+          )}
+        </div>
 
-    {/* Description Field */}
-    <div>
-      <label htmlFor="content" className="mb-1 text-sm font-medium">
-        Description
-      </label>
-      <ReactQuill
-        theme="snow"
-        placeholder="Write product description..."
-        className="h-72 mb-12"
-        required
-        id="content"
-        onChange={(value) => {
-          setFormData({ ...formData, content: value });
-        }}
-      />
-    </div>
+        {/* Description Field */}
+        <div>
+          <label htmlFor="content" className="mb-1 text-sm font-medium">
+            Description
+          </label>
+          <ReactQuill
+            theme="snow"
+            placeholder="Write product description..."
+            className="h-72 mb-12"
+            required
+            id="content"
+            onChange={(value) => {
+              setFormData({ ...formData, content: value });
+            }}
+          />
+        </div>
 
-    <div>
+        <div>
           <label htmlFor="meta_title" className="block font-medium mb-2">
             Meta Title
           </label>
@@ -226,22 +230,19 @@ export default function CreateProduct() {
           />
         </div>
 
-
-
-    {/* Submit Button */}
-    <Button
-      type="submit"
-      className="bg-orange-400 text-white hover:bg-orange-400/90"
-    >
-      Publish
-    </Button>
-    {publishError && (
-      <Alert className="mt-5" color="failure">
-        {publishError}
-      </Alert>
-    )}
-  </form>
-</div>
-
+        {/* Submit Button */}
+        <Button
+          type="submit"
+          className="bg-orange-400 text-white hover:bg-orange-400/90"
+        >
+          Publish
+        </Button>
+        {publishError && (
+          <Alert className="mt-5" color="failure">
+            {publishError}
+          </Alert>
+        )}
+      </form>
+    </div>
   );
 }
