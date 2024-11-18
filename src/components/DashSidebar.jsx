@@ -1,12 +1,11 @@
-import { Sidebar } from "flowbite-react";
+import { Sidebar, Dropdown } from "flowbite-react"; 
 import {
   HiUser,
   HiArrowSmRight,
   HiDocumentText,
-  HiOutlineUserGroup,
-  HiAnnotation,
   HiChartPie,
 } from "react-icons/hi";
+import { FaRegFileCode } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { signoutSuccess } from "../redux/user/userSlice";
@@ -66,6 +65,27 @@ export default function DashSidebar() {
                   Profile
                 </Sidebar.Item>
               </Link>
+
+                {/* Metadata with Dropdown */}
+                <Sidebar.Item className="cursor-pointer "   icon={FaRegFileCode }>
+                <Dropdown label="Metadata" inline>
+                  <Link to="/dashboard?tab=home">
+                    <Dropdown.Item active={isActiveTab("home")}>Home</Dropdown.Item>
+                  </Link>
+                  <Link to="/dashboard?tab=about">
+                    <Dropdown.Item active={isActiveTab("about")}>About</Dropdown.Item>
+                  </Link>
+                  <Link to="/dashboard?tab=blog">
+                    <Dropdown.Item active={isActiveTab("blog")}>Blog</Dropdown.Item>
+                  </Link>
+                  <Link to="/dashboard?tab=contact">
+                    <Dropdown.Item active={isActiveTab("contact")}>Contact</Dropdown.Item>
+                  </Link>
+                  <Link to="/dashboard?tab=othermetadata">
+                    <Dropdown.Item active={isActiveTab("othermetadata")}>Other MetaData</Dropdown.Item>
+                  </Link>
+                </Dropdown>
+              </Sidebar.Item>
 
               <Link to="/dashboard?tab=posts">
                 <Sidebar.Item
@@ -127,25 +147,7 @@ export default function DashSidebar() {
                 </Sidebar.Item>
               </Link>
 
-              <Link to="/dashboard?tab=metadata">
-                <Sidebar.Item
-                  active={isActiveTab("metadata")}
-                  icon={HiDocumentText}
-                  className={`cursor-pointer ${isActiveTab("metadata") ? "bg-orange-200" : ""}`}
-                >
-                  Metadata
-                </Sidebar.Item>
-              </Link>
-
-              <Link to="/dashboard?tab=othermetadata">
-                <Sidebar.Item
-                  active={isActiveTab("othermetadata")}
-                  icon={HiDocumentText}
-                  className={`cursor-pointer ${isActiveTab("othermetadata") ? "bg-orange-200" : ""}`}
-                >
-                Other Metadata
-                </Sidebar.Item>
-              </Link>
+            
 
               <Link to="/dashboard?tab=inquiries">
                 <Sidebar.Item
@@ -156,8 +158,6 @@ export default function DashSidebar() {
                   Enquiries
                 </Sidebar.Item>
               </Link>
-
-             
 
               {/* <Link to="/dashboard?tab=comments">
                 <Sidebar.Item

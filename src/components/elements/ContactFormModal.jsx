@@ -91,14 +91,12 @@ export function ContactFormModal({ sourcePage }) {
       sourcePage: data.sourcePage,
     };
     try {
-      const token = localStorage.getItem("access_token");
-      const res = await fetch(`${apiUrl}/ QA/form`, {
+      const res = await fetch(`${apiUrl}/api/inquiry/create/inquiry`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`, // Corrected typo here
         },
-        body: JSON.stringify(payload), // Corrected from 'data' to 'body'
+        body: JSON.stringify(payload), 
       });
       if (res.ok) {
         navigate("/thank-you", { state: { fromFormSubmission: true }} );

@@ -20,6 +20,8 @@ export default function DashInquiries() {
             setShowMore(false);
           }
         }
+
+        console.log(data.inquiries)
       } catch (error) {
         console.log(error.message);
       }
@@ -95,7 +97,15 @@ export default function DashInquiries() {
                   Phone
                 </th>
                 <th className="px-4 py-2 font-semibold text-sm text-gray-600">
-                  Inquiry Type
+                  Service
+                </th>
+               
+                <th className="px-4 py-2 font-semibold text-sm text-gray-600">
+                  Source Page
+                </th>
+              
+                <th className="px-4 py-2 font-semibold text-sm text-gray-600">
+                  Message
                 </th>
                 <th className="px-4 py-2 font-semibold text-sm text-gray-600">
                   Date
@@ -121,7 +131,13 @@ export default function DashInquiries() {
                     {inquiry.phone}
                   </td>
                   <td className="px-4 py-2 text-sm text-gray-500">
-                    {inquiry.inquiry_type}
+                    {inquiry.service}
+                  </td>
+                  <td className="px-4 py-2 text-sm text-gray-500">
+                    {inquiry.sourcePage}
+                  </td>
+                  <td className="px-4 py-2 text-sm text-gray-500">
+                    {inquiry.message}
                   </td>
                   <td className="px-4 py-2 text-sm text-gray-500">
                     {new Date(inquiry.updatedAt).toLocaleDateString()}
