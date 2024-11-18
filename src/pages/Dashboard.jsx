@@ -14,6 +14,11 @@ import DashboardComp from '../components/DashboardComp';
 import DashServices from '../components/DashServices';
 import DashMetaData from '../components/DashMetaData';
 import DashOtherMetaData from '../components/DashOtherMetaData';
+import DashHomeMeta from '../components/DashHomeMeta';
+import DashAboutMeta from '../components/DashAboutMeta';
+import DashContactMeta from '../components/DashContactMeta';
+import DashBlogMeta from '../components/DashBlogMeta';
+import DashOtherMeta from '../components/DashOtherMeta';
 
 export default function Dashboard() {
   const location = useLocation();
@@ -47,10 +52,16 @@ export default function Dashboard() {
         {tab === 'testimonials' && <DashTestimonials />}
         {tab === 'inquiries' && <DashInquirys />}
         {tab === 'metadata' && <DashMetaData />}
-        {tab === 'othermetadata' && <DashOtherMetaData />}
         {tab === 'users' && <DashUsers />}
         {tab === 'comments' && <DashComments />}
-        {tab === 'dash' && <DashboardComp />}
+        {tab === 'othermetadata' && <DashOtherMetaData />}
+
+        {tab === 'home' && <DashHomeMeta />}
+        {tab === 'about' && <DashAboutMeta />}
+        {tab === 'contact' && <DashContactMeta />}
+        {tab === 'blog' && <DashBlogMeta />}
+        {tab === 'othermeta' && <DashOtherMeta />}
+      
       </div>
     </div>
   );

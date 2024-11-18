@@ -1,4 +1,4 @@
-import { Sidebar, Dropdown } from "flowbite-react"; 
+import { Sidebar, Dropdown } from "flowbite-react";
 import {
   HiUser,
   HiArrowSmRight,
@@ -20,6 +20,9 @@ export default function DashSidebar() {
 
   const isActiveTab = (tab) => {
     return location.search.includes(`tab=${tab}`);
+  };
+  const isActiveTabMeta = (tabs) => {
+    return tabs.some((tab) => location.search.includes(`tab=${tab}`));
   };
 
   const handleSignout = async () => {
@@ -49,7 +52,9 @@ export default function DashSidebar() {
                 <Sidebar.Item
                   active={isActiveTab("dash")}
                   icon={HiChartPie}
-                  className={`cursor-pointer ${isActiveTab("dash") ? "bg-orange-200" : ""}`}
+                  className={`cursor-pointer ${
+                    isActiveTab("dash") ? "bg-orange-200" : ""
+                  }`}
                 >
                   Dashboard
                 </Sidebar.Item>
@@ -60,38 +65,77 @@ export default function DashSidebar() {
                   active={isActiveTab("profile")}
                   icon={HiUser}
                   label={currentUser.isAdmin ? "Admin" : "User"}
-                  className={`cursor-pointer ${isActiveTab("profile") ? "bg-orange-200" : ""}`}
+                  className={`cursor-pointer ${
+                    isActiveTab("profile") ? "bg-orange-200" : ""
+                  }`}
                 >
                   Profile
                 </Sidebar.Item>
               </Link>
 
-                {/* Metadata with Dropdown */}
-                <Sidebar.Item className="cursor-pointer "   icon={FaRegFileCode }>
+              {/* Metadata Dropdown */}
+              <Sidebar.Item
+                icon={FaRegFileCode}
+                className={`cursor-pointer ${
+                  isActiveTabMeta([
+                    "home",
+                    "about",
+                    "blog",
+                    "contact",
+                    "othermetadata",
+                  ])
+                    ? "bg-orange-200"
+                    : ""
+                }`}
+              >
                 <Dropdown label="Metadata" inline>
                   <Link to="/dashboard?tab=home">
-                    <Dropdown.Item active={isActiveTab("home")}>Home</Dropdown.Item>
+                    <Dropdown.Item active={isActiveTabMeta(["home"])}>
+                      Home
+                    </Dropdown.Item>
                   </Link>
                   <Link to="/dashboard?tab=about">
-                    <Dropdown.Item active={isActiveTab("about")}>About</Dropdown.Item>
+                    <Dropdown.Item active={isActiveTabMeta(["about"])}>
+                      About
+                    </Dropdown.Item>
                   </Link>
                   <Link to="/dashboard?tab=blog">
-                    <Dropdown.Item active={isActiveTab("blog")}>Blog</Dropdown.Item>
+                    <Dropdown.Item active={isActiveTabMeta(["blog"])}>
+                      Blog
+                    </Dropdown.Item>
                   </Link>
                   <Link to="/dashboard?tab=contact">
-                    <Dropdown.Item active={isActiveTab("contact")}>Contact</Dropdown.Item>
+                    <Dropdown.Item active={isActiveTabMeta(["contact"])}>
+                      Contact
+                    </Dropdown.Item>
                   </Link>
                   <Link to="/dashboard?tab=othermetadata">
-                    <Dropdown.Item active={isActiveTab("othermetadata")}>Other MetaData</Dropdown.Item>
+                    <Dropdown.Item active={isActiveTabMeta(["othermetadata"])}>
+                      Other MetaData
+                    </Dropdown.Item>
                   </Link>
                 </Dropdown>
               </Sidebar.Item>
+
+              <Link to="/dashboard?tab=inquiries">
+                <Sidebar.Item
+                  active={isActiveTab("inquiries")}
+                  icon={HiDocumentText}
+                  className={`cursor-pointer ${
+                    isActiveTab("inquiries") ? "bg-orange-200" : ""
+                  }`}
+                >
+                  Inquiries
+                </Sidebar.Item>
+              </Link>
 
               <Link to="/dashboard?tab=posts">
                 <Sidebar.Item
                   active={isActiveTab("posts")}
                   icon={HiDocumentText}
-                  className={`cursor-pointer ${isActiveTab("posts") ? "bg-orange-200" : ""}`}
+                  className={`cursor-pointer ${
+                    isActiveTab("posts") ? "bg-orange-200" : ""
+                  }`}
                 >
                   Posts
                 </Sidebar.Item>
@@ -101,7 +145,9 @@ export default function DashSidebar() {
                 <Sidebar.Item
                   active={isActiveTab("products")}
                   icon={HiDocumentText}
-                  className={`cursor-pointer ${isActiveTab("products") ? "bg-orange-200" : ""}`}
+                  className={`cursor-pointer ${
+                    isActiveTab("products") ? "bg-orange-200" : ""
+                  }`}
                 >
                   Products
                 </Sidebar.Item>
@@ -111,7 +157,9 @@ export default function DashSidebar() {
                 <Sidebar.Item
                   active={isActiveTab("services")}
                   icon={HiDocumentText}
-                  className={`cursor-pointer ${isActiveTab("services") ? "bg-orange-200" : ""}`}
+                  className={`cursor-pointer ${
+                    isActiveTab("services") ? "bg-orange-200" : ""
+                  }`}
                 >
                   Services
                 </Sidebar.Item>
@@ -121,7 +169,9 @@ export default function DashSidebar() {
                 <Sidebar.Item
                   active={isActiveTab("sliders")}
                   icon={HiDocumentText}
-                  className={`cursor-pointer ${isActiveTab("sliders") ? "bg-orange-200" : ""}`}
+                  className={`cursor-pointer ${
+                    isActiveTab("sliders") ? "bg-orange-200" : ""
+                  }`}
                 >
                   Sliders
                 </Sidebar.Item>
@@ -131,7 +181,9 @@ export default function DashSidebar() {
                 <Sidebar.Item
                   active={isActiveTab("brands")}
                   icon={HiDocumentText}
-                  className={`cursor-pointer ${isActiveTab("brands") ? "bg-orange-200" : ""}`}
+                  className={`cursor-pointer ${
+                    isActiveTab("brands") ? "bg-orange-200" : ""
+                  }`}
                 >
                   Brands
                 </Sidebar.Item>
@@ -141,33 +193,13 @@ export default function DashSidebar() {
                 <Sidebar.Item
                   active={isActiveTab("testimonials")}
                   icon={HiDocumentText}
-                  className={`cursor-pointer ${isActiveTab("testimonials") ? "bg-orange-200" : ""}`}
+                  className={`cursor-pointer ${
+                    isActiveTab("testimonials") ? "bg-orange-200" : ""
+                  }`}
                 >
                   Testimonials
                 </Sidebar.Item>
               </Link>
-
-            
-
-              <Link to="/dashboard?tab=inquiries">
-                <Sidebar.Item
-                  active={isActiveTab("inquiries")}
-                  icon={HiDocumentText}
-                  className={`cursor-pointer ${isActiveTab("inquiries") ? "bg-orange-200" : ""}`}
-                >
-                  Enquiries
-                </Sidebar.Item>
-              </Link>
-
-              {/* <Link to="/dashboard?tab=comments">
-                <Sidebar.Item
-                  active={isActiveTab("comments")}
-                  icon={HiAnnotation}
-                  className={`cursor-pointer ${isActiveTab("comments") ? "bg-orange-300" : ""}`}
-                >
-                  Comments
-                </Sidebar.Item>
-              </Link> */}
 
               <Sidebar.Item
                 icon={HiArrowSmRight}
