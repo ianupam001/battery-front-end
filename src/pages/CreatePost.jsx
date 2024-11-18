@@ -83,7 +83,7 @@ export default function CreatePost() {
     }
   };
   return (
-    <div className="p-3 max-w-3xl mx-auto min-h-screen">
+    <div className="p-5 max-w-3xl mx-auto min-h-screen border mt-32">
       <h1 className="text-center text-3xl my-7 font-semibold">Create a post</h1>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <div className="flex flex-col gap-4 sm:flex-row justify-between">
@@ -149,6 +149,65 @@ export default function CreatePost() {
             setFormData({ ...formData, content: value });
           }}
         />
+         <div>
+          <label htmlFor="metaTitle" className="block font-medium mb-2">
+            Meta Title
+          </label>
+          <TextInput
+            type="text"
+            id="metaTitle"
+            placeholder="Enter meta title"
+            onChange={(e) =>
+              setFormData({ ...formData, metaTitle: e.target.value })
+            }
+            value={formData.metaTitle || ""}
+          />
+        </div>
+
+        <div>
+          <label htmlFor="metaDescription" className="block font-medium mb-2">
+            Meta Description
+          </label>
+          <TextInput
+            type="text"
+            id="metaDescription"
+            placeholder="Enter meta description"
+            onChange={(e) =>
+              setFormData({ ...formData, metaDescription: e.target.value })
+            }
+            value={formData.metaDescription || ""}
+          />
+        </div>
+
+        <div>
+          <label htmlFor="metaKeywords" className="block font-medium mb-2">
+            Meta Keyword
+          </label>
+          <TextInput
+            type="text"
+            id="metaKeywords"
+            placeholder="Enter meta keyword"
+            onChange={(e) =>
+              setFormData({ ...formData, metaKeywords: e.target.value })
+            }
+            value={formData.metaKeywords || ""}
+          />
+        </div>
+
+        <div>
+          <label htmlFor="otherMeta" className="block font-medium mb-2">
+            Other Meta Tag
+          </label>
+          <TextInput
+            type="text"
+            id="otherMeta"
+            placeholder="Enter other meta tag"
+            onChange={(e) =>
+              setFormData({ ...formData, otherMeta: e.target.value })
+            }
+            value={formData.otherMeta || ""}
+          />
+        </div>
         <Button type="submit" className="bg-orange-400 text-white hover:bg-orange-400/90">
           Publish
         </Button>

@@ -81,6 +81,15 @@ export default function DashPosts() {
 
   return (
     <div className="mt-20 overflow-x-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300">
+      <div className="">
+            {currentUser.isAdmin && (
+              <Link to={`/create-post`}>
+                <button className="bg-orange-400 text-white py-2 px-4 rounded-md mb-2">
+                  Create New Product
+                </button>
+              </Link>
+            )}
+          </div>
       <div className="overflow-x-auto p-3">
         {currentUser.isAdmin && userPosts.length > 0 ? (
           <>

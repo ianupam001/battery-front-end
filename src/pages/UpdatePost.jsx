@@ -115,83 +115,158 @@ export default function UpdatePost() {
     }
   };
   return (
-    <div className="p-3 max-w-3xl mx-auto min-h-screen">
-      <h1 className="text-center text-3xl my-7 font-semibold">Update post</h1>
-      <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-        <div className="flex flex-col gap-4 sm:flex-row justify-between">
-          <TextInput
-            type="text"
-            placeholder="Title"
-            required
-            id="title"
-            className="flex-1"
-            onChange={(e) =>
-              setFormData({ ...formData, title: e.target.value })
-            }
-            value={formData.title}
-          />
-          <Select
-            onChange={(e) =>
-              setFormData({ ...formData, category: e.target.value })
-            }
-          >
-            <option value="uncategorized">Select a category</option>
-            <option value="blog">Blog</option>
-          </Select>
-        </div>
-        <div className="flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-3">
-          <FileInput
-            type="file"
-            accept="image/*"
-            onChange={(e) => setFile(e.target.files[0])}
-          />
-          <Button
-            type="button"
-            gradientDuoTone="purpleToBlue"
-            size="sm"
-            outline
-            onClick={handleUpdloadImage}
-            disabled={imageUploadProgress}
-          >
-            {imageUploadProgress ? (
-              <div className="w-16 h-16">
-                <CircularProgressbar
-                  value={imageUploadProgress}
-                  text={`${imageUploadProgress || 0}%`}
-                />
-              </div>
-            ) : (
-              "Upload Image"
-            )}
-          </Button>
-        </div>
-        {imageUploadError && <Alert color="failure">{imageUploadError}</Alert>}
-        {formData.image && (
-          <img
-            src={formData.image}
-            alt="upload"
-            className="w-full h-72 object-cover"
-          />
-        )}
-        <ReactQuill
-          theme="snow"
-          value={formData.content}
-          placeholder="Write something..."
-          className="h-72 mb-12"
+    <div className="p-5 max-w-3xl mx-auto min-h-screen border mt-32">
+  <h1 className="text-center text-3xl my-7 font-semibold">Update post</h1>
+  <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+    <div className="flex flex-col gap-4 sm:flex-row justify-between">
+      <div>
+        <label htmlFor="title" className="block font-medium mb-2">
+          Title
+        </label>
+        <TextInput
+          type="text"
+          placeholder="Title"
           required
-          onChange={(value) => {
-            setFormData({ ...formData, content: value });
-          }}
+          id="title"
+          className="flex-1"
+          onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+          value={formData.title}
         />
-        <Button type="submit" className="bg-orange-400 text-white hover:bg-orange-400/90">
-          Update post
-        </Button>
-        {publishError && (
-          <Alert className="mt-5" color="failure">
-            {publishError}
-          </Alert>
-        )}
-      </form>
+      </div>
+      <div>
+        <label htmlFor="category" className="block font-medium mb-2">
+          Category
+        </label>
+        <Select
+          id="category"
+          onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+        >
+          <option value="uncategorized">Select a category</option>
+          <option value="blog">Blog</option>
+        </Select>
+      </div>
     </div>
+
+    <div className="flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-3">
+      <div>
+        <label htmlFor="image" className="block font-medium mb-2">
+          Upload Image
+        </label>
+        <FileInput
+          type="file"
+          accept="image/*"
+          onChange={(e) => setFile(e.target.files[0])}
+        />
+      </div>
+      <Button
+        type="button"
+        gradientDuoTone="purpleToBlue"
+        size="sm"
+        outline
+        onClick={handleUpdloadImage}
+        disabled={imageUploadProgress}
+      >
+        {imageUploadProgress ? (
+          <div className="w-16 h-16">
+            <CircularProgressbar
+              value={imageUploadProgress}
+              text={`${imageUploadProgress || 0}%`}
+            />
+          </div>
+        ) : (
+          "Upload Image"
+        )}
+      </Button>
+    </div>
+
+    {imageUploadError && <Alert color="failure">{imageUploadError}</Alert>}
+    {formData.image && (
+      <img
+        src={formData.image}
+        alt="upload"
+        className="w-full h-72 object-cover"
+      />
+    )}
+
+    <ReactQuill
+      theme="snow"
+      value={formData.content}
+      placeholder="Write something..."
+      className="h-72 mb-12"
+      required
+      onChange={(value) => {
+        setFormData({ ...formData, content: value });
+      }}
+    />
+
+    <div>
+      <label htmlFor="metaTitle" className="block font-medium mb-2">
+        Meta Title
+      </label>
+      <TextInput
+        type="text"
+        id="metaTitle"
+        placeholder="Enter meta title"
+        onChange={(e) => setFormData({ ...formData, metaTitle: e.target.value })}
+        value={formData.metaTitle || ""}
+      />
+    </div>
+
+    <div>
+      <label htmlFor="metaDescription" className="block font-medium mb-2">
+        Meta Description
+      </label>
+      <TextInput
+        type="text"
+        id="metaDescription"
+        placeholder="Enter meta description"
+        onChange={(e) =>
+          setFormData({ ...formData, metaDescription: e.target.value })
+        }
+        value={formData.metaDescription || ""}
+      />
+    </div>
+
+    <div>
+      <label htmlFor="metaKeywords" className="block font-medium mb-2">
+        Meta Keyword
+      </label>
+      <TextInput
+        type="text"
+        id="metaKeywords"
+        placeholder="Enter meta keyword"
+        onChange={(e) =>
+          setFormData({ ...formData, metaKeywords: e.target.value })
+        }
+        value={formData.metaKeywords || ""}
+      />
+    </div>
+
+    <div>
+      <label htmlFor="otherMeta" className="block font-medium mb-2">
+        Other Meta Tag
+      </label>
+      <TextInput
+        type="text"
+        id="otherMeta"
+        placeholder="Enter other meta tag"
+        onChange={(e) =>
+          setFormData({ ...formData, otherMeta: e.target.value })
+        }
+        value={formData.otherMeta || ""}
+      />
+    </div>
+
+    <Button type="submit" className="bg-orange-400 text-white hover:bg-orange-400/90">
+      Update post
+    </Button>
+    {publishError && (
+      <Alert className="mt-5" color="failure">
+        {publishError}
+      </Alert>
+    )}
+  </form>
+</div>
+
   );
 }
