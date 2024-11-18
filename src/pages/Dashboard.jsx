@@ -13,7 +13,7 @@ import DashComments from '../components/DashComments';
 import DashboardComp from '../components/DashboardComp';
 import DashServices from '../components/DashServices';
 import DashMetaData from '../components/DashMetaData';
-import DashOtherMetaData from '../components/DashOtherMetaData';
+
 import DashHomeMeta from '../components/DashHomeMeta';
 import DashAboutMeta from '../components/DashAboutMeta';
 import DashContactMeta from '../components/DashContactMeta';
@@ -43,6 +43,8 @@ export default function Dashboard() {
 
       <div className="flex-1 p-4">
         
+        {tab === 'dash' && <DashboardComp />}
+        {tab === 'dash' && <DashboardComp />}
         {tab === 'profile' && <DashProfile />}
         {tab === 'posts' && <DashPosts />}
         {tab === 'products' && <DashProducts />}
@@ -54,7 +56,7 @@ export default function Dashboard() {
         {tab === 'metadata' && <DashMetaData />}
         {tab === 'users' && <DashUsers />}
         {tab === 'comments' && <DashComments />}
-        {tab === 'othermetadata' && <DashOtherMetaData />}
+
 
         {tab === 'home' && <DashHomeMeta />}
         {tab === 'about' && <DashAboutMeta />}

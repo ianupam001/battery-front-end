@@ -109,7 +109,7 @@ export default function DashSidebar() {
                       Contact
                     </Dropdown.Item>
                   </Link>
-                  <Link to="/dashboard?tab=othermetadata">
+                  <Link to="/dashboard?tab=othermeta">
                     <Dropdown.Item active={isActiveTabMeta(["othermetadata"])}>
                       Other MetaData
                     </Dropdown.Item>
