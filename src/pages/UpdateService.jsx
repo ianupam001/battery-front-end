@@ -142,7 +142,7 @@ export default function UpdateService() {
             onChange={(e) =>
               setFormData({ ...formData, title: e.target.value })
             }
-            value={formData.title || ""}
+            value={formData.title}
           />
         </div>
 
@@ -158,7 +158,7 @@ export default function UpdateService() {
             onChange={(e) =>
               setFormData({ ...formData, short_description: e.target.value })
             }
-            value={formData.short_description || ""}
+            value={formData.short_description}
           />
         </div>
 
@@ -210,7 +210,7 @@ export default function UpdateService() {
           <ReactQuill
             id="content"
             theme="snow"
-            value={formData.content || ""}
+            value={formData.content}
             placeholder="Write something..."
             className="h-72 mb-12"
             required
@@ -229,7 +229,7 @@ export default function UpdateService() {
             onChange={(e) =>
               setFormData({ ...formData, metaTitle: e.target.value })
             }
-            value={formData.metaTitle || ""}
+            value={formData.metaTitle}
           />
         </div>
 
@@ -244,7 +244,7 @@ export default function UpdateService() {
             onChange={(e) =>
               setFormData({ ...formData, metaDescription: e.target.value })
             }
-            value={formData.metaDescription || ""}
+            value={formData.metaDescription}
           />
         </div>
 
@@ -259,7 +259,7 @@ export default function UpdateService() {
             onChange={(e) =>
               setFormData({ ...formData, metaKeywords: e.target.value })
             }
-            value={formData.metaKeywords || ""}
+            value={formData.metaKeywords}
           />
         </div>
 

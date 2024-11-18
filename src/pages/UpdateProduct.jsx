@@ -34,7 +34,7 @@ export default function UpdateProduct() {
           `${apiUrl}/api/product/getproducts?productId=${productId}`
         );
         const data = await res.json();
-
+        console.log(data);
         if (!res.ok) {
           console.log(data.message);
           setPublishError(data.message);
@@ -122,7 +122,6 @@ export default function UpdateProduct() {
     }
   };
   return (
-    
     <div className="p-5 max-w-3xl mx-auto min-h-screen mt-32 border">
       <h1 className="text-center text-3xl my-7 font-semibold">
         Update Product
@@ -220,7 +219,7 @@ export default function UpdateProduct() {
             onChange={(e) =>
               setFormData({ ...formData, metaTitle: e.target.value })
             }
-            value={formData.metaTitle || ""}
+            value={formData.metaTitle}
           />
         </div>
 
@@ -235,7 +234,7 @@ export default function UpdateProduct() {
             onChange={(e) =>
               setFormData({ ...formData, metaDescription: e.target.value })
             }
-            value={formData.metaDescription || ""}
+            value={formData.metaDescription}
           />
         </div>
 
@@ -250,7 +249,7 @@ export default function UpdateProduct() {
             onChange={(e) =>
               setFormData({ ...formData, metaKeywords: e.target.value })
             }
-            value={formData.metaKeywords || ""}
+            value={formData.metaKeywords}
           />
         </div>
 
@@ -265,7 +264,7 @@ export default function UpdateProduct() {
             onChange={(e) =>
               setFormData({ ...formData, otherMeta: e.target.value })
             }
-            value={formData.otherMeta || ""}
+            value={formData.otherMeta}
           />
         </div>
 
