@@ -5,10 +5,7 @@ import { Helmet } from "react-helmet-async";
 const apiUrl = import.meta.env.VITE_BASE_URL;
 export default function Blog() {
   const title = "Blog";
-  const breadcrumbs = [
-    { name: "Home", link: "/" },
-    { name: "Blog" }, 
-  ];
+  const breadcrumbs = [{ name: "Home", link: "/" }, { name: "Blog" }];
 
   const [posts, setPosts] = useState([]);
   const [metaTags, setMetaTags] = useState(null);
@@ -42,12 +39,12 @@ export default function Blog() {
   return (
     <>
       <Helmet>
-        <title>{metaTags?.title || ""}  </title>
+        <title>{metaTags?.title || ""} </title>
         <meta
-          name={metaTags?.description || "" }
+          name={metaTags?.description || ""}
           content={metaTags?.keywords || ""}
         />
-        { metaTags?.other || ""}
+        {metaTags?.other || ""}
       </Helmet>
       <Breadcrumb title={title} breadcrumbs={breadcrumbs} />
       {/*Blog One Start*/}
@@ -68,15 +65,12 @@ export default function Blog() {
             <div className="row">
               {/*Blog One Single Start*/}
               {posts.map((post) => {
-                const date = new Date(post.createdAt); 
+                const date = new Date(post.createdAt);
 
-               
                 const formattedDay = date.toLocaleDateString("en-GB", {
                   day: "numeric",
-                 
                 });
                 const formattedMonth = date.toLocaleDateString("en-GB", {
-                 
                   month: "short",
                 });
 
@@ -84,7 +78,7 @@ export default function Blog() {
                   <div
                     className="col-xl-4 col-lg-4 wow fadeInUp"
                     data-wow-delay="100ms"
-                    key={post.slug} 
+                    key={post.slug}
                   >
                     <div className="blog-one__single">
                       <div className="blog-one__img-box">
@@ -100,7 +94,8 @@ export default function Blog() {
                         </div>
                         <div className="blog-one__date">
                           <p>
-                            {formattedDay} <br />{formattedMonth}
+                            {formattedDay} <br />
+                            {formattedMonth}
                           </p>
                         </div>
                       </div>

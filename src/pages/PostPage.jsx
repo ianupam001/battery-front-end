@@ -9,7 +9,7 @@ export default function PostPage() {
   const [error, setError] = useState(false);
   const [post, setPost] = useState(null);
   const [recentPosts, setRecentPosts] = useState(null);
-  const [metaTags, setMetaTags] = useState(null);
+
   const postUrl = `${postSlug}`;
   const postTitle = encodeURIComponent({ postSlug });
   const postDescription = encodeURIComponent({ postSlug });
@@ -20,6 +20,7 @@ export default function PostPage() {
         setLoading(true);
         const res = await fetch(`${apiUrl}/api/post/getposts?slug=${postSlug}`);
         const data = await res.json();
+        console.log(data);
         if (!res.ok) {
           setError(true);
           setLoading(false);
@@ -53,22 +54,6 @@ export default function PostPage() {
     }
   }, []);
 
-  useEffect(() => {
-    try {
-      const fetchMetadata = async () => {
-        const res = await fetch(`${apiUrl}/api/metatags/blog`);
-        const data = await res.json();
-        // console.log(data[0]);
-        if (res.ok) {
-          setMetaTags(data[0]);
-        }
-      };
-      fetchMetadata();
-    } catch (error) {
-      console.error(error.message);
-    }
-  }, []);
-
   if (loading)
     return (
       <div className="flex justify-center items-center min-h-screen">
@@ -78,9 +63,9 @@ export default function PostPage() {
   return (
     <>
       <Helmet>
-        <title>{post && metaTags.title}</title>
-        <meta name="title" content={post && metaTags.title} />
-        <meta name="description" content={post && metaTags.description} />
+        <title>{post && post.meta_title}</title>
+        <meta name="title" content={post && post.meta_title} />
+        <meta name="description" content={post && post.meta_description} />
       </Helmet>
       {/*Blog Details Start*/}
       <section className="blog-details">
@@ -94,7 +79,6 @@ export default function PostPage() {
                     alt={post && post.title}
                     className="mt-10 p-3 max-h-[600px] w-full object-cover"
                   />
-                 
                 </div>
                 <div className="blog-details__content">
                   <div className="blog-details__user-and-meta">
