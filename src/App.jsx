@@ -54,7 +54,7 @@ export default function App() {
         const res = await fetch(`${apiUrl}/api/metatags/otherMeta`);
         const data = await res.json();
 
-        console.log(data);
+        // console.log(data);
         if (res.ok) {
           setMetaTags(data);
         }

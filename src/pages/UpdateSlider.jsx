@@ -42,7 +42,7 @@ export default function UpdateSlider() {
         }
         if (res.ok) {
           setPublishError(null);
-          console.log(data.sliders[0]);
+          // console.log(data.sliders[0]);
           setFormData(data.sliders[0]);
           setImageUrl(data.sliders[0].image);
           setId(data.sliders[0]._id);

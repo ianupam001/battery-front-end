@@ -36,13 +36,13 @@ export default function UpdateTestimonial() {
         const data = await res.json();
 
         if (!res.ok) {
-          console.log(data.message);
+          // console.log(data.message);
           setPublishError(data.message);
           return;
         }
         if (res.ok) {
           setPublishError(null);
-          console.log(data.testimonials[0]);
+          // console.log(data.testimonials[0]);
           setFormData(data.testimonials[0]);
           setImageUrl(data.testimonials[0].image);
           setId(data.testimonials[0]._id);
@@ -96,7 +96,7 @@ export default function UpdateTestimonial() {
     e.preventDefault();
     try {
       const token = localStorage.getItem("access_token");
-      console.log(token);
+      // console.log(token);
       const res = await fetch(
         `${apiUrl}/api/testimonial/updatetestimonial/${id}/${currentUser._id}`,
         {

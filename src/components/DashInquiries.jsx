@@ -21,7 +21,7 @@ export default function DashInquiries() {
           }
         }
 
-        console.log(data.inquiries)
+        // console.log(data.inquiries)
       } catch (error) {
         console.log(error.message);
       }
@@ -36,7 +36,7 @@ export default function DashInquiries() {
         `${apiUrl}/api/inquiry/getinquiries?startIndex=${startIndex}`
       );
       const data = await res.json();
-      console.log(data);
+      // console.log(data);
       if (res.ok) {
         setInquiries((prev) => [...prev, ...(data.inquiries || [])]);
         if (data.inquiries.length < 9) {
@@ -52,7 +52,7 @@ export default function DashInquiries() {
     setShowModal(false);
 
     try {
-      console.log(inquiryIdToDelete);
+      // console.log(inquiryIdToDelete);
       const res = await fetch(
         `${apiUrl}/api/inquiry/deleteinquiry/${inquiryIdToDelete}`,
         {

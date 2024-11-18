@@ -20,6 +20,8 @@ export default function ProductPage() {
   const [product, setProduct] = useState(null);
   const [recentProducts, setRecentProducts] = useState(null);
 
+  // console.log(product?.MetaDescription)
+
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -68,7 +70,7 @@ export default function ProductPage() {
         <Spinner size="xl" />
       </div>
     );
-  console.log(product);
+  // console.log(product);
   return (
     <div>
       <Helmet>

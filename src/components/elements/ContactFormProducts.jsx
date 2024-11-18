@@ -40,7 +40,7 @@ export function ContactFormProducts({ sourcePage, formType }) {
         },
         body: JSON.stringify(payload), // Corrected from 'data' to 'body'
       });
-      console.log(response);
+      // console.log(response);
       if (response.ok) {
         navigate("/thank-you", { state: { fromFormSubmission: true }} );
         toast.success("Form submitted successfully!");

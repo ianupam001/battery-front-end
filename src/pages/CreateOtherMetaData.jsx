@@ -22,7 +22,7 @@ function CreateOtherMetaData() {
       
     };
 
-    console.log(JSON.stringify(payload));
+    // console.log(JSON.stringify(payload));
   
     try {
       const res = await fetch(`${apiUrl}/api/metatags/other`, {

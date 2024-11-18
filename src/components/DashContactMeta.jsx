@@ -16,7 +16,7 @@ function DashContactMeta() {
         .then((res) => res.json())
         .then((data) => {
           setId(data._id);
-          console.log(data);
+        //   console.log(data);
           setForm({
             title: data.title || "",
             description: data.description || "",

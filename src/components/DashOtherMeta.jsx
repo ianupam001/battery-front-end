@@ -16,7 +16,7 @@ function DashOtherMeta() {
         .then((res) => res.json())
         .then((data) => {
           setId(data._id);
-          console.log(data);
+        //   console.log(data);
           setForm({
             header: data.header || "",
             footer: data.footer || "",

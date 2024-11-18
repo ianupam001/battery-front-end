@@ -66,7 +66,7 @@ export default function Testimonial() {
           const res = await fetch(`${apiUrl}/api/testimonial/getTestimonials`);
           const testimonial_list = await res.json();
           setTestimonial(testimonial_list.testimonials);
-          console.log(testimonials);
+        //   console.log(testimonials);
         };
         fetchTestimonial();
       }, []);

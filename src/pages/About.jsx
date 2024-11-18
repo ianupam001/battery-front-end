@@ -21,7 +21,7 @@ export default function About() {
       const fetchMetadata = async () => {
         const res = await fetch(`${apiUrl}/api/metatags/about`);
         const data = await res.json();
-        console.log(res)
+        // console.log(res)
         if (res.ok) {
           setMetaTags(data);
         }
@@ -31,7 +31,7 @@ export default function About() {
       console.error(error.message);
     }
   }, []);
-  console.log(metaTags);
+  // console.log(metaTags);
 
   return (
     <div>

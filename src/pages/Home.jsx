@@ -37,7 +37,7 @@ export default function Home() {
       console.error(error.message);
     }
   }, []);
-  console.log(metaTags);
+  // console.log(metaTags);
 
   useEffect(() => {
     const fetchPosts = async () => {

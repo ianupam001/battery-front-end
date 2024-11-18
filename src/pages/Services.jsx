@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ServiceCard from "../components/ServiceCard";
 import Breadcrumb from "../components/sections/home1/Breadcrumb";
+import { Helmet } from "react-helmet-async";
 const apiUrl = import.meta.env.VITE_BASE_URL;
 export default function Services() {
   const title = "Services";
@@ -19,9 +20,13 @@ export default function Services() {
     };
     fetchServices();
   }, []);
-  console.log(services);
+  // console.log(services);
   return (
     <>
+     <Helmet >
+      <title>Service</title>
+      <meta name="description" content="Description for the Service page." />
+    </Helmet>
       <Breadcrumb title={title} breadcrumbs={breadcrumbs} />
       {/*Blog One Start*/}
       {services && services.length > 0 && (

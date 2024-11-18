@@ -62,7 +62,7 @@ export default function CreateProduct() {
     e.preventDefault();
     try {
       const token = localStorage.getItem("access_token");
-      console.log(token);
+      // console.log(token);
       const res = await fetch(`${apiUrl}/api/product/create`, {
         method: "POST",
         headers: {
