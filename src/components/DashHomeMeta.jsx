@@ -12,27 +12,24 @@ function DashHomeMeta() {
   });
 
   useEffect(() => {
-    const fetchMetaTags = async () => {
-      try {
-        fetch(`${apiUrl}/api/metatags/home`)
-          .then((res) => res.json())
-          .then((data) => {
-            setId(data._id);
-            setForm({
-              title: data.title || "",
-              description: data.description || "",
-              keywords: data.keywords || "",
-              other: data.other || "",
-            });
-          })
-          .catch((error) => {
-            console.error("Error fetching meta tags:", error);
+    try {
+      fetch(`${apiUrl}/api/metatags/home`)
+        .then((res) => res.json())
+        .then((data) => {
+          setId(data._id);
+          setForm({
+            title: data.title || "",
+            description: data.description || "",
+            keywords: data.keywords || "",
+            other: data.other || "",
           });
-        fetchMetaTags();
-      } catch (error) {
-        console.error("Error fetching meta tags:", error);
-      }
-    };
+        })
+        .catch((error) => {
+          console.error("Error fetching meta tags:", error);
+        });
+    } catch (error) {
+      console.error("Error fetching meta tags:", error);
+    }
   }, []);
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -63,7 +60,6 @@ function DashHomeMeta() {
           keywords: "",
           other: "",
         });
-        // fetchMetaTags;
       } else {
         toast.error(`Form submission failed`);
       }

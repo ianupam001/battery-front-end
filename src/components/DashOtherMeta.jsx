@@ -1,12 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 const apiUrl = import.meta.env.VITE_BASE_URL;
 import { toast } from "react-toastify";
+
 function DashOtherMeta() {
+  const [id, setId] = useState("");
   const [form, setForm] = useState({
     header: "",
     footer: "",
     body: "",
   });
+
+  useEffect(() => {
+    try {
+      fetch(`${apiUrl}/api/metatags/otherMeta`)
+        .then((res) => res.json())
+        .then((data) => {
+          setId(data._id);
+          console.log(data);
+          setForm({
+            header: data.header || "",
+            footer: data.footer || "",
+            body: data.body || "",
+          });
+        })
+        .catch((error) => {
+          console.error("Error fetching meta tags:", error);
+        });
+    } catch (error) {
+      console.error("Error fetching meta tags:", error);
+    }
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -16,14 +39,13 @@ function DashOtherMeta() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const payload = {
-      title: form.title,
-      description: form.description,
-      keywords: form.keyword,
-      other: form.otherTag,
+      header: form.header,
+      footer: form.footer,
+      body: form.body,
     };
     try {
-      const res = await fetch(`${apiUrl}/api/metatags/otherMeta`, {
-        method: "POST",
+      const res = await fetch(`${apiUrl}/api/metatags/otherMeta/${id}`, {
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
@@ -51,27 +73,27 @@ function DashOtherMeta() {
         <h6>Other Meta data</h6>
         <div className="flex flex-wrap -mx-3">
           <div className="w-full md:w-1/2 px-3 mb-2">
-            <label className="block text-gray-700  mb-2" htmlFor="title">
+            <label className="block text-gray-700  mb-2" htmlFor="header">
               Header Tag
             </label>
             <textarea
-              name="title"
-              id="title"
+              name="header"
+              id="header"
               className="w-full p-2 border border-gray-300 rounded-md resize-none"
-              value={form.title}
+              value={form.header}
               onChange={handleChange}
             />
           </div>
 
           <div className="w-full md:w-1/2 px-3 mb-2">
-            <label className="block text-gray-700  mb-2" htmlFor="description">
+            <label className="block text-gray-700  mb-2" htmlFor="footer">
               Footer Tag
             </label>
             <textarea
-              name="description"
-              id="description"
+              name="footer"
+              id="footer"
               className="w-full p-2 border border-gray-300 rounded-md resize-none"
-              value={form.description}
+              value={form.footer}
               onChange={handleChange}
             />
           </div>
@@ -79,14 +101,14 @@ function DashOtherMeta() {
 
         <div className="flex flex-wrap -mx-3">
           <div className="w-full md:w-1/2 px-3 mb-2">
-            <label className="block text-gray-700 mb-2" htmlFor="otherTag">
+            <label className="block text-gray-700 mb-2" htmlFor="body">
               Body Tag
             </label>
             <textarea
-              name="otherTag"
-              id="otherTag"
+              name="body"
+              id="body"
               className="w-full p-2 border border-gray-300 rounded-md resize-none"
-              value={form.otherTag}
+              value={form.body}
               onChange={handleChange}
             />
           </div>

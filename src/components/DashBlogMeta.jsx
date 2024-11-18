@@ -1,13 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 const apiUrl = import.meta.env.VITE_BASE_URL;
 import { toast } from "react-toastify";
 function DashBlogMeta() {
+  const [id, setId] = useState("");
   const [form, setForm] = useState({
     title: "",
     description: "",
-    keyword: "",
-    otherTag: "",
+    keywords: "",
+    other: "",
   });
+
+  useEffect(() => {
+    try {
+      fetch(`${apiUrl}/api/metatags/blog`)
+        .then((res) => res.json())
+        .then((data) => {
+          setId(data._id);
+          setForm({
+            title: data.title || "",
+            description: data.description || "",
+            keywords: data.keywords || "",
+            other: data.other || "",
+          });
+        })
+        .catch((error) => {
+          console.error("Error fetching meta tags:", error);
+        });
+    } catch (error) {
+      console.error("Error fetching meta tags:", error);
+    }
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,13 +41,12 @@ function DashBlogMeta() {
     const payload = {
       title: form.title,
       description: form.description,
-      keywords: form.keyword,
-      other: form.otherTag,
+      keywords: form.keywords,
+      other: form.other,
     };
-    const type = form.type.toLowerCase();
     try {
-      const res = await fetch(`${apiUrl}/api/metatags/blog`, {
-        method: "POST",
+      const res = await fetch(`${apiUrl}/api/metatags/blog/${id}`, {
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
@@ -82,27 +103,27 @@ function DashBlogMeta() {
 
         <div className="flex flex-wrap -mx-3">
           <div className="w-full md:w-1/2 px-3 mb-2">
-            <label className="block text-gray-700 mb-2" htmlFor="keyword">
+            <label className="block text-gray-700 mb-2" htmlFor="keywords">
               Meta Keyword
             </label>
             <textarea
-              name="keyword"
-              id="keyword"
+              name="keywords"
+              id="keywords"
               className="w-full p-2 border border-gray-300 rounded-md resize-none"
-              value={form.keyword}
+              value={form.keywords}
               onChange={handleChange}
             />
           </div>
 
           <div className="w-full md:w-1/2 px-3 mb-2">
-            <label className="block text-gray-700 mb-2" htmlFor="otherTag">
+            <label className="block text-gray-700 mb-2" htmlFor="other">
               Other Meta Tag
             </label>
             <textarea
-              name="otherTag"
-              id="otherTag"
+              name="other"
+              id="other"
               className="w-full p-2 border border-gray-300 rounded-md resize-none"
-              value={form.otherTag}
+              value={form.other}
               onChange={handleChange}
             />
           </div>

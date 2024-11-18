@@ -90,7 +90,9 @@ export default function CreateService() {
 
   return (
     <div className="p-5 max-w-3xl mx-auto min-h-screen mt-20 border">
-      <h1 className="text-center text-3xl my-5 font-semibold">Create Service</h1>
+      <h1 className="text-center text-3xl my-5 font-semibold">
+        Create Service
+      </h1>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         {/* Title and Short Description */}
         <div className="flex flex-col gap-4 sm:flex-row justify-between">
@@ -103,11 +105,16 @@ export default function CreateService() {
               placeholder="Title"
               id="title"
               required
-              onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+              onChange={(e) =>
+                setFormData({ ...formData, title: e.target.value })
+              }
             />
           </div>
           <div className="flex-1">
-            <label htmlFor="short_description" className="block font-medium mb-2">
+            <label
+              htmlFor="short_description"
+              className="block font-medium mb-2"
+            >
               Short Description
             </label>
             <TextInput
@@ -157,7 +164,11 @@ export default function CreateService() {
         </div>
         {imageUploadError && <Alert color="failure">{imageUploadError}</Alert>}
         {formData.image && (
-          <img src={formData.image} alt="upload" className="w-full h-72 object-cover" />
+          <img
+            src={formData.image}
+            alt="upload"
+            className="w-full h-72 object-cover"
+          />
         )}
 
         {/* Content */}
@@ -177,60 +188,63 @@ export default function CreateService() {
 
         {/* Meta Information */}
         <div>
-          <label htmlFor="meta_title" className="block font-medium mb-2">
+          <label htmlFor="metaTitle" className="block font-medium mb-2">
             Meta Title
           </label>
           <TextInput
             type="text"
             placeholder="Meta Title"
-            id="meta_title"
+            id="metaTitle"
             onChange={(e) =>
-              setFormData({ ...formData, meta_title: e.target.value })
+              setFormData({ ...formData, metaTitle: e.target.value })
             }
           />
         </div>
         <div>
-          <label htmlFor="meta_description" className="block font-medium mb-2">
+          <label htmlFor="metaDescription" className="block font-medium mb-2">
             Meta Description
           </label>
           <TextInput
             type="text"
             placeholder="Meta Description"
-            id="meta_description"
+            id="metaDescription"
             onChange={(e) =>
-              setFormData({ ...formData, meta_description: e.target.value })
+              setFormData({ ...formData, metaDescription: e.target.value })
             }
           />
         </div>
         <div>
-          <label htmlFor="meta_keywords" className="block font-medium mb-2">
+          <label htmlFor="metaKeywords" className="block font-medium mb-2">
             Meta Keywords
           </label>
           <TextInput
             type="text"
             placeholder="Meta Keywords"
-            id="meta_keywords"
+            id="metaKeywords"
             onChange={(e) =>
-              setFormData({ ...formData, meta_keywords: e.target.value })
+              setFormData({ ...formData, metaKeywords: e.target.value })
             }
           />
         </div>
         <div>
-          <label htmlFor="other_meta_tags" className="block font-medium mb-2">
+          <label htmlFor="otherMeta" className="block font-medium mb-2">
             Other Meta Tags
           </label>
           <TextInput
             type="text"
             placeholder="Other Meta Tags"
-            id="other_meta_tags"
+            id="otherMeta"
             onChange={(e) =>
-              setFormData({ ...formData, other_meta_tags: e.target.value })
+              setFormData({ ...formData, otherMeta: e.target.value })
             }
           />
         </div>
 
         {/* Publish Button */}
-        <Button type="submit" className="bg-orange-400 text-white hover:bg-orange-400/90">
+        <Button
+          type="submit"
+          className="bg-orange-400 text-white hover:bg-orange-400/90"
+        >
           Publish
         </Button>
         {publishError && (

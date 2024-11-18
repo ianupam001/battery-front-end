@@ -100,8 +100,8 @@ export default function UpdateProduct() {
         {
           method: "PUT",
           headers: {
-            Authorization: `Bearer ${token}`, 
-            "Content-Type": "application/json", 
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
           },
           body: JSON.stringify(formData),
         }
@@ -123,161 +123,164 @@ export default function UpdateProduct() {
   };
   return (
     <div className="p-5 max-w-3xl mx-auto min-h-screen mt-32 border">
-    <h1 className="text-center text-3xl my-7 font-semibold">
-      Update Product
-    </h1>
-    <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-      {/* Title Field */}
-      <div className="flex flex-col gap-4 sm:flex-row justify-between">
-        <div className="flex-1">
-          <label htmlFor="title" className="mb-1 text-sm font-medium">
-            Product Title
-          </label>
-          <TextInput
-            type="text"
-            placeholder="Enter product title"
-            required
-            id="title"
-            onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-            value={formData.title}
-          />
+      <h1 className="text-center text-3xl my-7 font-semibold">
+        Update Product
+      </h1>
+      <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+        {/* Title Field */}
+        <div className="flex flex-col gap-4 sm:flex-row justify-between">
+          <div className="flex-1">
+            <label htmlFor="title" className="mb-1 text-sm font-medium">
+              Product Title
+            </label>
+            <TextInput
+              type="text"
+              placeholder="Enter product title"
+              required
+              id="title"
+              onChange={(e) =>
+                setFormData({ ...formData, title: e.target.value })
+              }
+              value={formData.title}
+            />
+          </div>
         </div>
-      </div>
-  
-      {/* File Upload Field */}
-      <div className="flex flex-col gap-4">
-        <label htmlFor="image" className="mb-1 text-sm font-medium">
-          Upload Product Image
-        </label>
-        <div className="flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-3">
-          <FileInput
-            type="file"
-            accept="image/*"
-            id="image"
-            onChange={(e) => setFile(e.target.files[0])}
-          />
-          <Button
-            type="button"
-            gradientDuoTone="purpleToBlue"
-            size="sm"
-            outline
-            onClick={handleUpdloadImage}
-            disabled={imageUploadProgress}
-          >
-            {imageUploadProgress ? (
-              <div className="w-16 h-16">
-                <CircularProgressbar
-                  value={imageUploadProgress}
-                  text={`${imageUploadProgress || 0}%`}
-                />
-              </div>
-            ) : (
-              "Upload Image"
-            )}
-          </Button>
-        </div>
-        {imageUploadError && <Alert color="failure">{imageUploadError}</Alert>}
-        {imageUrl && (
-          <img
-            src={imageUrl}
-            alt="Uploaded preview"
-            className="w-full h-72 object-cover"
-          />
-        )}
-      </div>
-  
-      {/* Description Field */}
-      <div>
-        <label htmlFor="content" className="mb-1 text-sm font-medium">
-          Product Description
-        </label>
-        <ReactQuill
-          theme="snow"
-          value={formData.content}
-          placeholder="Write product description..."
-          className="h-72 mb-12"
-          required
-          id="content"
-          onChange={(value) => {
-            setFormData({ ...formData, content: value });
-          }}
-        />
-      </div>
 
-      <div>
-          <label htmlFor="meta_title" className="block font-medium mb-2">
+        {/* File Upload Field */}
+        <div className="flex flex-col gap-4">
+          <label htmlFor="image" className="mb-1 text-sm font-medium">
+            Upload Product Image
+          </label>
+          <div className="flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-3">
+            <FileInput
+              type="file"
+              accept="image/*"
+              id="image"
+              onChange={(e) => setFile(e.target.files[0])}
+            />
+            <Button
+              type="button"
+              gradientDuoTone="purpleToBlue"
+              size="sm"
+              outline
+              onClick={handleUpdloadImage}
+              disabled={imageUploadProgress}
+            >
+              {imageUploadProgress ? (
+                <div className="w-16 h-16">
+                  <CircularProgressbar
+                    value={imageUploadProgress}
+                    text={`${imageUploadProgress || 0}%`}
+                  />
+                </div>
+              ) : (
+                "Upload Image"
+              )}
+            </Button>
+          </div>
+          {imageUploadError && (
+            <Alert color="failure">{imageUploadError}</Alert>
+          )}
+          {imageUrl && (
+            <img
+              src={imageUrl}
+              alt="Uploaded preview"
+              className="w-full h-72 object-cover"
+            />
+          )}
+        </div>
+
+        {/* Description Field */}
+        <div>
+          <label htmlFor="content" className="mb-1 text-sm font-medium">
+            Product Description
+          </label>
+          <ReactQuill
+            theme="snow"
+            value={formData.content}
+            placeholder="Write product description..."
+            className="h-72 mb-12"
+            required
+            id="content"
+            onChange={(value) => {
+              setFormData({ ...formData, content: value });
+            }}
+          />
+        </div>
+
+        <div>
+          <label htmlFor="metaTitle" className="block font-medium mb-2">
             Meta Title
           </label>
           <TextInput
             type="text"
-            id="meta_title"
+            id="metaTitle"
             placeholder="Enter meta title"
             onChange={(e) =>
-              setFormData({ ...formData, meta_title: e.target.value })
+              setFormData({ ...formData, metaTitle: e.target.value })
             }
-            value={formData.meta_title || ""}
+            value={formData.metaTitle || ""}
           />
         </div>
 
         <div>
-          <label htmlFor="meta_description" className="block font-medium mb-2">
+          <label htmlFor="metaDescription" className="block font-medium mb-2">
             Meta Description
           </label>
           <TextInput
             type="text"
-            id="meta_description"
+            id="metaDescription"
             placeholder="Enter meta description"
             onChange={(e) =>
-              setFormData({ ...formData, meta_description: e.target.value })
+              setFormData({ ...formData, metaDescription: e.target.value })
             }
-            value={formData.meta_description || ""}
+            value={formData.metaDescription || ""}
           />
         </div>
 
         <div>
-          <label htmlFor="meta_keyword" className="block font-medium mb-2">
+          <label htmlFor="metaKeywords" className="block font-medium mb-2">
             Meta Keyword
           </label>
           <TextInput
             type="text"
-            id="meta_keyword"
+            id="metaKeywords"
             placeholder="Enter meta keyword"
             onChange={(e) =>
-              setFormData({ ...formData, meta_keyword: e.target.value })
+              setFormData({ ...formData, metaKeywords: e.target.value })
             }
-            value={formData.meta_keyword || ""}
+            value={formData.metaKeywords || ""}
           />
         </div>
 
         <div>
-          <label htmlFor="other_meta_tag" className="block font-medium mb-2">
+          <label htmlFor="otherMeta" className="block font-medium mb-2">
             Other Meta Tag
           </label>
           <TextInput
             type="text"
-            id="other_meta_tag"
+            id="otherMeta"
             placeholder="Enter other meta tag"
             onChange={(e) =>
-              setFormData({ ...formData, other_meta_tag: e.target.value })
+              setFormData({ ...formData, otherMeta: e.target.value })
             }
-            value={formData.other_meta_tag || ""}
+            value={formData.otherMeta || ""}
           />
         </div>
-  
-      {/* Submit Button */}
-      <Button
-        type="submit"
-        className="bg-orange-400 text-white hover:bg-orange-400/90"
-      >
-        Update Product
-      </Button>
-      {publishError && (
-        <Alert className="mt-5" color="failure">
-          {publishError}
-        </Alert>
-      )}
-    </form>
-  </div>
-  
+
+        {/* Submit Button */}
+        <Button
+          type="submit"
+          className="bg-orange-400 text-white hover:bg-orange-400/90"
+        >
+          Update Product
+        </Button>
+        {publishError && (
+          <Alert className="mt-5" color="failure">
+            {publishError}
+          </Alert>
+        )}
+      </form>
+    </div>
   );
 }

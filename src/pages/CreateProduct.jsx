@@ -171,62 +171,62 @@ export default function CreateProduct() {
         </div>
 
         <div>
-          <label htmlFor="meta_title" className="block font-medium mb-2">
+          <label htmlFor="metaTitle" className="block font-medium mb-2">
             Meta Title
           </label>
           <TextInput
             type="text"
-            id="meta_title"
+            id="metaTitle"
             placeholder="Enter meta title"
             onChange={(e) =>
-              setFormData({ ...formData, meta_title: e.target.value })
+              setFormData({ ...formData, metaTitle: e.target.value })
             }
-            value={formData.meta_title || ""}
+            value={formData.metaTitle || ""}
           />
         </div>
 
         <div>
-          <label htmlFor="meta_description" className="block font-medium mb-2">
+          <label htmlFor="metaDescription" className="block font-medium mb-2">
             Meta Description
           </label>
           <TextInput
             type="text"
-            id="meta_description"
+            id="metaDescription"
             placeholder="Enter meta description"
             onChange={(e) =>
-              setFormData({ ...formData, meta_description: e.target.value })
+              setFormData({ ...formData, metaDescription: e.target.value })
             }
-            value={formData.meta_description || ""}
+            value={formData.metaDescription || ""}
           />
         </div>
 
         <div>
-          <label htmlFor="meta_keyword" className="block font-medium mb-2">
+          <label htmlFor="metaKeywords" className="block font-medium mb-2">
             Meta Keyword
           </label>
           <TextInput
             type="text"
-            id="meta_keyword"
+            id="metaKeywords"
             placeholder="Enter meta keyword"
             onChange={(e) =>
-              setFormData({ ...formData, meta_keyword: e.target.value })
+              setFormData({ ...formData, metaKeywords: e.target.value })
             }
-            value={formData.meta_keyword || ""}
+            value={formData.metaKeywords || ""}
           />
         </div>
 
         <div>
-          <label htmlFor="other_meta_tag" className="block font-medium mb-2">
+          <label htmlFor="otherMeta" className="block font-medium mb-2">
             Other Meta Tag
           </label>
           <TextInput
             type="text"
-            id="other_meta_tag"
+            id="otherMeta"
             placeholder="Enter other meta tag"
             onChange={(e) =>
-              setFormData({ ...formData, other_meta_tag: e.target.value })
+              setFormData({ ...formData, otherMeta: e.target.value })
             }
-            value={formData.other_meta_tag || ""}
+            value={formData.otherMeta || ""}
           />
         </div>
 
