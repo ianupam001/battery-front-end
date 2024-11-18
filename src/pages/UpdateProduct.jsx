@@ -122,6 +122,7 @@ export default function UpdateProduct() {
     }
   };
   return (
+    
     <div className="p-5 max-w-3xl mx-auto min-h-screen mt-32 border">
       <h1 className="text-center text-3xl my-7 font-semibold">
         Update Product

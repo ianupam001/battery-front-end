@@ -1,11 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useEffect, useState } from "react";
 import FullPageLoader from "./components/elements/FullPageLoader";
 import CreateMetaData from "./pages/CreateMetadata";
 import UpdateMetaData from "./pages/UpdateMetaData";
 import UpdateOtherMetaData from "./pages/UpdateOtherMetaData";
 import CreateOtherMetaData from "./pages/CreateOtherMetaData";
+import { Helmet } from "react-helmet-async";
 
 // Lazy loading of pages
 const Home = lazy(() => import("./pages/Home"));
@@ -42,11 +43,45 @@ const ThankYou = lazy(() => import("./pages/ThankYou"));
 const PageNotFound = lazy(() => import("./pages/PageNotFound"));
 const Header2 = lazy(() => import("./components/elements/Header2"));
 const TopSpace = lazy(() => import("./components/elements/TopSpace"));
+const apiUrl = import.meta.env.VITE_BASE_URL;
 
 export default function App() {
   const { currentUser } = useSelector((state) => state.user);
+  const [metaTags, setMetaTags] = useState(null);
+  useEffect(() => {
+    try {
+      const fetchMetadata = async () => {
+        const res = await fetch(`${apiUrl}/api/metatags/otherMeta`);
+        const data = await res.json();
+
+        console.log(data);
+        if (res.ok) {
+          setMetaTags(data);
+        }
+      };
+      fetchMetadata();
+    } catch (error) {
+      console.error(error.message);
+    }
+  }, []);
+  console.log(metaTags?.header);
+  console.log(metaTags?.body);
+  console.log(metaTags?.footer);
 
   return (
+    <>
+    <Helmet >
+      {
+        metaTags && metaTags?.header || ""
+      }
+      {
+        metaTags && metaTags?.body || ""
+      }
+      {
+        metaTags && metaTags?.footer || ""
+      }
+      
+    </Helmet>
     <BrowserRouter>
       {/* Wrap the whole app inside Suspense */}
       <Suspense fallback={<FullPageLoader />}>
@@ -100,5 +135,6 @@ export default function App() {
         <Footer />
       </Suspense>
     </BrowserRouter>
+    </>
   );
 }

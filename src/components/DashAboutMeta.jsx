@@ -61,6 +61,7 @@ function DashAboutMeta() {
           keywords: "",
           other: "",
         });
+        window.location.reload();
       } else {
         toast.error(`Form submission failed`);
       }

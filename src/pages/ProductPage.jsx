@@ -20,20 +20,20 @@ export default function ProductPage() {
   const [product, setProduct] = useState(null);
   const [recentProducts, setRecentProducts] = useState(null);
   const [metaTags, setMetaTags] = useState(null);
-  useEffect(() => {
-    try {
-      const fetchMetadata = async () => {
-        const res = await fetch(`${apiUrl}/api/metatags/product`);
-        const data = await res.json();
-        if (res.ok) {
-          setMetaTags(data[0]);
-        }
-      };
-      fetchMetadata();
-    } catch (error) {
-      console.error(error.message);
-    }
-  }, []);
+  // useEffect(() => {
+  //   try {
+  //     const fetchMetadata = async () => {
+  //       const res = await fetch(`${apiUrl}/api/metatags/product`);
+  //       const data = await res.json();
+  //       if (res.ok) {
+  //         setMetaTags(data[0]);
+  //       }
+  //     };
+  //     fetchMetadata();
+  //   } catch (error) {
+  //     console.error(error.message);
+  //   }
+  // }, []);
 
 
   useEffect(() => {
@@ -44,6 +44,7 @@ export default function ProductPage() {
           `${apiUrl}/api/product/getproducts?slug=${productSlug}`
         );
         const data = await res.json();
+      
         if (!res.ok) {
           setError(true);
           setLoading(false);

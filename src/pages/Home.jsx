@@ -21,7 +21,23 @@ const apiUrl = import.meta.env.VITE_BASE_URL;
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);  
+  const [loading, setLoading] = useState(true);
+  const [metaTags, setMetaTags] = useState(null);
+  useEffect(() => {
+    try {
+      const fetchMetadata = async () => {
+        const res = await fetch(`${apiUrl}/api/metatags/home`);
+        const data = await res.json();
+        if (res.ok) {
+          setMetaTags(data);
+        }
+      };
+      fetchMetadata();
+    } catch (error) {
+      console.error(error.message);
+    }
+  }, []);
+  console.log(metaTags);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -29,27 +45,28 @@ export default function Home() {
         const res = await fetch(`${apiUrl}/api/post/getPosts`);
         const data = await res.json();
         setPosts(data.posts);
-        setLoading(false);  
+        setLoading(false);
       } catch (error) {
         console.error("Failed to fetch posts", error);
-        setLoading(false);  
+        setLoading(false);
       }
     };
     fetchPosts();
   }, []);
 
   if (loading) {
-    null
+    null;
   }
 
   return (
     <div>
       <Helmet>
-        <title>Home - 800 BBattery</title>
+        <title>{metaTags?.title || ""}  </title>
         <meta
-          name="description"
-          content="Welcome to our homepage. Discover our services and products."
+          name={metaTags?.description || "" }
+          content={metaTags?.keywords || ""}
         />
+        { metaTags?.other || ""}
       </Helmet>
       <Banner2 />
       <Service />

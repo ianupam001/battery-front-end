@@ -58,6 +58,7 @@ function DashOtherMeta() {
           footer: "",
           body: "",
         });
+        window.location.reload();
       } else {
         toast.error(`Form submission failed`);
       }

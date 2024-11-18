@@ -60,6 +60,7 @@ function DashBlogMeta() {
           keywords: "",
           other: "",
         });
+        window.location.reload();
       } else {
         toast.error(`Form submission failed`);
       }

@@ -11,6 +11,22 @@ export default function Blog() {
   ];
 
   const [posts, setPosts] = useState([]);
+  const [metaTags, setMetaTags] = useState(null);
+  useEffect(() => {
+    try {
+      const fetchMetadata = async () => {
+        const res = await fetch(`${apiUrl}/api/metatags/blog`);
+        const data = await res.json();
+        if (res.ok) {
+          setMetaTags(data);
+        }
+      };
+      fetchMetadata();
+    } catch (error) {
+      console.error(error.message);
+    }
+  }, []);
+  console.log(metaTags);
 
   console.log(posts);
 
@@ -26,9 +42,12 @@ export default function Blog() {
   return (
     <>
       <Helmet>
-        <title>Blog | 800 BBattery</title>
-        <meta name="title" content="blog page 800 BBattery" />
-        <meta name="description" content="Blogpage description  800 BBattery" />
+        <title>{metaTags?.title || ""}  </title>
+        <meta
+          name={metaTags?.description || "" }
+          content={metaTags?.keywords || ""}
+        />
+        { metaTags?.other || ""}
       </Helmet>
       <Breadcrumb title={title} breadcrumbs={breadcrumbs} />
       {/*Blog One Start*/}

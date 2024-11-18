@@ -13,6 +13,22 @@ export default function Contact() {
   const [currentPath, setCurrentPath] = useState("");
   const sourcePage = location.pathname;
   const { serviceSlug } = useParams();
+  const [metaTags, setMetaTags] = useState(null);
+  useEffect(() => {
+    try {
+      const fetchMetadata = async () => {
+        const res = await fetch(`${apiUrl}/api/metatags/contact`);
+        const data = await res.json();
+        if (res.ok) {
+          setMetaTags(data);
+        }
+      };
+      fetchMetadata();
+    } catch (error) {
+      console.error(error.message);
+    }
+  }, []);
+  console.log(metaTags);
 
   console.log(formData, currentPath);
 
@@ -46,10 +62,13 @@ export default function Contact() {
 
   return (
     <div>
-      <Helmet >
-        <title>Contact Us | 800 BBattery</title>
-        <meta name="title" content="Contact us page 800 BBattery" />
-        <meta name="description" content="Contact us description  800 BBattery" />
+      <Helmet>
+        <title>{metaTags?.title || ""}  </title>
+        <meta
+          name={metaTags?.description || "" }
+          content={metaTags?.keywords || ""}
+        />
+        { metaTags?.other || ""}
       </Helmet>
       <Breadcrumb title={title} breadcrumbs={breadcrumbs} />
       <section className="contact-two">
