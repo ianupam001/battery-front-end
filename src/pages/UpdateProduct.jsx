@@ -100,8 +100,8 @@ export default function UpdateProduct() {
         {
           method: "PUT",
           headers: {
-            Authorization: `Bearer ${token}`, // Correctly set the Authorization header
-            "Content-Type": "application/json", // Content-Type header
+            Authorization: `Bearer ${token}`, 
+            "Content-Type": "application/json", 
           },
           body: JSON.stringify(formData),
         }

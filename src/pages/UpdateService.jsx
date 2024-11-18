@@ -1,4 +1,4 @@
-import { Alert, Button, FileInput, Select, TextInput } from "flowbite-react";
+import { Alert, Button, FileInput, TextInput } from "flowbite-react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import {
@@ -13,7 +13,9 @@ import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+
 const apiUrl = import.meta.env.VITE_BASE_URL;
+
 export default function UpdateService() {
   const [file, setFile] = useState(null);
   const [imageUploadProgress, setImageUploadProgress] = useState(null);
@@ -90,6 +92,7 @@ export default function UpdateService() {
       console.log(error);
     }
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -99,8 +102,8 @@ export default function UpdateService() {
         {
           method: "PUT",
           headers: {
-            Authorization: `Bearer ${token}`, // Correctly set the Authorization header
-            "Content-Type": "application/json", // Content-Type header
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
           },
           body: JSON.stringify(formData),
         }
@@ -113,103 +116,172 @@ export default function UpdateService() {
 
       if (res.ok) {
         setPublishError(null);
-        // navigate(`/service/${data.slug}`);
         navigate(`/dashboard?tab=services`);
       }
     } catch (error) {
       setPublishError("Something went wrong");
     }
   };
+
   return (
-    <div className="p-3 max-w-3xl mx-auto min-h-screen">
+    <div className="p-5 max-w-3xl mx-auto min-h-screen border">
       <h1 className="text-center text-3xl my-7 font-semibold mt-20">
-        Update service
+        Update Service
       </h1>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-        <div className="flex flex-col gap-4 sm:flex-row justify-between">
+        <div>
+          <label htmlFor="title" className="block font-medium mb-2">
+            Title
+          </label>
           <TextInput
             type="text"
-            placeholder="Title"
-            required
             id="title"
-            className="flex-1"
+            placeholder="Enter title"
+            required
             onChange={(e) =>
               setFormData({ ...formData, title: e.target.value })
             }
-            value={formData.title}
+            value={formData.title || ""}
           />
-
-          {/* <Select
-            onChange={(e) =>
-              setFormData({ ...formData, category: e.target.value })
-            }
-            value={formData.category}
-          >
-            <option value='uncategorized'>Select a category</option>
-            <option value='javascript'>JavaScript</option>
-            <option value='reactjs'>React.js</option>
-            <option value='nextjs'>Next.js</option>
-          </Select> */}
         </div>
-        <div className="flex">
+
+        <div>
+          <label htmlFor="short_description" className="block font-medium mb-2">
+            Short Description
+          </label>
           <TextInput
             type="text"
-            placeholder="Short Description"
-            required
             id="short_description"
-            className="flex-1"
+            placeholder="Enter short description"
+            required
             onChange={(e) =>
               setFormData({ ...formData, short_description: e.target.value })
             }
-            value={formData.short_description}
+            value={formData.short_description || ""}
           />
         </div>
-        <div className="flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-3">
-          <FileInput
-            type="file"
-            accept="image/*"
-            onChange={(e) => setFile(e.target.files[0])}
-          />
-          <Button
-            type="button"
-            gradientDuoTone="purpleToBlue"
-            size="sm"
-            outline
-            onClick={handleUpdloadImage}
-            disabled={imageUploadProgress}
-          >
-            {imageUploadProgress ? (
-              <div className="w-16 h-16">
-                <CircularProgressbar
-                  value={imageUploadProgress}
-                  text={`${imageUploadProgress || 0}%`}
-                />
-              </div>
-            ) : (
-              "Upload Image"
-            )}
-          </Button>
+
+        <div>
+          <label htmlFor="file_input" className="block font-medium mb-2">
+            Upload Image
+          </label>
+          <div className="flex gap-4 items-center border-4 border-teal-500 border-dotted p-3">
+            <FileInput
+              type="file"
+              id="file_input"
+              accept="image/*"
+              onChange={(e) => setFile(e.target.files[0])}
+            />
+            <Button
+              type="button"
+              gradientDuoTone="purpleToBlue"
+              size="sm"
+              outline
+              onClick={handleUpdloadImage}
+              disabled={imageUploadProgress}
+            >
+              {imageUploadProgress ? (
+                <div className="w-16 h-16">
+                  <CircularProgressbar
+                    value={imageUploadProgress}
+                    text={`${imageUploadProgress || 0}%`}
+                  />
+                </div>
+              ) : (
+                "Upload Image"
+              )}
+            </Button>
+          </div>
         </div>
         {imageUploadError && <Alert color="failure">{imageUploadError}</Alert>}
         {imageUrl && (
           <img
             src={imageUrl}
-            alt="upload"
+            alt="Uploaded"
             className="w-full h-72 object-cover"
           />
         )}
-        <ReactQuill
-          theme="snow"
-          value={formData.content}
-          placeholder="Write something..."
-          className="h-72 mb-12"
-          required
-          onChange={(value) => {
-            setFormData({ ...formData, content: value });
-          }}
-        />
-        <Button type="submit" className="bg-orange-400 text-white hover:bg-orange-400/90 mb-5">
-          Update service
+
+        <div>
+          <label htmlFor="content" className="block font-medium mb-2">
+            Content
+          </label>
+          <ReactQuill
+            id="content"
+            theme="snow"
+            value={formData.content || ""}
+            placeholder="Write something..."
+            className="h-72 mb-12"
+            required
+            onChange={(value) => setFormData({ ...formData, content: value })}
+          />
+        </div>
+
+        <div>
+          <label htmlFor="meta_title" className="block font-medium mb-2">
+            Meta Title
+          </label>
+          <TextInput
+            type="text"
+            id="meta_title"
+            placeholder="Enter meta title"
+            onChange={(e) =>
+              setFormData({ ...formData, meta_title: e.target.value })
+            }
+            value={formData.meta_title || ""}
+          />
+        </div>
+
+        <div>
+          <label htmlFor="meta_description" className="block font-medium mb-2">
+            Meta Description
+          </label>
+          <TextInput
+            type="text"
+            id="meta_description"
+            placeholder="Enter meta description"
+            onChange={(e) =>
+              setFormData({ ...formData, meta_description: e.target.value })
+            }
+            value={formData.meta_description || ""}
+          />
+        </div>
+
+        <div>
+          <label htmlFor="meta_keyword" className="block font-medium mb-2">
+            Meta Keyword
+          </label>
+          <TextInput
+            type="text"
+            id="meta_keyword"
+            placeholder="Enter meta keyword"
+            onChange={(e) =>
+              setFormData({ ...formData, meta_keyword: e.target.value })
+            }
+            value={formData.meta_keyword || ""}
+          />
+        </div>
+
+        <div>
+          <label htmlFor="other_meta_tag" className="block font-medium mb-2">
+            Other Meta Tag
+          </label>
+          <TextInput
+            type="text"
+            id="other_meta_tag"
+            placeholder="Enter other meta tag"
+            onChange={(e) =>
+              setFormData({ ...formData, other_meta_tag: e.target.value })
+            }
+            value={formData.other_meta_tag || ""}
+          />
+        </div>
+
+        <Button
+          type="submit"
+          className="bg-orange-400 text-white hover:bg-orange-400/90 my-3"
+        >
+          Update Service
         </Button>
         {publishError && (
           <Alert className="mt-5" color="failure">
