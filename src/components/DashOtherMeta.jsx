@@ -3,11 +3,9 @@ const apiUrl = import.meta.env.VITE_BASE_URL;
 import { toast } from "react-toastify";
 function DashOtherMeta() {
   const [form, setForm] = useState({
-    title: "",
-    description: "",
-    keyword: "",
-    otherTag: "",
-    type: "Service",
+    header: "",
+    footer: "",
+    body: "",
   });
 
   const handleChange = (e) => {
@@ -23,9 +21,8 @@ function DashOtherMeta() {
       keywords: form.keyword,
       other: form.otherTag,
     };
-    const type = form.type.toLowerCase();
     try {
-      const res = await fetch(`${apiUrl}/api/metatags/${type}`, {
+      const res = await fetch(`${apiUrl}/api/metatags/otherMeta`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -35,11 +32,9 @@ function DashOtherMeta() {
       if (res.ok) {
         toast.success("Form submitted successfully");
         setForm({
-          title: "",
-          description: "",
-          keywords: "",
-          other: "",
-          type: "Service",
+          header: "",
+          footer: "",
+          body: "",
         });
       } else {
         toast.error(`Form submission failed`);

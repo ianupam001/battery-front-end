@@ -7,7 +7,6 @@ function DashBlogMeta() {
     description: "",
     keyword: "",
     otherTag: "",
-    type: "Service",
   });
 
   const handleChange = (e) => {
@@ -25,7 +24,7 @@ function DashBlogMeta() {
     };
     const type = form.type.toLowerCase();
     try {
-      const res = await fetch(`${apiUrl}/api/metatags/${type}`, {
+      const res = await fetch(`${apiUrl}/api/metatags/blog`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -39,7 +38,6 @@ function DashBlogMeta() {
           description: "",
           keywords: "",
           other: "",
-          type: "Service",
         });
       } else {
         toast.error(`Form submission failed`);
@@ -56,16 +54,12 @@ function DashBlogMeta() {
         <h6>Blog Meta data</h6>
         <div className="flex flex-wrap -mx-3">
           <div className="w-full md:w-1/2 px-3 mb-2">
-            <label
-              className="block text-gray-700  mb-2"
-              htmlFor="title"
-            >
+            <label className="block text-gray-700  mb-2" htmlFor="title">
               Meta Title
             </label>
             <textarea
               name="title"
               id="title"
-            
               className="w-full p-2 border border-gray-300 rounded-md resize-none"
               value={form.title}
               onChange={handleChange}
@@ -73,16 +67,12 @@ function DashBlogMeta() {
           </div>
 
           <div className="w-full md:w-1/2 px-3 mb-2">
-            <label
-              className="block text-gray-700  mb-2"
-              htmlFor="description"
-            >
+            <label className="block text-gray-700  mb-2" htmlFor="description">
               Meta Description
             </label>
             <textarea
               name="description"
               id="description"
-             
               className="w-full p-2 border border-gray-300 rounded-md resize-none"
               value={form.description}
               onChange={handleChange}
@@ -92,16 +82,12 @@ function DashBlogMeta() {
 
         <div className="flex flex-wrap -mx-3">
           <div className="w-full md:w-1/2 px-3 mb-2">
-            <label
-              className="block text-gray-700 mb-2"
-              htmlFor="keyword"
-            >
+            <label className="block text-gray-700 mb-2" htmlFor="keyword">
               Meta Keyword
             </label>
             <textarea
               name="keyword"
               id="keyword"
-            
               className="w-full p-2 border border-gray-300 rounded-md resize-none"
               value={form.keyword}
               onChange={handleChange}
@@ -109,24 +95,18 @@ function DashBlogMeta() {
           </div>
 
           <div className="w-full md:w-1/2 px-3 mb-2">
-            <label
-              className="block text-gray-700 mb-2"
-              htmlFor="otherTag"
-            >
+            <label className="block text-gray-700 mb-2" htmlFor="otherTag">
               Other Meta Tag
             </label>
             <textarea
               name="otherTag"
               id="otherTag"
-            
               className="w-full p-2 border border-gray-300 rounded-md resize-none"
               value={form.otherTag}
               onChange={handleChange}
             />
           </div>
         </div>
-
-       
 
         <div className="px-3">
           <button
