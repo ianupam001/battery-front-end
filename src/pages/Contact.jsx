@@ -14,23 +14,21 @@ export default function Contact() {
   const sourcePage = location.pathname;
   const { serviceSlug } = useParams();
   const [metaTags, setMetaTags] = useState(null);
+
   useEffect(() => {
-    try {
-      const fetchMetadata = async () => {
+    const fetchMetadata = async () => {
+      try {
         const res = await fetch(`${apiUrl}/api/metatags/contact`);
         const data = await res.json();
         if (res.ok) {
           setMetaTags(data);
         }
-      };
-      fetchMetadata();
-    } catch (error) {
-      console.error(error.message);
-    }
+      } catch (error) {
+        console.error(error.message);
+      }
+    };
+    fetchMetadata();
   }, []);
-  console.log(metaTags);
-
-  console.log(formData, currentPath);
 
   useEffect(() => {
     setCurrentPath(window.location.pathname);
@@ -57,57 +55,91 @@ export default function Contact() {
     }
   };
 
+  useEffect(() => {
+    if (metaTags?.other) {
+      const tempDiv = document.createElement("div");
+      tempDiv.innerHTML = metaTags.other;
+
+      const scriptTags = tempDiv.querySelectorAll("script");
+
+      scriptTags.forEach((scriptTag) => {
+        const scriptElement = document.createElement("script");
+        scriptElement.textContent = scriptTag.innerHTML;
+        document.body.appendChild(scriptElement);
+        return () => {
+          document.body.removeChild(scriptElement);
+        };
+      });
+    }
+    if (metaTags?.other) {
+      const tempDiv = document.createElement("div");
+      tempDiv.innerHTML = metaTags.other;
+
+      const linkTags = tempDiv.querySelectorAll("link");
+      linkTags.forEach((linkTag) => {
+        const linkElement = document.createElement("link");
+        linkElement.rel = linkTag.rel || "";
+        linkElement.href = linkTag.href || "";
+        linkElement.type = linkTag.type || "";
+        linkElement.media = linkTag.media || "";
+        document.head.appendChild(linkElement);
+      });
+    }
+  }, [metaTags]);
+
   const title = "Contact";
   const breadcrumbs = [{ name: "Home", link: "/" }, { name: "Contact" }];
 
   return (
     <div>
       <Helmet>
-        <title>{metaTags?.title || ""}  </title>
-        <meta
-          name={metaTags?.description || "" }
-          content={metaTags?.keywords || ""}
-        />
-        { metaTags?.other || ""}
+        <title>{metaTags?.title || ""}</title>
+        <meta name="description" content={metaTags?.description || ""} />
+        <meta name="keywords" content={metaTags?.keywords || ""} />
       </Helmet>
       <Breadcrumb title={title} breadcrumbs={breadcrumbs} />
       <section className="contact-two">
-      <div className="container">
-        <div className="row">
-          <div className="col-xl-4 col-lg-4">
-            <div className="contact-two__single">
-              <div className="contact-two__icon">
-                <span className="icon-call"></span>
+        <div className="container">
+          <div className="row">
+            <div className="col-xl-4 col-lg-4">
+              <div className="contact-two__single">
+                <div className="contact-two__icon">
+                  <span className="icon-call"></span>
+                </div>
+                <p>Contact Us</p>
+                <h3>
+                  <a href="tel:+971 50 934 46685">+971 50 934 4668</a>
+                </h3>
               </div>
-              <p>Contact Us</p>
-              <h3>
-                <a href="tel:+971 50 934 46685">+971 50 934 4668</a>
-              </h3>
             </div>
-          </div>
-          <div className="col-xl-4 col-lg-4">
-            <div className="contact-two__single">
-              <div className="contact-two__icon">
-                <span className="icon-envelope"></span>
+            <div className="col-xl-4 col-lg-4">
+              <div className="contact-two__single">
+                <div className="contact-two__icon">
+                  <span className="icon-envelope"></span>
+                </div>
+                <p>Mail Us</p>
+                <h3>
+                  <a href="mailto:support@800bbattery.com">
+                    support@800bbattery.com
+                  </a>
+                </h3>
               </div>
-              <p>Mail Us</p>
-              <h3>
-                <a href="mailto:support@800bbattery.com">support@800bbattery.com</a>
-              </h3>
             </div>
-          </div>
-          <div className="col-xl-4 col-lg-4">
-            <div className="contact-two__single">
-              <div className="contact-two__icon">
-                <span className="icon-location"></span>
+            <div className="col-xl-4 col-lg-4">
+              <div className="contact-two__single">
+                <div className="contact-two__icon">
+                  <span className="icon-location"></span>
+                </div>
+                <p>Our Office Location</p>
+                <h3>
+                  Al Asayel Street - 160St Warehouse no. 2 - 318th Rd - near Al
+                  Ahli Driving school - Al Quoz Industrial Area 3 - Dubai
+                </h3>
               </div>
-              <p>Our Office Location</p>
-              <h3>Al Asayel Street - 160St Warehouse no. 2 - 318th Rd - near Al Ahli Driving school - Al Quoz Industrial Area 3 - Dubai</h3>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
       <section className="contact-three">
         <div className="container">
           <div className="contact-three__inner">
@@ -125,104 +157,6 @@ export default function Contact() {
                   <h3 className="contact-three__form-title">
                     Get A Free Quote
                   </h3>
-                  {/* <form
-                    onSubmit={handleSubmit}
-                    method="POST"
-                    className="contact-form-validated contact-three__form"
-                  >
-                    <div className="row">
-                      <div className="col-xl-6 col-lg-6">
-                        <div className="contact-three__input-box">
-                          <input
-                            type="text"
-                            name="name"
-                            placeholder="Your Name"
-                            required
-                            onChange={(e) =>
-                              setFormData({ ...formData, name: e.target.value })
-                            }
-                          />
-                        </div>
-                      </div>
-                      <div className="col-xl-6 col-lg-6">
-                        <div className="contact-three__input-box">
-                          <input
-                            type="email"
-                            name="email"
-                            placeholder="Your Email"
-                            required
-                            onChange={(e) =>
-                              setFormData({
-                                ...formData,
-                                email: e.target.value,
-                              })
-                            }
-                          />
-                        </div>
-                      </div>
-                      <div className="col-xl-6 col-lg-6">
-                        <div className="contact-three__input-box">
-                          <input
-                            type="number"
-                            name="phone"
-                            placeholder="Mobile"
-                            onChange={(e) =>
-                              setFormData({
-                                ...formData,
-                                phone: e.target.value,
-                              })
-                            }
-                          />
-                        </div>
-                      </div>
-                      <div className="col-xl-6 col-lg-6">
-                        <div className="contact-three__input-box">
-                          <input
-                            type="text"
-                            name="services"
-                            placeholder="Services"
-                            onChange={(e) =>
-                              setFormData({
-                                ...formData,
-                                services: e.target.value,
-                              })
-                            }
-                          />
-                        </div>
-                      </div>
-                      <div className="col-xl-12">
-                        <div className="contact-three__input-box text-message-box">
-                          <textarea
-                            name="message"
-                            placeholder="Message"
-                            onChange={(e) =>
-                              setFormData({
-                                ...formData,
-                                message: e.target.value,
-                              })
-                            }
-                          ></textarea>
-                        </div>
-                        <div className="contact-three__btn-box">
-                          <Button
-                            type="submit"
-                            className="thm-btn contact-three__btn"
-                          >
-                            Send a message
-                          </Button>
-                        </div>
-
-                        {publishError && (
-                          <Alert
-                            className="mt-5"
-                            color={res.ok ? "success" : "failure"}
-                          >
-                            {publishError}
-                          </Alert>
-                        )}
-                      </div>
-                    </div>
-                  </form> */}
                   <ContactFormContactPage sourcePage={sourcePage} />
                 </div>
               </div>

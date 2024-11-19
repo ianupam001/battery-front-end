@@ -82,7 +82,7 @@ export default function DashSidebar() {
                     "about",
                     "blog",
                     "contact",
-                    "othermetadata",
+                    "othermeta",
                   ])
                     ? "bg-orange-200"
                     : ""
@@ -110,7 +110,7 @@ export default function DashSidebar() {
                     </Dropdown.Item>
                   </Link>
                   <Link to="/dashboard?tab=othermeta">
-                    <Dropdown.Item active={isActiveTabMeta(["othermetadata"])}>
+                    <Dropdown.Item active={isActiveTabMeta(["othermeta"])}>
                       Other MetaData
                     </Dropdown.Item>
                   </Link>

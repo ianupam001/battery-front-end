@@ -32,7 +32,7 @@ export function ContactFormProducts({ sourcePage, formType }) {
     };
     try {
       const token = localStorage.getItem("access_token");
-      const response = await fetch(`${apiUrl}/api/forms/create/product`, {
+      const response = await fetch(`${apiUrl}/api/inquiry/create/inquiry`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
