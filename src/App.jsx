@@ -1,12 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { Suspense, lazy, useEffect, useState } from "react";
 import FullPageLoader from "./components/elements/FullPageLoader";
 import CreateMetaData from "./pages/CreateMetadata";
 import UpdateMetaData from "./pages/UpdateMetaData";
 import UpdateOtherMetaData from "./pages/UpdateOtherMetaData";
 import CreateOtherMetaData from "./pages/CreateOtherMetaData";
-import { Helmet } from "react-helmet-async";
 
 // Lazy loading of pages
 const Home = lazy(() => import("./pages/Home"));
@@ -46,8 +44,9 @@ const TopSpace = lazy(() => import("./components/elements/TopSpace"));
 const apiUrl = import.meta.env.VITE_BASE_URL;
 
 export default function App() {
-  const { currentUser } = useSelector((state) => state.user);
+
   const [metaTags, setMetaTags] = useState(null);
+  console.log(metaTags)
   useEffect(() => {
     try {
       const fetchMetadata = async () => {
@@ -65,21 +64,58 @@ export default function App() {
     }
   }, []);
 
+  useEffect(() => {
+    if (metaTags?.header) {
+      const tempDiv = document.createElement("div");
+      tempDiv.innerHTML = metaTags.header;
+
+      const scriptTags = tempDiv.querySelectorAll("script");
+
+      scriptTags.forEach((scriptTag) => {
+        const scriptElement = document.createElement("script");
+        scriptElement.textContent = scriptTag.innerHTML;
+        document.body.appendChild(scriptElement);
+        return () => {
+          document.body.removeChild(scriptElement);
+        };
+      });
+    }
+    if (metaTags?.body) {
+      const tempDiv = document.createElement("div");
+      tempDiv.innerHTML = metaTags.body;
+
+      const scriptTags = tempDiv.querySelectorAll("script");
+
+      scriptTags.forEach((scriptTag) => {
+        const scriptElement = document.createElement("script");
+        scriptElement.textContent = scriptTag.innerHTML;
+        document.body.appendChild(scriptElement);
+        return () => {
+          document.body.removeChild(scriptElement);
+        };
+      });
+    }
+    if (metaTags?.footer) {
+      const tempDiv = document.createElement("div");
+      tempDiv.innerHTML = metaTags.footer;
+
+      const scriptTags = tempDiv.querySelectorAll("script");
+
+      scriptTags.forEach((scriptTag) => {
+        const scriptElement = document.createElement("script");
+        scriptElement.textContent = scriptTag.innerHTML;
+        document.body.appendChild(scriptElement);
+        return () => {
+          document.body.removeChild(scriptElement);
+        };
+      });
+    }
+  }, [metaTags]);
+
 
   return (
     <>
-    <Helmet >
-      {
-        metaTags && metaTags?.header || ""
-      }
-      {
-        metaTags && metaTags?.body || ""
-      }
-      {
-        metaTags && metaTags?.footer || ""
-      }
-    
-    </Helmet>
+   
     <BrowserRouter>
       {/* Wrap the whole app inside Suspense */}
       <Suspense fallback={<FullPageLoader />}>
