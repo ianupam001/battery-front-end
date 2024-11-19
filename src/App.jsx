@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Suspense, lazy, useEffect, useState } from "react";
 import FullPageLoader from "./components/elements/FullPageLoader";
-import CreateMetaData from "./pages/CreateMetadata";
 import UpdateMetaData from "./pages/UpdateMetaData";
 import UpdateOtherMetaData from "./pages/UpdateOtherMetaData";
 import CreateOtherMetaData from "./pages/CreateOtherMetaData";
@@ -11,6 +10,7 @@ import { Helmet } from "react-helmet-async";
 // Lazy loading of pages
 const Home = lazy(() => import("./pages/Home"));
 const About = lazy(() => import("./pages/About"));
+const CreateMetaData = lazy(() => import("./pages/CreateMetadata"));
 const Contact = lazy(() => import("./pages/Contact"));
 const SignIn = lazy(() => import("./pages/SignIn"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
@@ -18,7 +18,9 @@ const Projects = lazy(() => import("./pages/Projects"));
 const SignUp = lazy(() => import("./pages/SignUp"));
 const Footer = lazy(() => import("./components/elements/Footer"));
 const PrivateRoute = lazy(() => import("./components/PrivateRoute"));
-const OnlyAdminPrivateRoute = lazy(() => import("./components/OnlyAdminPrivateRoute"));
+const OnlyAdminPrivateRoute = lazy(() =>
+  import("./components/OnlyAdminPrivateRoute")
+);
 const CreatePost = lazy(() => import("./pages/CreatePost"));
 const UpdatePost = lazy(() => import("./pages/UpdatePost"));
 const CreateProduct = lazy(() => import("./pages/CreateProduct"));
@@ -70,71 +72,88 @@ export default function App() {
 
   return (
     <>
-    <Helmet >
-      {
-        metaTags && metaTags?.header || ""
-      }
-      {
-        metaTags && metaTags?.body || ""
-      }
-      {
-        metaTags && metaTags?.footer || ""
-      }
-      
-    </Helmet>
-    <BrowserRouter>
-      {/* Wrap the whole app inside Suspense */}
-      <Suspense fallback={<FullPageLoader />}>
-        <ScrollToTop />
-        <TopSpace />
-        <Header2 />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact-us" element={<Contact />} />
-          <Route path="/sign-in" element={<SignIn />} />
-          <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/search" element={<Search />} />
-          
-          {/* Private Routes */}
-          <Route element={<PrivateRoute />}>
-            <Route path="/dashboard" element={<Dashboard />} />
-          </Route>
-          
-          {/* Only Admin Routes */}
-          <Route element={<OnlyAdminPrivateRoute />}>
-            <Route path="/create-post" element={<CreatePost />} />
-            <Route path="/update-post/:postId" element={<UpdatePost />} />
-            <Route path="/create-product" element={<CreateProduct />} />
-            <Route path="/update-product/:productId" element={<UpdateProduct />} />
-            <Route path="/create-slider" element={<CreateSlider />} />
-            <Route path="/update-slider/:sliderId" element={<UpdateSlider />} />
-            <Route path="/create-brand" element={<CreateBrand />} />
-            <Route path="/update-brand/:brandId" element={<UpdateBrand />} />
-            <Route path="/create-testimonial" element={<CreateTestimonial />} />
-            <Route path="/update-testimonial/:testimonialId" element={<UpdateTestimonial />} />
-            <Route path="/create-service" element={<CreateService />} />
-            <Route path="/update-service/:serviceId" element={<UpdateService />} />
-            <Route path="/create-metadata" element={<CreateMetaData />} />
-            <Route path="/update-metadata/:type/:metadataId" element={<UpdateMetaData />} />
-            <Route path="/create-othermetadata" element={<CreateOtherMetaData />} />
-            <Route path="/update-othermetadata/other/:othermetadataId" element={<UpdateOtherMetaData />} />
-          </Route>
+      <Helmet>
+        {(metaTags && metaTags?.header) || ""}
+        {(metaTags && metaTags?.body) || ""}
+        {(metaTags && metaTags?.footer) || ""}
+      </Helmet>
+      <BrowserRouter>
+        {/* Wrap the whole app inside Suspense */}
+        <Suspense fallback={<FullPageLoader />}>
+          <ScrollToTop />
+          <TopSpace />
+          <Header2 />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact-us" element={<Contact />} />
+            <Route path="/sign-in" element={<SignIn />} />
+            <Route path="/sign-up" element={<SignUp />} />
+            <Route path="/search" element={<Search />} />
 
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/thank-you" element={<ThankYou />} />
-          <Route path="/blogs" element={<Blog />} />
-          <Route path="/post/:postSlug" element={<PostPage />} />
-          <Route path="/product/:productSlug" element={<ProductPage />} />
-          <Route path="/service/:serviceSlug" element={<ServicePage />} />
-          <Route path="*" element={<PageNotFound />} />
-        </Routes>
+            {/* Private Routes */}
+            <Route element={<PrivateRoute />}>
+              <Route path="/dashboard" element={<Dashboard />} />
+            </Route>
 
-        <Footer />
-      </Suspense>
-    </BrowserRouter>
+            {/* Only Admin Routes */}
+            <Route element={<OnlyAdminPrivateRoute />}>
+              <Route path="/create-post" element={<CreatePost />} />
+              <Route path="/update-post/:postId" element={<UpdatePost />} />
+              <Route path="/create-product" element={<CreateProduct />} />
+              <Route
+                path="/update-product/:productId"
+                element={<UpdateProduct />}
+              />
+              <Route path="/create-slider" element={<CreateSlider />} />
+              <Route
+                path="/update-slider/:sliderId"
+                element={<UpdateSlider />}
+              />
+              <Route path="/create-brand" element={<CreateBrand />} />
+              <Route path="/update-brand/:brandId" element={<UpdateBrand />} />
+              <Route
+                path="/create-testimonial"
+                element={<CreateTestimonial />}
+              />
+              <Route
+                path="/update-testimonial/:testimonialId"
+                element={<UpdateTestimonial />}
+              />
+              <Route path="/create-service" element={<CreateService />} />
+              <Route
+                path="/update-service/:serviceId"
+                element={<UpdateService />}
+              />
+              <Route path="/create-metadata" element={<CreateMetaData />} />
+              <Route
+                path="/update-metadata/:type/:metadataId"
+                element={<UpdateMetaData />}
+              />
+              <Route
+                path="/create-othermetadata"
+                element={<CreateOtherMetaData />}
+              />
+              <Route
+                path="/update-othermetadata/other/:othermetadataId"
+                element={<UpdateOtherMetaData />}
+              />
+            </Route>
+
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/thank-you" element={<ThankYou />} />
+            <Route path="/blogs" element={<Blog />} />
+            <Route path="/post/:postSlug" element={<PostPage />} />
+            <Route path="/product/:productSlug" element={<ProductPage />} />
+            <Route path="/service/:serviceSlug" element={<ServicePage />} />
+            <Route path="*" element={<PageNotFound />} />
+          </Routes>
+
+          <Footer />
+        </Suspense>
+      </BrowserRouter>
     </>
   );
 }
