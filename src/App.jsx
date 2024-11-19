@@ -4,11 +4,10 @@ import FullPageLoader from "./components/elements/FullPageLoader";
 import UpdateMetaData from "./pages/UpdateMetaData";
 import UpdateOtherMetaData from "./pages/UpdateOtherMetaData";
 import CreateOtherMetaData from "./pages/CreateOtherMetaData";
-
+import CreateMetaData from "./pages/CreateMetaData";
 // Lazy loading of pages
 const Home = lazy(() => import("./pages/Home"));
 const About = lazy(() => import("./pages/About"));
-const CreateMetaData = lazy(() => import("./pages/CreateMetadata"));
 const Contact = lazy(() => import("./pages/Contact"));
 const SignIn = lazy(() => import("./pages/SignIn"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
