@@ -64,9 +64,7 @@ export default function App() {
       console.error(error.message);
     }
   }, []);
-  console.log(metaTags?.header);
-  console.log(metaTags?.body);
-  console.log(metaTags?.footer);
+
 
   return (
     <>
@@ -80,7 +78,7 @@ export default function App() {
       {
         metaTags && metaTags?.footer || ""
       }
-      
+    
     </Helmet>
     <BrowserRouter>
       {/* Wrap the whole app inside Suspense */}

@@ -28,9 +28,9 @@ export default function Contact() {
       console.error(error.message);
     }
   }, []);
-  console.log(metaTags);
+  // console.log(metaTags);
 
-  console.log(formData, currentPath);
+  // console.log(formData, currentPath);
 
   useEffect(() => {
     setCurrentPath(window.location.pathname);
