@@ -23,9 +23,9 @@ export default function Blog() {
       console.error(error.message);
     }
   }, []);
-  console.log(metaTags);
+ 
 
-  console.log(posts);
+  
 
   useEffect(() => {
     const fetchPosts = async () => {

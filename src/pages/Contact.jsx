@@ -14,8 +14,6 @@ export default function Contact() {
   const sourcePage = location.pathname;
   const { serviceSlug } = useParams();
   const [metaTags, setMetaTags] = useState(null);
-  console.log(metaTags?.other);
-  // console.log(typeof metaTags?.other)
 
   useEffect(() => {
     const fetchMetadata = async () => {
@@ -56,7 +54,7 @@ export default function Contact() {
       setPublishError("Something went wrong");
     }
   };
-  
+
   useEffect(() => {
     if (metaTags?.other) {
       const tempDiv = document.createElement("div");

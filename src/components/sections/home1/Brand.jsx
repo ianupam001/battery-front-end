@@ -67,7 +67,7 @@ export default function Brand() {
           const res = await fetch(`${apiUrl}/api/brand/getbrands`);
           const brand_list = await res.json();
           setBrand(brand_list.brands);
-          console.log(brands);
+          
         };
         fetchBrand();
       }, []);
@@ -82,8 +82,8 @@ export default function Brand() {
                     <Swiper {...swiperOptions} className="brand-one__carousel owl-theme owl-carousel">
                     {brands && brands.length > 0 && (
                         <div>
-                            { brands.map((brand) => (
-                            <div>
+                            { brands?.map((brand, index) => (
+                            <div key={index}>
                                 <SwiperSlide>
                         {/*Brand One Single*/}
                         <div className="brand-one__single">

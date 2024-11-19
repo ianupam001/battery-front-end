@@ -79,8 +79,8 @@ export default function Testimonial() {
                 <Swiper {...swiperOptions} className="testimonial-one__carousel owl-theme owl-carousel">
                 {testimonials && testimonials.length > 0 && (
                 <div>
-                { testimonials.map((testimonial) => (
-                    <div>
+                { testimonials?.map((testimonial, index) => (
+                    <div key={index}>
                 <SwiperSlide>
                     {/*Testimonial One Single Start*/}
                     <div className="item">
