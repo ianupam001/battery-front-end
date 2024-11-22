@@ -113,11 +113,7 @@ export default function App() {
 
   return (
     <>
-      <Helmet>
-        {(metaTags && metaTags?.header) || ""}
-        {(metaTags && metaTags?.body) || ""}
-        {(metaTags && metaTags?.footer) || ""}
-      </Helmet>
+      
       <BrowserRouter>
         {/* Wrap the whole app inside Suspense */}
         <Suspense fallback={<FullPageLoader />}>
