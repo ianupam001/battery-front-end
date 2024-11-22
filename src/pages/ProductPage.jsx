@@ -92,12 +92,6 @@ export default function ProductPage() {
                     src={product && product.image}
                     alt={product && product.title}
                   />
-                  {/* <div className="overlay-icon">
-                            <Link className="lightbox-image" data-fancybox="gallery"
-                                href={product && product.image} >
-                                <i className="icon-search-interface-symbol" ></i>
-                            </Link>
-                        </div> */}
                 </div>
               </div>
             </div>
@@ -110,9 +104,7 @@ export default function ProductPage() {
                   <h6>Electrical</h6>
                   <h2>{product && product.title}</h2>
                 </div>
-                {/* <div className="shop-details-page1__value">
-                        <h3>$200.00 <del>$260.00</del></h3>
-                    </div> */}
+
                 <div className="shop-details-page1__text">
                   <div
                     className="pt-2 pb-4 max-w-2xl mx-auto w-full post-content"
@@ -121,7 +113,6 @@ export default function ProductPage() {
                     }}
                   ></div>
                   <div className="cart-box">
-                    {/* <div class="main-menu-two__call-icon"><span class="icon-phone-call"></span></div> */}
                     <a
                       className="thm-btn-new"
                       href="https://wa.me/+971509344668?text=Can I get more details about your product?"
@@ -146,115 +137,12 @@ export default function ProductPage() {
                     </a>
                   </div>
                 </div>
-                {/* <div className="shop-details-page1__product">
-                        <ul>
-                            <li>
-                                <div className="title">
-                                    <h5>Author</h5>
-                                    <span>:</span>
-                                </div>
-                                <p>Darby</p>
-                            </li>
-                            <li>
-                                <div className="title">
-                                    <h5>Language</h5>
-                                    <span>:</span>
-                                </div>
-                                <p>English</p>
-                            </li>
-                            <li>
-                                <div className="title">
-                                    <h5>Services</h5>
-                                    <span>:</span>
-                                </div>
-                                <p>Free Shipping, 7 Days Replacement, Cash On <br/>Delivery Available</p>
-                            </li>
-                        </ul>
-                    </div> */}
 
                 <div className="product-quantity-box-outer">
                   <div className="product-quantity-box">
-                    {/* <div className="input-box">
-                                <input className="quantity-spinner" type="text" name="quantity"/>
-                            </div> */}
-                    <div className="right">
-                      {/* <div className="cart-box">
-                        <button className="thm-btn" type="submit">
-                          <span className="txt">Enquire Now</span>
-                        </button>
-                      </div> */}
-                    </div>
+                    <div className="right"></div>
                   </div>
                 </div>
-
-                {/* <div className="shop-details-page1__wishlist-btn">
-                        <Link href="#"><span className="fa fa fa-heart"></span> Add to Wishlist</Link>
-                    </div> */}
-
-                {/* <div className="shop-details-page1__description">
-                        <div className="inner-title">
-                            <h3>Product Details</h3>
-                        </div>
-                        <p>It is a long established fact that a reader will be distracted by the readable
-                            content of a page when looking at its layout. The point of using Lorem Ipsum is that
-                            it has a more-or-less normal distribution of letters, as opposed to using 'Content
-                            here, content here', making it look like readable English. Many desktop publishing
-                            packages and web page editors now use Lorem Ipsum as their default model text, and a
-                            search for 'lorem ipsum' will uncover many web sites still in their infancy. Various
-                            versions have evolved over the years, sometimes by accident, sometimes on purpose
-                        </p>
-                    </div> */}
-
-                {/* <div className="shop-details-page1__reviews">
-                        <div className="title-box">
-                            <h2>Product Reviews</h2>
-                        </div>
-
-                        <ul>
-                            <li>
-                                <div className="inner">
-                                    <div className="img-box">
-                                        <img src="assets/images/shop/product-review1.jpg" alt=""/>
-                                    </div>
-                                    <div className="content-box">
-                                        <h3>Marshall <span>Mar 21, 2023</span></h3>
-                                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It
-                                            has roots in a piece of erature from 45 BC,
-                                            making it over 2000 years old.</p>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li>
-                                <div className="inner">
-                                    <div className="img-box">
-                                        <img src="assets/images/shop/product-review2.jpg" alt=""/>
-                                    </div>
-                                    <div className="content-box">
-                                        <h3>Cashel <span>Mar 21, 2021</span></h3>
-                                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It
-                                            has roots in a piece of erature from 45 BC,
-                                            making it over 2000 years old.</p>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li>
-                                <div className="inner">
-                                    <div className="img-box">
-                                        <img src="assets/images/shop/product-review3.jpg" alt=""/>
-                                    </div>
-                                    <div className="content-box">
-                                        <h3>Everest <span>Mar 20, 2021</span></h3>
-                                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It
-                                            has roots in a piece of erature from 45 BC,
-                                            making it over 2000 years old.</p>
-                                    </div>
-                                </div>
-                            </li>
-
-                        </ul>
-                    </div> */}
 
                 <div className="shop-details-page1__form">
                   <ContactFormProducts sourcePage={sourcePage} />
