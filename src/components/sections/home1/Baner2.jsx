@@ -1,17 +1,16 @@
-
 import { ContactFormModal } from "../../elements/ContactFormModal";
 
 export default function Banner() {
-
   return (
     <>
       {/* Mobile Banner */}
       <section className="md:hidden relative flex flex-col">
-        <div>
+        <div className="aspect-w-16 aspect-h-9">
           <img
-            src="assets/images/banner-mobile.jpeg"
+            src="https://firebasestorage.googleapis.com/v0/b/blogs-app-e2c7f.appspot.com/o/battery-banner-mobile.jpeg.jpg?alt=media&token=fb342356-0931-4c02-949b-622b207723c5"
             alt="Mobile Banner"
-            width="100%" 
+            className="object-cover"
+            width="100%"
             height="auto"
           />
         </div>
