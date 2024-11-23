@@ -7,7 +7,7 @@ export default function Banner() {
       <section className="md:hidden relative flex flex-col">
         <div className="aspect-w-16 aspect-h-9">
           <img
-            src="https://firebasestorage.googleapis.com/v0/b/blogs-app-e2c7f.appspot.com/o/battery-banner-mobile.jpeg.jpg?alt=media&token=fb342356-0931-4c02-949b-622b207723c5"
+            src="https://imagedelivery.net/yg9mV_kJZn9RkpQKfOuKfA/fb2c4236-315c-4710-29a0-bf27a8917d00/1"
             alt="Mobile Banner"
             className="object-cover"
             width="100%"
