@@ -1,9 +1,6 @@
 import { Button, Spinner } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
-import CallToAction from "../components/CallToAction";
-import CommentSection from "../components/CommentSection";
-import ServiceCard from "../components/PostCard";
 import { ContactForm } from "../components/elements/ContactForm";
 import { Helmet } from "react-helmet-async";
 const apiUrl = import.meta.env.VITE_BASE_URL;
@@ -155,7 +152,7 @@ export default function ServicePage() {
                   </ul>
                   <div className="project-details__get-started-btn-box">
                     <Link
-                      href="#"
+                      to="/contact-us"
                       className="project-details__get-started-btn thm-btn"
                     >
                       get in touch
