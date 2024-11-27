@@ -121,8 +121,7 @@ export default function ServicePage() {
                     Get Started Today
                   </h3>
                   <p className="project-details__get-started-text">
-                    Pianissimos of dulcimers qui therefore always holds in these
-                    matters to this principle
+                    Get fast on-site and roadside battery services in Dubai.
                   </p>
                   <ul className="project-details__get-started-points list-unstyled">
                     <li>

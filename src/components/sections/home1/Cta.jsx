@@ -22,8 +22,8 @@ export default function Cta() {
             </div>
             <p className="cta-one__text">
               Discover reliable car battery services with 800 B Battery. <br />
-              We provide fast, affordable, and expert assistance to keep <br /> you on
-              the road.
+              We provide fast, affordable, and expert assistance to keep <br />{" "}
+              you on the road.
             </p>
             <div className="cta-one__btn-and-call-box">
               <div className="cta-one__btn-box">
