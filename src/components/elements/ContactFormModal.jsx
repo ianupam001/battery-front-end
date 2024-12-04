@@ -175,6 +175,7 @@ export function ContactFormModal({ sourcePage }) {
 
       <div className="mb-4">
         <Select
+        aria-label="Select"
           id="services"
           className="cursor-pointer"
           name="services"

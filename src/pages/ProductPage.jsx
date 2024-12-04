@@ -115,6 +115,7 @@ export default function ProductPage() {
                   <div className="cart-box">
                     <a
                       className="thm-btn-new"
+                      aria-label="Go to whatsapp"
                       href="https://wa.me/+971509344668?text=Can I get more details about your product?"
                       target="_blank"
                       rel="noopener noreferrer"

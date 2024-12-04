@@ -8,7 +8,7 @@ export default function Services() {
   const title = "Services";
   const breadcrumbs = [
     { name: "Home", link: "/" },
-    { name: "Services" }, // No link for the current page
+    { name: "Services" }, 
   ];
   const [services, setServices] = useState([]);
 
@@ -34,7 +34,7 @@ export default function Services() {
           <div className="container">
             <div className="row">
               {/*Blog One Single Start*/}
-              {services.map((post) => (
+              {services?.map((post) => (
                 <ServiceCard key={post._id} post={post} />
               ))}
             </div>

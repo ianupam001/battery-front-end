@@ -152,6 +152,7 @@ export function ContactFormContactPage({ sourcePage }) {
         <div className="col-xl-6 col-lg-6">
           <div className="contact-three__input-box">
             <Select
+            aria-label="Select"
               name="services"
               value={formData.services}
               onChange={handleChange}

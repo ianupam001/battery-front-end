@@ -100,9 +100,9 @@ export default function ServicePage() {
                     {recentServices &&
                       recentServices?.map((service, index) => (
                         <li key={index}>
-                          <Link to={`/service/${service.slug}`}>
+                          <Link to={`/service/${service.slug}`}  aria-label={`Learn more about the service: ${service.title}`}>
                             {service.title}
-                            <span className="icon-arrow-right"></span>
+                            <span className="icon-arrow-right" aria-hidden="true"></span>
                           </Link>
                         </li>
                       ))}

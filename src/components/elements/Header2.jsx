@@ -95,7 +95,7 @@ export default function Header2({ scroll, handlePopup }) {
                   </Button>
                   <div className="d-md-none">
                     {/* Mobile menu toggle button */}
-                    <button onClick={handleMobileMenu}>
+                    <button onClick={handleMobileMenu} aria-label="Toggle mobile menu">
                       <i
                         className={`fa text-2xl ${
                           isMobileMenuOpen ? "fa-times" : "fa-bars"

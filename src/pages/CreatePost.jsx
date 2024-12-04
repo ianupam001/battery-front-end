@@ -98,6 +98,7 @@ export default function CreatePost() {
             }
           />
           <Select
+          aria-label="Select"
             onChange={(e) =>
               setFormData({ ...formData, category: e.target.value })
             }

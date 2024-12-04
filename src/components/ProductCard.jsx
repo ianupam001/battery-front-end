@@ -27,12 +27,12 @@ export default function ProductCard({ productrecent }) {
         <div className="content-box">
           <div className="title">
             <h3>
-              <Link href="shop">{productrecent && productrecent.title}</Link>
+              <Link to="shop" aria-label={`Learn more ${productrecent && productrecent.title}`}>{productrecent && productrecent.title}</Link>
             </h3>
           </div>
           <div className="bottom-box">
             <div className="btn-box">
-              <Link to={`/product/${productrecent && productrecent.slug}`}>
+              <Link to={`/product/${productrecent && productrecent.slug}`} aria-label={`Learn more ${productrecent && productrecent.slug}`}>
                 <i className="fa fa fa-arrow-right"></i>
                 View Product
               </Link>

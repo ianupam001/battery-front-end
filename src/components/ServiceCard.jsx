@@ -9,10 +9,10 @@ export default function ServiceCard({ post }) {
         </div>
         <p className="services-two__sub-title">Service</p>
         <h3 className="services-two__title">
-          <Link to={`/service/${post.slug}`}>{post.title}</Link>
+          <Link to={`/service/${post.slug}`} aria-label={`Learn more about the service: ${post.title}`}>{post.title}</Link>
         </h3>
         <p className="services-two__text">{post.short_description}</p>
-        <Link to={`/service/${post.slug}`} className="services-two__learn-more">
+        <Link to={`/service/${post.slug}`} className="services-two__learn-more" aria-label={`Learn more about the service: ${post.title}`}>
           Learn More<span className="icon-arrow-right"></span>
         </Link>
       </div>

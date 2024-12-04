@@ -108,7 +108,7 @@ export default function Contact() {
                 </div>
                 <p>Contact Us</p>
                 <h3>
-                  <a href="tel:+971 50 934 46685">+971 50 934 4668</a>
+                  <a href="tel:+971 50 934 46685" aria-label="Go tell">+971 50 934 4668</a>
                 </h3>
               </div>
             </div>
@@ -119,7 +119,7 @@ export default function Contact() {
                 </div>
                 <p>Mail Us</p>
                 <h3>
-                  <a href="mailto:support@800bbattery.com">
+                  <a href="mailto:support@800bbattery.com" aria-label="email">
                     support@800bbattery.com
                   </a>
                 </h3>

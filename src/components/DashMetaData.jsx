@@ -76,7 +76,8 @@ export default function DashMetaData() {
         </Link>
         <div className="w-md px-3 mb-2">
           <div className="relative w-40">
-            <select
+            <select 
+            aria-label="Select"
               name="type"
               id="type"
               className="w-full p-2 border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-0"

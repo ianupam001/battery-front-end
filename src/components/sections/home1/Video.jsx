@@ -15,7 +15,7 @@ export default function Video() {
                     <img src="assets/images/shapes/video-one-shape-1.png" alt=""/>
                 </div>
                 <div className="video-one__bg wow slideInLeft" data-wow-delay="100ms" data-wow-duration="2500ms"
-                    style={{ backgroundImage: 'url(assets/images/why-choose-us-800bbattery.png)' }} >
+                    style={{ backgroundImage: 'url(assets/images/why-choose-us-800bbattery.webp)' }} >
 
                 </div>
                 <div className="container">

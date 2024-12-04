@@ -141,7 +141,8 @@ export default function UpdatePost() {
             <label htmlFor="category" className="block font-medium mb-2">
               Category
             </label>
-            <Select
+            <Select 
+            aria-label="Select"
               id="category"
               onChange={(e) =>
                 setFormData({ ...formData, category: e.target.value })

@@ -73,6 +73,7 @@ export default function Blog() {
                       <Link
                         to={`/post/${post.slug}`}
                         className="blog-one__learn-more"
+                        aria-label={`Learn more ${post.title}`}
                       >
                         Learn More<span className="icon-arrow-right"></span>
                       </Link>

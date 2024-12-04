@@ -83,11 +83,12 @@ export default function Blog() {
                     <div className="blog-one__single">
                       <div className="blog-one__img-box">
                         <div className="blog-one__img">
-                          <img src={post.image} alt="@@title" />
-                          <img src={post.image} alt="@@title" />
+                          <img src={post.image} alt="banner" />
+                         
                           <Link
                             to={`/post/${post.slug}`}
                             className="blog-one__link"
+                           
                           >
                             <span className="sr-only"></span>
                           </Link>

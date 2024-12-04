@@ -27,14 +27,16 @@ const ThankYouMessage = () => {
       <p className="text-gray-600 mb-6">Your message has been sent!</p>
       {/* Buttons */}
       <div className="flex gap-4">
-        <a
+        <a 
           href="/"
+          aria-label="Go to homepage"
           className="px-6 py-3 font-semibold text-white rounded-full bg-[#F2871C] hover:bg-opacity-90 transition"
         >
           Go Home
         </a>
         <a
           href="tel:+971509344668"
+          aria-label="Go to call"
           className="px-6 py-3 font-semibold text-white rounded-full bg-[#F2871C] hover:bg-opacity-90 transition"
         >
           Call Now

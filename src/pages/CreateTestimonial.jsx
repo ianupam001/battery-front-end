@@ -117,7 +117,7 @@ export default function CreateTestimonial() {
             }
           />
         </div>
-        <Select
+        <Select aria-label="Select"
           onChange={(e) => setFormData({ ...formData, count: e.target.value })}
         >
           <option value="1">1</option>
