@@ -52,7 +52,7 @@ export default function Menu() {
           <ul>
             {userServices?.map((service) => (
               <li key={service._id}>
-                <Link to={`/service/${service.slug}`}>{service.title}</Link>
+                <Link  to={`/service/${service.slug}`} aria-label={`Learn more about the service: ${service.title}`}>{service.title}</Link>
               </li>
             ))}
           </ul>
@@ -62,7 +62,7 @@ export default function Menu() {
           <ul>
             {userProducts.map((product) => (
               <li key={product._id}>
-                <Link to={`/product/${product.slug}`}>{product.title}</Link>
+                <Link to={`/product/${product.slug}`} aria-label={`Learn more about the service: ${product.title}`}>{product.title}</Link>
               </li>
             ))}
           </ul>
