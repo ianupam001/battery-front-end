@@ -13,7 +13,7 @@ export default function ServiceCard({ post }) {
         </h3>
         <p className="services-two__text">{post.short_description}</p>
         <Link to={`/service/${post.slug}`} className="services-two__learn-more" aria-label={`Learn more about the service: ${post.title}`}>
-          Learn More<span className="icon-arrow-right"></span>
+          View Details<span className="icon-arrow-right"></span>
         </Link>
       </div>
     </div>

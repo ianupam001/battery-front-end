@@ -75,7 +75,7 @@ export default function Blog() {
                         className="blog-one__learn-more"
                         aria-label={`Learn more ${post.title}`}
                       >
-                        Learn More<span className="icon-arrow-right"></span>
+                        View Details<span className="icon-arrow-right"></span>
                       </Link>
                     </div>
                   </div>

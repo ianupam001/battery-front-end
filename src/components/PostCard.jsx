@@ -30,7 +30,7 @@ export default function PostCard({ post }) {
             <Link to={`/post/${post.slug}`}>{post.title}</Link>
           </h3>
           <Link to={`/post/${post.slug}`} className="blog-one__learn-more" aria-label={`Learn more about the service: ${post.title}`}>
-            Learn More<span className="icon-arrow-right"></span>
+            View Details<span className="icon-arrow-right"></span>
           </Link>
         </div>
       </div>
