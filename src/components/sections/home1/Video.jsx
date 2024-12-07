@@ -39,13 +39,13 @@ export default function Video() {
                                         <div className="icon">
                                             <span className="icon-like"></span>
                                         </div>
-                                        <h3 className="about-two__title"><Link to="javascript:void(0);">Genuine Car Batteries</Link></h3>
+                                        <h3 className="about-two__title"><Link to="products">Genuine Car Batteries</Link></h3>
                                     </li>
                                     <li>
                                         <div className="icon">
                                             <span className="icon-services"></span>
                                         </div>
-                                        <h3 className="about-two__title"><Link to="contact">Emergency Roadside Assistance</Link></h3>
+                                        <h3 className="about-two__title"><Link to="/contact-us">Emergency Roadside Assistance</Link></h3>
                                     </li>
                                 </ul>
                                 {/* <ul className="about-two__points-list list-unstyled">

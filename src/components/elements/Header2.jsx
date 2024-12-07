@@ -39,10 +39,10 @@ export default function Header2({ scroll, handlePopup }) {
             <div className="main-menu-two__top-inner">
               <div className="main-menu-two__top-left">
                 <div className="main-menu-two__social">
-                  <Link to="https://www.facebook.com/profile.php?id=61565118175123">
+                  <Link to="https://www.facebook.com/profile.php?id=61565118175123" aria-label="facebook-icon">
                     <i className="icon-facebook"></i>
                   </Link>
-                  <Link to="https://www.instagram.com/800b.battery/">
+                  <Link to="https://www.instagram.com/800b.battery/" aria-label="instagram-icon">
                     <i className="icon-instagram"></i>
                   </Link>
                 </div>
