@@ -65,7 +65,7 @@ export default function Video() {
                             </div>
                                 <div className="video-one__btn-box">
                                     <Link to={"tel:+971509344668"} className="video-one__btn thm-btn">Call Now</Link>
-                                    <Link to="contact" className="video-one__btn-two thm-btn"  onClick={() => setModalOpen(true)}>Free estimate</Link>
+                                    <Link to="contact-us" className="video-one__btn-two thm-btn"  onClick={() => setModalOpen(true)}>Free estimate</Link>
                                     <ContactModal
                                         isOpen={isModalOpen}
                                         onClose={() => setModalOpen(false)}
