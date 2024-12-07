@@ -89,14 +89,14 @@ export default function PostPage() {
                     </div>
                     <ul className="blog-details__meta list-unstyled">
                       <li>
-                        <Link href="#">
+                        <Link to="#">
                           <span className="icon-clock"></span>
                           {post &&
                             new Date(post.createdAt).toLocaleDateString()}
                         </Link>
                       </li>
                       <li>
-                        <Link href="#">
+                        <Link to="#">
                           <span className="icon-clock"></span>
                           {post && (post.content.length / 1000).toFixed(0)} Min
                           Read

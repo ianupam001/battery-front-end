@@ -12,14 +12,6 @@ export default function ProductCard({ productrecent }) {
             src={productrecent && productrecent.image}
             alt={productrecent && productrecent.title}
           />
-          {/* <div className="overlay-icon clearfix">
-                <Link href="shop">
-                    <i className="fa fa fa-heart"></i>
-                </Link>
-                <Link href="shop">
-                    <i className=" fa fa fa-plus"></i>
-                </Link>
-            </div> */}
           <div className="rate-box">
             <h4>Best Product</h4>
           </div>
@@ -27,7 +19,7 @@ export default function ProductCard({ productrecent }) {
         <div className="content-box">
           <div className="title">
             <h3>
-              <Link to="shop" aria-label={`Learn more ${productrecent && productrecent.title}`}>{productrecent && productrecent.title}</Link>
+              <Link to={`/product/${productrecent && productrecent.slug}`} aria-label={`Learn more ${productrecent && productrecent.title}`}>{productrecent && productrecent.title}</Link>
             </h3>
           </div>
           <div className="bottom-box">

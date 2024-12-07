@@ -57,7 +57,7 @@ export default function Footer() {
               >
                 <div className="footer-widget__column footer-widget__about">
                   <div className="footer-widget__logo">
-                    <Link href="/">
+                    <Link to="/">
                       <img className="w-56" src={footerLogo} alt="logo" />
                     </Link>
                   </div>
@@ -157,10 +157,10 @@ export default function Footer() {
                       <h3>Contact</h3>
                       <div className="content">
                         <p>
-                          <Link href="tel:+971509344668">+971 50 934 4668</Link>
+                          <Link to="tel:+971509344668">+971 50 934 4668</Link>
                         </p>
                         <p>
-                          <Link href="mailto:support@800bbattery.com">
+                          <Link to="mailto:support@800bbattery.com">
                             support@800bbattery.com
                           </Link>
                         </p>
@@ -186,9 +186,9 @@ export default function Footer() {
                 </span>
               </p>
               <ul className="list-unstyled site-footer__bottom-menu">
-                {/* <li><Link href="contact">Support</Link></li>
-                            <li><Link href="about">Terms and Condition</Link></li>
-                            <li><Link href="about">Privacy and Policy</Link></li> */}
+                {/* <li><Link to="contact">Support</Link></li>
+                            <li><Link to="about">Terms and Condition</Link></li>
+                            <li><Link to="about">Privacy and Policy</Link></li> */}
               </ul>
             </div>
           </div>

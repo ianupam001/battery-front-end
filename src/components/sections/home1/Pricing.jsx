@@ -56,7 +56,7 @@ export default function Pricing() {
                                     </li>
                                 </ul>
                                 <div className="pricing-one__btn-box">
-                                    <Link href="pricing" className="pricing-one__btn thm-btn">Get Started</Link>
+                                    <Link to="pricing" className="pricing-one__btn thm-btn">Get Started</Link>
                                 </div>
                             </div>
                         </div>
@@ -100,7 +100,7 @@ export default function Pricing() {
                                     </li>
                                 </ul>
                                 <div className="pricing-one__btn-box">
-                                    <Link href="pricing" className="pricing-one__btn thm-btn">Get Started</Link>
+                                    <Link to="pricing" className="pricing-one__btn thm-btn">Get Started</Link>
                                 </div>
                             </div>
                         </div>
@@ -144,7 +144,7 @@ export default function Pricing() {
                                     </li>
                                 </ul>
                                 <div className="pricing-one__btn-box">
-                                    <Link href="pricing" className="pricing-one__btn thm-btn">Get Started</Link>
+                                    <Link to="pricing" className="pricing-one__btn thm-btn">Get Started</Link>
                                 </div>
                             </div>
                         </div>

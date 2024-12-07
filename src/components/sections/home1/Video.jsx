@@ -39,13 +39,13 @@ export default function Video() {
                                         <div className="icon">
                                             <span className="icon-like"></span>
                                         </div>
-                                        <h3 className="about-two__title"><Link href="javascript:void(0);">Genuine Car Batteries</Link></h3>
+                                        <h3 className="about-two__title"><Link to="javascript:void(0);">Genuine Car Batteries</Link></h3>
                                     </li>
                                     <li>
                                         <div className="icon">
                                             <span className="icon-services"></span>
                                         </div>
-                                        <h3 className="about-two__title"><Link href="contact">Emergency Roadside Assistance</Link></h3>
+                                        <h3 className="about-two__title"><Link to="contact">Emergency Roadside Assistance</Link></h3>
                                     </li>
                                 </ul>
                                 {/* <ul className="about-two__points-list list-unstyled">
@@ -53,19 +53,19 @@ export default function Video() {
                                         <div className="icon">
                                             <span className="icon-like"></span>
                                         </div>
-                                        <h3 className="about-two__title"><Link href="javascript:void(0);">Onsite Battery Replacement</Link></h3>
+                                        <h3 className="about-two__title"><Link to="javascript:void(0);">Onsite Battery Replacement</Link></h3>
                                     </li>
                                     <li>
                                         <div className="icon">
                                             <span className="icon-services"></span>
                                         </div>
-                                        <h3 className="about-two__title"><Link href="contact">Extended Battery Life</Link></h3>
+                                        <h3 className="about-two__title"><Link to="contact">Extended Battery Life</Link></h3>
                                     </li>
                                 </ul> */}
                             </div>
                                 <div className="video-one__btn-box">
                                     <Link to={"tel:+971509344668"} className="video-one__btn thm-btn">Call Now</Link>
-                                    <Link href="contact" className="video-one__btn-two thm-btn"  onClick={() => setModalOpen(true)}>Free estimate</Link>
+                                    <Link to="contact" className="video-one__btn-two thm-btn"  onClick={() => setModalOpen(true)}>Free estimate</Link>
                                     <ContactModal
                                         isOpen={isModalOpen}
                                         onClose={() => setModalOpen(false)}

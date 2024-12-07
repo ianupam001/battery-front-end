@@ -126,7 +126,7 @@ export default function ServicePage() {
                         <span className="icon-call"></span>
                       </div>
                       <p>
-                        <Link href="tel:+971509344668">+971 50 934 4668</Link>
+                        <Link to="tel:+971509344668">+971 50 934 4668</Link>
                       </p>
                     </li>
                     <li>
@@ -134,7 +134,7 @@ export default function ServicePage() {
                         <span className="icon-envelope"></span>
                       </div>
                       <p>
-                        <Link href="mailto:support@800bbattery.com">
+                        <Link to="mailto:support@800bbattery.com">
                           support@800bbattery.com
                         </Link>
                       </p>

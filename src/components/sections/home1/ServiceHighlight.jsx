@@ -12,7 +12,7 @@ export default function ServiceHighlight() {
                                 <div className="services-one__icon">
                                     <span className="icon-affordable-price"></span>
                                 </div>
-                                <h3 className="services-one__title"><Link href="pricing">Affordable Price</Link></h3>
+                                <h3 className="services-one__title"><Link to="pricing">Affordable Price</Link></h3>
                                 <p className="services-one__text">We offer competitive pricing for <br/> high-quality car batteries and services.</p>
                             </div>
                         </li>
@@ -21,7 +21,7 @@ export default function ServiceHighlight() {
                                 <div className="services-one__icon">
                                     <span className="icon-setting"></span>
                                 </div>
-                                <h3 className="services-one__title"><Link href="about">100% Guarantee</Link></h3>
+                                <h3 className="services-one__title"><Link to="about">100% Guarantee</Link></h3>
                                 <p className="services-one__text">All our batteries come with a 100% guarantee <br/> for performance and reliability.</p>
                             </div>
                         </li>
@@ -30,7 +30,7 @@ export default function ServiceHighlight() {
                                 <div className="services-one__icon">
                                     <span className="icon-services"></span>
                                 </div>
-                                <h3 className="services-one__title"><Link href="contact">24/7 Our Service</Link></h3>
+                                <h3 className="services-one__title"><Link to="contact">24/7 Our Service</Link></h3>
                                 <p className="services-one__text">Available 24/7 for emergency battery replacement <br/> and roadside assistance.</p>
                             </div>
                         </li>

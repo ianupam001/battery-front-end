@@ -15,7 +15,7 @@ export default function Header({ scroll, handlePopup, handleMobileMenu }) {
                 </div>
                 <div className="text">
                   <p>
-                    <Link href="mailto:support@800bbattery.com">
+                    <Link to="mailto:support@800bbattery.com">
                       support@800bbattery.com
                     </Link>
                   </p>
@@ -26,16 +26,16 @@ export default function Header({ scroll, handlePopup, handleMobileMenu }) {
                   <i className="icon-call"></i>
                 </div>
                 <div className="text">
-                  <Link href="tel:+971509344668">+971 50 934 4668</Link>
+                  <Link to="tel:+971509344668">+971 50 934 4668</Link>
                 </div>
               </li>
             </ul>
             <div className="main-menu__top-right">
               <div className="main-menu__social">
-                <Link href="https://www.facebook.com/profile.php?id=61565118175123">
+                <Link to="https://www.facebook.com/profile.php?id=61565118175123">
                   <i className="icon-facebook"></i>
                 </Link>
-                <Link href="https://www.instagram.com/800b.battery/">
+                <Link to="https://www.instagram.com/800b.battery/">
                   <i className="icon-instagram"></i>
                 </Link>
               </div>
