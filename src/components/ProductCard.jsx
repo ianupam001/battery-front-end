@@ -17,9 +17,9 @@ export default function ProductCard({ productrecent }) {
             src={productrecent && productrecent.image}
             alt={productrecent && productrecent.title}
           />
-          <div className="rate-box">
+          {/* <div className="rate-box">
             <h4>Best Product</h4>
-          </div>
+          </div> */}
         </div>
         <div className="content-box">
           <div className="title">
