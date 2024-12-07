@@ -48,6 +48,7 @@ export default function Products() {
                     {products.map((product) => (
                         
                         <div className="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="100ms"  key={product._id}>
+                            <Link to={`/product/${product.slug}`}>
                         <div className="services-four__single">
                             <div className="services-four__img">
                                 <img src={product.image} alt={`${product.title}`}/>
@@ -66,6 +67,7 @@ export default function Products() {
                                 </div>
                             </div>
                         </div>
+                        </Link>
                     </div>
 
                       
