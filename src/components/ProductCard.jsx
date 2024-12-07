@@ -6,6 +6,11 @@ export default function ProductCard({ productrecent }) {
       className="col-xl-4 col-lg-6 col-md-6 wow fadeInUp"
       data-wow-delay="100ms"
     >
+       <Link
+        to={`/product/${productrecent && productrecent.slug}`}
+        className="shop-page-one-single"
+        aria-label={`View details for ${productrecent && productrecent.title}`}
+      >
       <div className="shop-page-one-single">
         <div className="img-box">
           <img
@@ -32,6 +37,7 @@ export default function ProductCard({ productrecent }) {
           </div>
         </div>
       </div>
+      </Link>
     </div>
   );
 }

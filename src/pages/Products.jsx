@@ -39,20 +39,26 @@ export default function Products() {
                     products?.length > 0 &&
                     products?.map((post, index) => (
                       <div key={index} className="col-xl-4">
-                        <div className="shop-page-one-single">
-                          <div className="img-box">
-                            <img src={post.image} alt="Image" />
-                          </div>
-                          <div className="content-box">
-                            <div className="title">
-                              <h3>
-                                <Link to={`/product/${post.slug}`}>
-                                  {post.title}
-                                </Link>
-                              </h3>
+                        <Link
+                          to={`/product/${post.slug}`}
+                          className="shop-page-one-single"
+                          aria-label={`View details for ${post.slug}`}
+                        >
+                          <div className="shop-page-one-single">
+                            <div className="img-box">
+                              <img src={post.image} alt="Image" />
+                            </div>
+                            <div className="content-box">
+                              <div className="title">
+                                <h3>
+                                  <Link to={`/product/${post.slug}`}>
+                                    {post.title}
+                                  </Link>
+                                </h3>
+                              </div>
                             </div>
                           </div>
-                        </div>
+                        </Link>
                       </div>
                     ))}
                 </div>
